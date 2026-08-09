@@ -9,15 +9,7 @@ public class CustomerNPCMoveToSeatState : CustomerNPCState
 
     public override void StateUpdate()
     {
-        Vector3 direction = npc.MoveController.Agent.desiredVelocity;
-
-        if (direction.sqrMagnitude <= 0.01f)
-            return;
-
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation,
-                             npc.MoveController.Agent.angularSpeed * Time.deltaTime);
+        RotateToMovementDirection();
 
         if (!npc.MoveController.IsArrived)
             return;

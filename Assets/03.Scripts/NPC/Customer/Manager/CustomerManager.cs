@@ -20,6 +20,10 @@ public class CustomerManager : MonoBehaviour
     [SerializeField]
     private Transform[] spawnPoints = new Transform[4];
 
+    [Header("ChairEventChannel")]
+    [SerializeField]
+    private ChairEventData chairEventChannel;
+
     private int currentCustomerCount;
 
     private WaitForSeconds waitForSpawn;
@@ -65,21 +69,26 @@ public class CustomerManager : MonoBehaviour
 
         customer.transform.position = spawnPoints[index].position;
 
-        if(index + 1 ==  spawnPoints.Length)
-        {
-            index = 0;
-        }
-        else
-        {
-            index++;
-        }
         currentCustomerCount++;
-        customer.Initialize(spawnPoints[index]);
+
+        SetupCustomer(customer);
+
+        chairEventChannel.RequestChair(customer);
+        //customer.Initialize(targetChair);
     }
 
-    public void OnCustomerExit(CustomerNPC customer)
+    // 생성된 CustomerNPC의 종료 이벤트를 구독
+    private void SetupCustomer(CustomerNPC customer)
+    {
+        customer.OnExitCompleted += OnCustomerExit;
+    }
+
+    // CustomerNPC의 퇴장 완료 이벤트 처리
+    private void OnCustomerExit(CustomerNPC customer)
     {
         currentCustomerCount--;
+
+        customer.OnExitCompleted -= OnCustomerExit;
 
         PoolManager.Instance.Release(PoolType.Customer, customer);
     }
