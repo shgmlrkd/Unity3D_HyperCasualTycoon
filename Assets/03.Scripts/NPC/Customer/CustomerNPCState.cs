@@ -17,4 +17,17 @@ public abstract class CustomerNPCState : MonoBehaviour
     public virtual void StateUpdate() { }
 
     public abstract void Exit();
+
+    protected void RotateToMovementDirection()
+    {
+        Vector3 direction = npc.MoveController.Agent.desiredVelocity;
+
+        if (direction.sqrMagnitude <= 0.01f)
+            return;
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation,
+                             npc.MoveController.Agent.angularSpeed * Time.deltaTime);
+    }
 }
