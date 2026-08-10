@@ -2620,10 +2620,14 @@ PrefabInstance:
     - target: {fileID: 1329074357192473051, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 586434522}
+      objectReference: {fileID: 852348585}
     - target: {fileID: 1329074357192473051, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClickExit
+      value: OnClickCloseOption
+      objectReference: {fileID: 0}
+    - target: {fileID: 1329074357192473051, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TitleUIController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1459019293398819785, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
       propertyPath: m_Pivot.x
@@ -2713,6 +2717,10 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 586434522}
+    - target: {fileID: 3392816164928104800, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
+      propertyPath: m_text
+      value: Close
+      objectReference: {fileID: 0}
     - target: {fileID: 4526358171018440419, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
