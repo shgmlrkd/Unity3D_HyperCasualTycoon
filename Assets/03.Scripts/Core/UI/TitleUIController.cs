@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class TitleUIController : MonoBehaviour
 {
+    [Header("UI Panels")]
+    [SerializeField] private GameObject optionPanel;
+
     public void OnClickNewGame()
     {
         UIManager.Instance?.OnClickNewGame();
@@ -14,7 +17,18 @@ public class TitleUIController : MonoBehaviour
 
     public void OnClickOpenOption()
     {
-        UIManager.Instance?.OnClickOpenOption();
+        if (optionPanel != null)
+        {
+            optionPanel.SetActive(true);
+        }
+    }
+
+    public void OnClickCloseOption()
+    {
+        if (optionPanel != null)
+        {
+            optionPanel.SetActive(false);
+        }
     }
 
     public void OnClickExit()

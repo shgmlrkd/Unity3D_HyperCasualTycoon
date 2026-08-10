@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class UI_PauseMenu : MonoBehaviour
 {
+    [Header("Panels")]
     [SerializeField] private GameObject pausePanel;
-    [SerializeField] string titleSceneName = "TitleScene";
     [SerializeField] private GameObject optionPanel;
+
+    [SerializeField] private string titleSceneName = "TitleScene";
 
     private void Start()
     {
@@ -46,9 +48,8 @@ public class UI_PauseMenu : MonoBehaviour
         {
             GameManager.Instance.ResumeGame();
         }
-        
-        Time.timeScale = 1f;
 
+        Time.timeScale = 1f;
         SceneManagerEx.Instance?.LoadScene(titleSceneName);
     }
 

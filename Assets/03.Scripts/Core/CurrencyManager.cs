@@ -13,6 +13,14 @@ public class CurrencyManager : MonoSingleton<CurrencyManager>
         CurrentGold = initialGold;
     }
 
+    public void ResetData()
+    {
+        CurrentGold = initialGold;
+        Debug.Log($"[CurrencyManager] 데이터 초기화: 골드 {CurrentGold}으로 리셋");
+
+        EventManager.Instance?.Publish(EventManager.EventType.OnGoldChanged, CurrentGold);
+    }
+
     public void AddGold(int amount)
     {
         if (amount <= 0) return;

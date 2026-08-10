@@ -99,6 +99,16 @@ public class SaveManager : MonoSingleton<SaveManager>
         return JsonUtility.FromJson<OptionData>(json);
     }
 
+    public void ResetGameData()
+    {
+        if (CurrencyManager.Instance != null)
+        {
+            CurrencyManager.Instance.ResetData();
+        }
+
+        Debug.Log("[SaveManager] 인게임 데이터 초기화 완료 (New Game)");
+    }
+
     protected override void OnApplicationQuit()
     {
         base.OnApplicationQuit();

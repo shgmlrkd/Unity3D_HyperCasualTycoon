@@ -704,8 +704,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_PauseMenu
   pausePanel: {fileID: 878166297}
+  optionPanel: {fileID: 1664153981}
   titleSceneName: Test01_TitleScene
-  optionPanel: {fileID: 0}
 --- !u!1 &791786873
 GameObject:
   m_ObjectHideFlags: 0
@@ -1529,6 +1529,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1329074357192473051, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 607819143}
+    - target: {fileID: 1329074357192473051, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickCloseOption
+      objectReference: {fileID: 0}
+    - target: {fileID: 1329074357192473051, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI_PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1459019293398819785, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1613,6 +1625,10 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3392816164928104800, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
+      propertyPath: m_text
+      value: Close
+      objectReference: {fileID: 0}
     - target: {fileID: 4526358171018440419, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1625,6 +1641,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8039979553928861877, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
+      propertyPath: testSFXButton
+      value: 
+      objectReference: {fileID: 1664153978}
     - target: {fileID: 8160039222704616004, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1641,6 +1661,22 @@ PrefabInstance:
 --- !u!224 &1664153977 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1459019293398819785, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
+  m_PrefabInstance: {fileID: 1664153976}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1664153978 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9075038402716224522, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
+  m_PrefabInstance: {fileID: 1664153976}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!1 &1664153981 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 861334684598927900, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
   m_PrefabInstance: {fileID: 1664153976}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1691036903

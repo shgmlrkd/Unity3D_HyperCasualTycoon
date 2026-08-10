@@ -235,7 +235,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6383183622112184302}
   - component: {fileID: 4362670413394937503}
-  - component: {fileID: 1305908683863902557}
   m_Layer: 0
   m_Name: CustomerObject
   m_TagString: Untagged
@@ -340,29 +339,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0021134317, y: -0.083206385, z: -0.0024773479}
     m_Extent: {x: 0.92261267, y: 0.9789269, z: 0.1807718}
   m_DirtyAABB: 0
---- !u!136 &1305908683863902557
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2808771715428475564}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.92261267
-  m_Height: 1.9600472
-  m_Direction: 1
-  m_Center: {x: 0.00022258807, y: 0.85317045, z: 0.0066417223}
 --- !u!1 &3102464864290749726
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,7 +582,7 @@ GameObject:
   - component: {fileID: 7346851978447563425}
   - component: {fileID: 4337751674333562290}
   - component: {fileID: 1706651514519283188}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CustomerNPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,7 +642,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0.5
+  m_StoppingDistance: 0.05
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -701,6 +677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CustomerNPC
   moveController: {fileID: 1097729697238718511}
   stateController: {fileID: 1869863424830491231}
+  chairEventChannel: {fileID: 11400000, guid: 6daeff051c50989488e40ab91a0e1e85, type: 2}
 --- !u!114 &1097729697238718511
 MonoBehaviour:
   m_ObjectHideFlags: 0
