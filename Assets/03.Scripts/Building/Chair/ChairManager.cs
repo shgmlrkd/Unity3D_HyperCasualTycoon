@@ -1,14 +1,32 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ChairManager : MonoBehaviour
 {
-    [SerializeField] 
-    private List<Chair> chairs;
-
     [SerializeField]
     private ChairEventData chairEventChannel;
+
+    private Chair[] chairs;
+
+    private void Awake()
+    {
+        chairs = GetComponentsInChildren<Chair>(true);
+
+        foreach (Chair chair in chairs)
+        {
+            chair.OnStateChanged += RefreshChairAvailability;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (chairs == null) return;
+
+        foreach (Chair chair in chairs)
+        {
+            chair.OnStateChanged -= RefreshChairAvailability;
+        }
+    }
 
     private void OnEnable()
     {
@@ -27,14 +45,16 @@ public class ChairManager : MonoBehaviour
         if (!TryGetChair(customer.transform.position, out Chair targetChair))
             return;
 
-        targetChair.SetState(ChairState.Occupied);
-
         chairEventChannel.AssignChair(customer, targetChair);
+
+        RefreshChairAvailability();
     }
 
     private void HandleChairReleased(Chair chair)
     {
         chair.SetState(ChairState.Available);
+
+        RefreshChairAvailability();
     }
 
     // 이용할 수 있는 의자를 찾음
@@ -64,5 +84,23 @@ public class ChairManager : MonoBehaviour
         chair.SetState(ChairState.Reserved);
 
         return true;
+    }
+
+    private void RefreshChairAvailability()
+    {
+        bool hasAvailableChair = HasAvailableChair();
+
+        chairEventChannel.NotifyChairAvailability(hasAvailableChair);
+    }
+
+    private bool HasAvailableChair()
+    {
+        foreach (Chair chair in chairs)
+        {
+            if (chair.State == ChairState.Available)
+                return true;
+        }
+
+        return false;
     }
 }
