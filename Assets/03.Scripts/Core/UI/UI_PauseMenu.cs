@@ -1,16 +1,29 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_PauseMenu : MonoBehaviour
 {
+    [Header("Panels")]
     [SerializeField] private GameObject pausePanel;
-    [SerializeField] string titleSceneName = "TitleScene";
     [SerializeField] private GameObject optionPanel;
+
+    [Header("Sliders")]
+    [SerializeField] private Slider masterSlider;
+    [SerializeField] private Slider bgmSlider;
+    [SerializeField] private Slider sfxSlider;
+
+    [SerializeField] private string titleSceneName = "TitleScene";
 
     private void Start()
     {
         if (EventManager.Instance != null)
         {
             EventManager.Instance.Subscribe(EventManager.EventType.OnGameStateChanged, OnGameStateChanged);
+        }
+
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.SetupSliders(masterSlider, bgmSlider, sfxSlider);
         }
     }
 
@@ -46,25 +59,18 @@ public class UI_PauseMenu : MonoBehaviour
         {
             GameManager.Instance.ResumeGame();
         }
-        
-        Time.timeScale = 1f;
 
+        Time.timeScale = 1f;
         SceneManagerEx.Instance?.LoadScene(titleSceneName);
     }
 
     public void OnClickOpenOption()
     {
-        if (optionPanel != null)
-        {
-            optionPanel.SetActive(true);
-        }
+        if (optionPanel != null) optionPanel.SetActive(true);
     }
 
     public void OnClickCloseOption()
     {
-        if (optionPanel != null)
-        {
-            optionPanel.SetActive(false);
-        }
+        if (optionPanel != null) optionPanel.SetActive(false);
     }
 }
