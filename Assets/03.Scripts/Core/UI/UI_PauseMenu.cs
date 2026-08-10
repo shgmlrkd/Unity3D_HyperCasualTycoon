@@ -1,16 +1,10 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UI_PauseMenu : MonoBehaviour
 {
     [Header("Panels")]
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject optionPanel;
-
-    [Header("Sliders")]
-    [SerializeField] private Slider masterSlider;
-    [SerializeField] private Slider bgmSlider;
-    [SerializeField] private Slider sfxSlider;
 
     [SerializeField] private string titleSceneName = "TitleScene";
 
@@ -19,11 +13,6 @@ public class UI_PauseMenu : MonoBehaviour
         if (EventManager.Instance != null)
         {
             EventManager.Instance.Subscribe(EventManager.EventType.OnGameStateChanged, OnGameStateChanged);
-        }
-
-        if (UIManager.Instance != null)
-        {
-            UIManager.Instance.SetupSliders(masterSlider, bgmSlider, sfxSlider);
         }
     }
 
@@ -66,11 +55,17 @@ public class UI_PauseMenu : MonoBehaviour
 
     public void OnClickOpenOption()
     {
-        if (optionPanel != null) optionPanel.SetActive(true);
+        if (optionPanel != null)
+        {
+            optionPanel.SetActive(true);
+        }
     }
 
     public void OnClickCloseOption()
     {
-        if (optionPanel != null) optionPanel.SetActive(false);
+        if (optionPanel != null)
+        {
+            optionPanel.SetActive(false);
+        }
     }
 }

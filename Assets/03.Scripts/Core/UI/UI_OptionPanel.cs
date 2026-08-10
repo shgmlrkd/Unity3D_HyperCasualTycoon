@@ -7,6 +7,7 @@ public class UI_OptionPanel : MonoBehaviour
     [SerializeField] private Slider masterSlider;
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider sfxSlider;
+    [SerializeField] private Button testSFXButton;
 
     private void OnEnable()
     {
@@ -20,6 +21,14 @@ public class UI_OptionPanel : MonoBehaviour
         if (masterSlider != null) masterSlider.value = option.masterVol;
         if (bgmSlider != null) bgmSlider.value = option.bgmVol;
         if (sfxSlider != null) sfxSlider.value = option.sfxVol;
+        if (testSFXButton != null)
+        {
+            testSFXButton.onClick.RemoveAllListeners();
+            testSFXButton.onClick.AddListener(() =>
+            {
+                SoundManager.Instance?.PlaySFXTest();
+            });
+        }
 
         OnMasterVolumeChanged(option.masterVol);
         OnBGMVolumeChanged(option.bgmVol);

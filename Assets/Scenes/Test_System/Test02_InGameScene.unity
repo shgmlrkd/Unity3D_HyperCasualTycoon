@@ -705,9 +705,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI_PauseMenu
   pausePanel: {fileID: 878166297}
   optionPanel: {fileID: 1664153981}
-  masterSlider: {fileID: 1664153980}
-  bgmSlider: {fileID: 1664153979}
-  sfxSlider: {fileID: 1664153978}
   titleSceneName: Test01_TitleScene
 --- !u!1 &791786873
 GameObject:
@@ -1532,6 +1529,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1329074357192473051, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 607819143}
+    - target: {fileID: 1329074357192473051, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickCloseOption
+      objectReference: {fileID: 0}
+    - target: {fileID: 1329074357192473051, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI_PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1459019293398819785, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1632,6 +1641,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8039979553928861877, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
+      propertyPath: testSFXButton
+      value: 
+      objectReference: {fileID: 1664153978}
     - target: {fileID: 8160039222704616004, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1652,37 +1665,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1664153978 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1793064061063043288, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
+  m_CorrespondingSourceObject: {fileID: 9075038402716224522, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
   m_PrefabInstance: {fileID: 1664153976}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
---- !u!114 &1664153979 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1536682816892147862, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
-  m_PrefabInstance: {fileID: 1664153976}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
---- !u!114 &1664153980 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8230929288608754985, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
-  m_PrefabInstance: {fileID: 1664153976}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1664153981 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 861334684598927900, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
