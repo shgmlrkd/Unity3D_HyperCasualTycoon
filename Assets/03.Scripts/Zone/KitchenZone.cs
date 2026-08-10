@@ -11,7 +11,7 @@ public class KitchenZone : MonoBehaviour, IInteractable
 
     private float timer = 0f;
 
-    public void OnInteract(PlayerCarrier carrier)
+    public void OnInteract(Carrier carrier)
     {
         if (produceItemData == null || produceItemData.ItemPrefab == null || carrier.IsFull) return;
 

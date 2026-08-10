@@ -7,7 +7,7 @@ public class TrashCanZone : MonoBehaviour, IInteractable
 
     private float timer = 0f;
 
-    public void OnInteract(PlayerCarrier carrier)
+    public void OnInteract(Carrier carrier)
     {
         // 들고 있는 아이템이 없으면 작동 안 함
         if (!carrier.HasItems) return;

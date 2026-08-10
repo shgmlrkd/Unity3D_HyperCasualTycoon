@@ -2,14 +2,14 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerAnimation))]
-[RequireComponent(typeof(PlayerCarrier))] // PlayerCarrier 필수 컴포넌트 추가
+[RequireComponent(typeof(Carrier))] // PlayerCarrier 필수 컴포넌트 추가
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5.0f;
 
     private PlayerMovement movement;
     private PlayerAnimation animationController;
-    private PlayerCarrier carrier; // 추가
+    private Carrier carrier; // 추가
 
     private bool isCarrying = false;
 
@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     {
         movement = GetComponent<PlayerMovement>();
         animationController = GetComponent<PlayerAnimation>();
-        carrier = GetComponent<PlayerCarrier>(); // 추가
+        carrier = GetComponent<Carrier>(); // 추가
     }
 
     private void Update()

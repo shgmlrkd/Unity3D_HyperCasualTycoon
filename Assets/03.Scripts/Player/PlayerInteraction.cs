@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    private PlayerCarrier carrier;
+    private Carrier carrier;
     private IInteractable currentInteractable;
 
     private void Awake()
     {
-        carrier = GetComponent<PlayerCarrier>();
+        carrier = GetComponent<Carrier>();
     }
 
     private void Update()
