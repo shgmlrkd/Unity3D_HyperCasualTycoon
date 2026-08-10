@@ -20,6 +20,11 @@ public class UnlockChecker : MonoBehaviour
             if(collider.enabled)
             {
                 collider.enabled = false;
+
+                for (int i = 0; i < transform.childCount; i++)
+                {
+                    transform.GetChild(i).gameObject.SetActive(false);
+                }
             }
 
             // 원래라면 재화를 확인하고 지불 후 비활성화 해야함
