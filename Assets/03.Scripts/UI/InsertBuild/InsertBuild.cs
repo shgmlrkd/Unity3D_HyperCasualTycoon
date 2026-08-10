@@ -13,4 +13,15 @@ public class InsertBuild : MonoBehaviour
         sb.Append(pay);
         money.SetText(sb.ToString());
     }
+
+    private void OnTriggerStay(Collider collision)
+    {
+        if (!collision.CompareTag("Player")) return;
+        Debug.Log("OnBoxTriggerStay");
+    }
+    private void OnTriggerExit(Collider collision)
+    {
+        if (!collision.CompareTag("Player")) return;
+        Debug.Log("OnOnBoxTriggerExit");
+    }
 }
