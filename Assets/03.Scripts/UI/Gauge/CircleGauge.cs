@@ -3,11 +3,13 @@ using UnityEngine.UI;
 
 public class CircleGauge : MonoBehaviour
 {
-
+    [SerializeField] private GameObject circleGauge;
     [SerializeField] private Image itemSlider; //게이지 이미지
     [SerializeField] private Image foodImg; // 푸드이지미 -  기본은 이미지 없음
     [SerializeField] private float itemCoolDownTime = 5.0f; //쿨타임
     float updateTime = 0.0f; //타임
+
+    
 
     private void Update()
     {
@@ -27,6 +29,11 @@ public class CircleGauge : MonoBehaviour
             itemSlider.fillAmount = (Mathf.Lerp(0, 100, updateTime / itemCoolDownTime) / 100);
         }
     }
+    //public void SetActiveGauge()
+    //{
+    //    Debug.Log("TEst");
+    //    //circleGauge.SetActive(true); 
+    //}
     //20260809
     //JS.S
     //SetFoodImg : foot img setting
@@ -36,6 +43,11 @@ public class CircleGauge : MonoBehaviour
     {
         if(image==null)return;
         foodImg.sprite = image;
+    }
+    public void Test()
+    {
+        Debug.Log("TEst");
+       // circleGauge.SetActive(true);
     }
 
 }
