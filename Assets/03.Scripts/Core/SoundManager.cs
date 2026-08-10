@@ -41,6 +41,12 @@ public class SoundManager : MonoSingleton<SoundManager>
         sfxSource.PlayOneShot(clip);
     }
 
+    public void PlaySFXTest()
+    {
+        if (sfxSource == null || sfxSource.clip == null) return;
+        PlaySFX(sfxSource.clip);
+    }
+
     public void SetBGMVolume(float volume)
     {
         if (bgmSource != null)
