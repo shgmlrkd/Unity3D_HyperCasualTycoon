@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf41f392946c6540bf42d0aaa8d8725, type: 3}
   m_Name: Pizza
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
-  itemId: 
-  itemName: 
-  itemHeight: 0.3
-  itemPrefab: {fileID: 0}
+  itemId: 1
+  itemName: Pizza
+  itemHeight: 0.01
+  itemPrefab: {fileID: -290903836724709718, guid: cc3a5ef921ded7949b26e1dcd908ee19, type: 3}

@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b1659d5cacaaa468185403addc0ddf, type: 3}
   m_Name: Kitchen
   m_EditorClassIdentifier: Assembly-CSharp::KitchenDataSO
-  produceItemData: {fileID: 0}
-  interactInterval: 0.3
+  produceItemDataList:
+  - {fileID: 11400000, guid: 251e09cdd419ef54693c5fb66745382d, type: 2}
+  - {fileID: 11400000, guid: faf98d18253474d489c6e391e9e76580, type: 2}
+  interactInterval: 0.1

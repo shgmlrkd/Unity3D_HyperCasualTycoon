@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf41f392946c6540bf42d0aaa8d8725, type: 3}
   m_Name: Hambuger
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
-  itemId: 
-  itemName: 
-  itemHeight: 0.3
-  itemPrefab: {fileID: 0}
+  itemId: 2
+  itemName: Hambuger
+  itemHeight: 0.1
+  itemPrefab: {fileID: 7253765113541217920, guid: 24f4bc2476fa09a47b1c30c3a3b86b4c, type: 3}
