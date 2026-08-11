@@ -9,7 +9,7 @@ public class UI_Currency : MonoBehaviour
     {
         if (EventManager.Instance != null)
         {
-            EventManager.Instance.Subscribe(EventManager.EventType.OnGoldChanged, UpdateGoldUI);
+            EventManager.Instance.Subscribe(EventType.OnGoldChanged, UpdateGoldUI);
         }
 
         UpdateGoldUI(null);
@@ -19,7 +19,7 @@ public class UI_Currency : MonoBehaviour
     {
         if (EventManager.Instance != null)
         {
-            EventManager.Instance.Unsubscribe(EventManager.EventType.OnGoldChanged, UpdateGoldUI);
+            EventManager.Instance.Unsubscribe(EventType.OnGoldChanged, UpdateGoldUI);
         }
     }
 

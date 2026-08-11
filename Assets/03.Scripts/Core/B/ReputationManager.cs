@@ -20,7 +20,7 @@ public class ReputationManager : MonoSingleton<ReputationManager>
         CurrentReputation += amount;
         Debug.Log($"[ReputationManager] 명성 획득: +{amount} (현재 명성: {CurrentReputation})");
 
-        EventManager.Instance?.Publish(EventManager.EventType.OnReputationChanged);
+        EventManager.Instance?.Publish(EventType.OnReputationChanged);
     }
 
     public void DecreaseReputation(int amount)
@@ -30,6 +30,6 @@ public class ReputationManager : MonoSingleton<ReputationManager>
         CurrentReputation = Mathf.Max(0, CurrentReputation - amount);
         Debug.Log($"[ReputationManager] 명성 감소: -{amount} (현재 명성: {CurrentReputation})");
 
-        EventManager.Instance?.Publish(EventManager.EventType.OnReputationChanged);
+        EventManager.Instance?.Publish(EventType.OnReputationChanged);
     }
 }

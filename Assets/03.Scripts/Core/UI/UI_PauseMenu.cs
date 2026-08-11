@@ -12,7 +12,7 @@ public class UI_PauseMenu : MonoBehaviour
     {
         if (EventManager.Instance != null)
         {
-            EventManager.Instance.Subscribe(EventManager.EventType.OnGameStateChanged, OnGameStateChanged);
+            EventManager.Instance.Subscribe(EventType.OnGameStateChanged, OnGameStateChanged);
         }
     }
 
@@ -20,7 +20,7 @@ public class UI_PauseMenu : MonoBehaviour
     {
         if (EventManager.Instance != null)
         {
-            EventManager.Instance.Unsubscribe(EventManager.EventType.OnGameStateChanged, OnGameStateChanged);
+            EventManager.Instance.Unsubscribe(EventType.OnGameStateChanged, OnGameStateChanged);
         }
     }
 
@@ -28,7 +28,7 @@ public class UI_PauseMenu : MonoBehaviour
     {
         if (GameManager.Instance == null || pausePanel == null) return;
 
-        bool isPaused = (GameManager.Instance.CurrentState == GameManager.GameState.Pause);
+        bool isPaused = (GameManager.Instance.CurrentState == GameState.Pause);
         pausePanel.SetActive(isPaused);
     }
 
