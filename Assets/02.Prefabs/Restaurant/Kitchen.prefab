@@ -46,6 +46,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6657426886267137073}
   - component: {fileID: 1233042303681390505}
+  - component: {fileID: 8464759827777918024}
   m_Layer: 0
   m_Name: HambugerPoint
   m_TagString: Untagged
@@ -62,7 +63,7 @@ Transform:
   m_GameObject: {fileID: 5592274820792631140}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0.7}
+  m_LocalPosition: {x: -1, y: 0, z: 0.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -89,6 +90,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8464759827777918024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5592274820792631140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bf725b86887d4941b63beb20af315d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KitchenZone
+  produceItemData: {fileID: 11400000, guid: faf98d18253474d489c6e391e9e76580, type: 2}
+  interactInterval: 1
+  spawnPoint: {fileID: 6657426886267137073}
 --- !u!1 &6757023749233156027
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,6 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3097251020386699154}
   - component: {fileID: 5891228588736025332}
+  - component: {fileID: 1002756286544645261}
   m_Layer: 0
   m_Name: PizzsPoint
   m_TagString: Untagged
@@ -115,7 +132,7 @@ Transform:
   m_GameObject: {fileID: 6757023749233156027}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0.7}
+  m_LocalPosition: {x: 1, y: 0, z: 0.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -142,6 +159,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1002756286544645261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6757023749233156027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bf725b86887d4941b63beb20af315d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KitchenZone
+  produceItemData: {fileID: 11400000, guid: 251e09cdd419ef54693c5fb66745382d, type: 2}
+  interactInterval: 1
+  spawnPoint: {fileID: 3097251020386699154}
 --- !u!1001 &11799552279610643
 PrefabInstance:
   m_ObjectHideFlags: 0
