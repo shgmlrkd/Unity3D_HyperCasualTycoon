@@ -86,7 +86,12 @@ public class CustomerManager : MonoBehaviour
         if (customer == null)
             return;
 
-        customer.transform.position = spawnPosData.Positions[index];
+        // 아래처럼 했음에도 원점에서 스폰되는 버그가 발견
+        //customer.transform.position = spawnPosData.Positions[index];
+        //print($"현재 스폰 위치 : {customer.transform.position}");
+
+        // 따라서 이렇게 바꿈 -> Navmesh를 통한 순간이동으로 해당 위치에 스폰
+        customer.MoveController.ResetAgent(spawnPosData.Positions[index]);
 
         currentCustomerCount++;
 

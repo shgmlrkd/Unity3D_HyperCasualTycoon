@@ -48,6 +48,15 @@ public class CustomerNPCMoveController : MonoBehaviour
         agent.isStopped = true;
     }
 
+    // 풀에서 나올 때 리셋 시키는 메서드
+    public void ResetAgent(Vector3 position)
+    {
+        agent.isStopped = true;
+        agent.ResetPath();
+        agent.velocity = Vector3.zero;
+        agent.Warp(position);
+    }
+
     public bool IsStopped()
     {
         return agent.isStopped;
