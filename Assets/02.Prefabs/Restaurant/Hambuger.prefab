@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0639b887fe8b0174b9c87064350f4d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarrierItem
-  itemId: 2
+  itemId: 1
   itemHeight: 0.1
 --- !u!1001 &2156109477282969572
 PrefabInstance:
