@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarrierItem
   itemId: 1
-  itemHeight: 0.3
+  itemHeight: 0.1
 --- !u!1001 &2072459286848014854
 PrefabInstance:
   m_ObjectHideFlags: 0
