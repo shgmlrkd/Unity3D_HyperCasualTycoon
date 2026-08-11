@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class EventManager : MonoSingleton<EventManager>
 {
-    public enum EventType
-    {
-        OnGoldChanged,
-        OnReputationChanged,
-        OnGameStateChanged,
-        OnVisitorCountChanged,
-        OnFestivalTriggered
-    }
-
+    
     private readonly Dictionary<EventType, Action<object>> _eventDictionary = new Dictionary<EventType, Action<object>>();
 
     public void Subscribe(EventType eventType, Action<object> listener)

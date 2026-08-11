@@ -6,9 +6,9 @@ public class TestController : MonoBehaviour
     {
         if (EventManager.Instance != null)
         {
-            EventManager.Instance.Subscribe(EventManager.EventType.OnGoldChanged, OnGoldChangedHandler);
-            EventManager.Instance.Subscribe(EventManager.EventType.OnReputationChanged, OnReputationChangedHandler);
-            EventManager.Instance.Subscribe(EventManager.EventType.OnGameStateChanged, OnGameStateChangedHandler);
+            EventManager.Instance.Subscribe(EventType.OnGoldChanged, OnGoldChangedHandler);
+            EventManager.Instance.Subscribe(EventType.OnReputationChanged, OnReputationChangedHandler);
+            EventManager.Instance.Subscribe(EventType.OnGameStateChanged, OnGameStateChangedHandler);
         }
     }
 
@@ -16,9 +16,9 @@ public class TestController : MonoBehaviour
     {
         if (EventManager.Instance != null)
         {
-            EventManager.Instance.Unsubscribe(EventManager.EventType.OnGoldChanged, OnGoldChangedHandler);
-            EventManager.Instance.Unsubscribe(EventManager.EventType.OnReputationChanged, OnReputationChangedHandler);
-            EventManager.Instance.Unsubscribe(EventManager.EventType.OnGameStateChanged, OnGameStateChangedHandler);
+            EventManager.Instance.Unsubscribe(EventType.OnGoldChanged, OnGoldChangedHandler);
+            EventManager.Instance.Unsubscribe(EventType.OnReputationChanged, OnReputationChangedHandler);
+            EventManager.Instance.Unsubscribe(EventType.OnGameStateChanged, OnGameStateChangedHandler);
         }
     }
 
@@ -51,11 +51,11 @@ public class TestController : MonoBehaviour
         // P키: 일시정지 / 재개 토글
         if (Input.GetKeyDown(KeyCode.P))
         {
-            if (GameManager.Instance.CurrentState == GameManager.GameState.Play)
+            if (GameManager.Instance.CurrentState == GameState.Play)
             {
                 GameManager.Instance.PauseGame();
             }
-            else if (GameManager.Instance.CurrentState == GameManager.GameState.Pause)
+            else if (GameManager.Instance.CurrentState == GameState.Pause)
             {
                 GameManager.Instance.ResumeGame();
             }
@@ -75,11 +75,11 @@ public class TestController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameManager.Instance.CurrentState == GameManager.GameState.Play)
+            if (GameManager.Instance.CurrentState == GameState.Play)
             {
                 GameManager.Instance.PauseGame();
             }
-            else if (GameManager.Instance.CurrentState == GameManager.GameState.Pause)
+            else if (GameManager.Instance.CurrentState == GameState.Pause)
             {
                 GameManager.Instance.ResumeGame();
             }

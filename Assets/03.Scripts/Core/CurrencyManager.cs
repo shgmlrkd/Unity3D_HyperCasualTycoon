@@ -18,7 +18,7 @@ public class CurrencyManager : MonoSingleton<CurrencyManager>
         CurrentGold = initialGold;
         Debug.Log($"[CurrencyManager] 데이터 초기화: 골드 {CurrentGold}으로 리셋");
 
-        EventManager.Instance?.Publish(EventManager.EventType.OnGoldChanged, CurrentGold);
+        EventManager.Instance?.Publish(EventType.OnGoldChanged, CurrentGold);
     }
 
     public void AddGold(int amount)
@@ -28,7 +28,7 @@ public class CurrencyManager : MonoSingleton<CurrencyManager>
         CurrentGold += amount;
         Debug.Log($"[CurrencyManager] 골드 획득: +{amount} (현재 골드: {CurrentGold})");
 
-        EventManager.Instance?.Publish(EventManager.EventType.OnGoldChanged);
+        EventManager.Instance?.Publish(EventType.OnGoldChanged);
     }
 
     public bool HasEnoughGold(int amount)
@@ -45,7 +45,7 @@ public class CurrencyManager : MonoSingleton<CurrencyManager>
             CurrentGold -= amount;
             Debug.Log($"[CurrencyManager] 골드 소비: -{amount} (현재 골드: {CurrentGold})");
 
-            EventManager.Instance?.Publish(EventManager.EventType.OnGoldChanged);
+            EventManager.Instance?.Publish(EventType.OnGoldChanged);
             return true;
         }
 

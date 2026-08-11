@@ -3,14 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    public enum GameState
-    {
-        Init,
-        Play,
-        Pause,
-        GameOver
-    }
-
     public GameState CurrentState { get; private set; } = GameState.Init;
 
     protected override void Awake()
@@ -40,7 +32,7 @@ public class GameManager : MonoSingleton<GameManager>
         CurrentState = newState;
         Debug.Log($"[GameManager] 게임 상태 변경: {CurrentState}");
 
-        EventManager.Instance?.Publish(EventManager.EventType.OnGameStateChanged, CurrentState);
+        EventManager.Instance?.Publish(EventType.OnGameStateChanged, CurrentState);
     }
 
     public void PauseGame()

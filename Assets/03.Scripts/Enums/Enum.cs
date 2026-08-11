@@ -16,3 +16,20 @@ public enum PoolType
     Employee,
     Food
 }
+
+public enum EventType
+{
+    OnGoldChanged,
+    OnReputationChanged,
+    OnGameStateChanged,
+    OnVisitorCountChanged,
+    OnFestivalTriggered
+}
+
+public enum GameState
+{
+    Init,
+    Play,
+    Pause,
+    GameOver
+}

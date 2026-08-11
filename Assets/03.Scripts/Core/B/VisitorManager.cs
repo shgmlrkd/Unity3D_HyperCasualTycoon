@@ -25,7 +25,7 @@ public class VisitorManager : MonoSingleton<VisitorManager>
         totalVisitors += count;
         Debug.Log($"[VisitorManager] 방문자 방문! 현재 총 방문자: {totalVisitors}");
 
-        EventManager.Instance?.Publish(EventManager.EventType.OnVisitorCountChanged, totalVisitors);
+        EventManager.Instance?.Publish(EventType.OnVisitorCountChanged, totalVisitors);
 
         CheckFestivalThreshold();
     }
@@ -45,7 +45,7 @@ public class VisitorManager : MonoSingleton<VisitorManager>
     {
         Debug.Log($"<color=yellow>[VisitorManager] 축제 발생! (달성 방문자: {totalVisitors}명)</color>");
 
-        EventManager.Instance?.Publish(EventManager.EventType.OnFestivalTriggered, currentTargetIndex);
+        EventManager.Instance?.Publish(EventType.OnFestivalTriggered, currentTargetIndex);
     }
 
     public void SetVisitorData(int savedVisitors, int savedTargetIndex)

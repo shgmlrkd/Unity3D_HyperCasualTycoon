@@ -9,7 +9,7 @@ public class UI_Reputation : MonoBehaviour
     {
         if (EventManager.Instance != null)
         {
-            EventManager.Instance.Subscribe(EventManager.EventType.OnReputationChanged, UpdateReputationUI);
+            EventManager.Instance.Subscribe(EventType.OnReputationChanged, UpdateReputationUI);
         }
 
         UpdateReputationUI(null);
@@ -19,7 +19,7 @@ public class UI_Reputation : MonoBehaviour
     {
         if (EventManager.Instance != null)
         {
-            EventManager.Instance.Unsubscribe(EventManager.EventType.OnReputationChanged, UpdateReputationUI);
+            EventManager.Instance.Unsubscribe(EventType.OnReputationChanged, UpdateReputationUI);
         }
     }
 
