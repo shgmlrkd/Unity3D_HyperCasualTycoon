@@ -10,6 +10,7 @@ public class CustomerNPCSeatedState : CustomerNPCState
         orderTimer = 0.0f;
         animController.SetMoveOrSeat(npc.MoveController.IsStopped());
         transform.rotation = Quaternion.LookRotation(npc.CurrentChair.transform.forward);
+
         // 착석 처리
         // 주문/음식 제공 요청
     }
@@ -30,6 +31,5 @@ public class CustomerNPCSeatedState : CustomerNPCState
 
     public override void Exit()
     {
-
     }
 }

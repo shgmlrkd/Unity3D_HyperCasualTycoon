@@ -72,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4555454287149964792}
   - component: {fileID: 7425755668585201854}
+  - component: {fileID: 1016225548521033996}
   m_Layer: 0
   m_Name: TabelSet
   m_TagString: Untagged
@@ -118,8 +119,21 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.2, y: 1, z: 1.4227155}
-  m_Center: {x: 0, y: 0.5, z: 0.019818962}
+  m_Size: {x: 2.2, y: 1, z: 2.5}
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &1016225548521033996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5268060202996543513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c18e0c1025fc3d4aa1db57928e1e943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Table
+  restaurantId: 0
 --- !u!1001 &2935696006633668688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -167,6 +181,14 @@ PrefabInstance:
     - target: {fileID: 1727579056888279529, guid: 1085713c95587a34d800d35e46e50743, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4045596695091345477, guid: 1085713c95587a34d800d35e46e50743, type: 3}
+      propertyPath: Side
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4045596695091345477, guid: 1085713c95587a34d800d35e46e50743, type: 3}
+      propertyPath: seatSide
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5048177158665993498, guid: 1085713c95587a34d800d35e46e50743, type: 3}
       propertyPath: m_Name
