@@ -4,25 +4,53 @@ using Restaurant.Foods;
 
 namespace Restaurant.Orders
 {
-    public class OrderGenerator : MonoBehaviour
+    public class OrderGenerator : MonoSingleton<OrderGenerator>
     {
-        [Header("판매 가능한 전체 음식 목록")]
-        [SerializeField] private List<FoodDataSO> availableFoods = new List<FoodDataSO>();
+        [Header("피햄 건물 음식 리스트")]
+        [SerializeField] private List<FoodDataSO> pizzaHamburgerFoods = new List<FoodDataSO>();
 
-        public OrderData CreateRandomOrder(int tableIndex, int minAmount = 1, int maxAmount = 2)
+        [Header("케아 건물 음식 리스트")]
+        [SerializeField] private List<FoodDataSO> cakeIcecreamFoods = new List<FoodDataSO>();
+
+        public OrderData CreateRandomOrder(int chairID, RestaurantType restaurantType, int maxMenuTypes = 2, int maxAmountPerMenu = 2)
         {
-            List<FoodDataSO> unlockedFoods = GetUnlockedFoods();
+            List<FoodDataSO> targetFoods = null;
 
-            if (unlockedFoods.Count == 0)
+            switch (restaurantType)
             {
-                Debug.LogError("[OrderGenerator] 현재 해금된 음식 데이터가 없습니다!");
+                case RestaurantType.PizzaHamburger:
+                    targetFoods = pizzaHamburgerFoods;
+                    break;
+                case RestaurantType.CakeIcecream:
+                    targetFoods = cakeIcecreamFoods;
+                    break;
+                default:
+                    Debug.LogError($"[OrderGenerator] 유효하지 않은 RestaurantType: {restaurantType}");
+                    return null;
+            }
+
+            if (targetFoods == null || targetFoods.Count == 0)
+            {
+                Debug.LogError($"[OrderGenerator] {restaurantType} 건물에 등록된 음식 SO가 없습니다!");
                 return null;
             }
 
-            FoodDataSO selectedFood = unlockedFoods[Random.Range(0, unlockedFoods.Count)];
-            int randomAmount = Random.Range(minAmount, maxAmount + 1);
+            List<OrderItem> orderItems = new List<OrderItem>();
+            List<FoodDataSO> pool = new List<FoodDataSO>(targetFoods);
 
-            OrderData newOrder = new OrderData(tableIndex, selectedFood, randomAmount);
+            int menuTypeCount = Random.Range(1, Mathf.Min(maxMenuTypes, pool.Count) + 1);
+
+            for (int i = 0; i < menuTypeCount; i++)
+            {
+                int randomIndex = Random.Range(0, pool.Count);
+                FoodDataSO selectedFood = pool[randomIndex];
+                pool.RemoveAt(randomIndex); // 중복 메뉴 방지
+
+                int amount = Random.Range(1, maxAmountPerMenu + 1); // 음식당 1~2개 무작위
+                orderItems.Add(new OrderItem(selectedFood, amount));
+            }
+
+            OrderData newOrder = new OrderData(chairID, orderItems);
 
             if (OrderManager.Instance != null)
             {
@@ -30,19 +58,6 @@ namespace Restaurant.Orders
             }
 
             return newOrder;
-        }
-
-        private List<FoodDataSO> GetUnlockedFoods()
-        {
-            List<FoodDataSO> unlocked = new List<FoodDataSO>();
-            foreach (var food in availableFoods)
-            {
-                if (food != null && food.isUnlocked)
-                {
-                    unlocked.Add(food);
-                }
-            }
-            return unlocked;
         }
     }
 }

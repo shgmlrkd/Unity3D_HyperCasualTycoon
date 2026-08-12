@@ -68,7 +68,8 @@ public enum RestaurantType
 {
     None = -1,
 
-    PizzaHambuger,
+    PizzaHamburger,
+    CakeIcecream,
 
     Length
 }

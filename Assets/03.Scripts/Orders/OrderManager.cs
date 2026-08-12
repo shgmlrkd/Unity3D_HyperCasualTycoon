@@ -6,12 +6,8 @@ namespace Restaurant.Orders
 {
     public class OrderManager : MonoSingleton<OrderManager>
     {
+        // Key: 의자(Chair)의 InstanceID
         private Dictionary<int, OrderData> activeOrders = new Dictionary<int, OrderData>();
-
-        protected override void Awake()
-        {
-            base.Awake();
-        }
 
         public void RegisterOrder(OrderData newOrder)
         {
@@ -19,19 +15,19 @@ namespace Restaurant.Orders
 
             if (activeOrders.ContainsKey(newOrder.tableIndex))
             {
-                Debug.LogWarning($"[OrderManager] {newOrder.tableIndex}번 테이블에 이미 주문이 존재합니다.");
+                Debug.LogWarning($"[OrderManager] Chair ID {newOrder.tableIndex} 위치에 이미 주문이 존재합니다.");
                 return;
             }
 
             activeOrders.Add(newOrder.tableIndex, newOrder);
-            Debug.Log($"[OrderManager] {newOrder.tableIndex}번 테이블 주문 등록 완료: {newOrder.targetFood.foodName} x{newOrder.requiredAmount}");
+            Debug.Log($"[OrderManager] Chair ID {newOrder.tableIndex} 주문 등록 완료");
 
             EventManager.Instance?.Publish(EventType.OnOrderCreated, newOrder);
         }
 
-        public bool ServeFoodToTable(int tableIndex, FoodDataSO food)
+        public bool ServeFoodToTable(int chairID, FoodDataSO food)
         {
-            if (!activeOrders.TryGetValue(tableIndex, out OrderData order))
+            if (!activeOrders.TryGetValue(chairID, out OrderData order))
             {
                 return false;
             }
@@ -41,53 +37,42 @@ namespace Restaurant.Orders
                 return false;
             }
 
-            if (order.targetFood.foodID == food.foodID)
+            foreach (var item in order.orderItems)
             {
-                order.currentAmount++;
-                Debug.Log($"[OrderManager] {tableIndex}번 테이블 서빙 성공 ({order.currentAmount}/{order.requiredAmount})");
-
-                EventManager.Instance?.Publish(EventType.OnOrderUpdated, order);
-
-                if (order.IsFulfilled)
+                if (item.food.foodID == food.foodID && !item.IsFulfilled)
                 {
-                    CompleteOrder(tableIndex);
-                }
+                    item.currentAmount++;
+                    Debug.Log($"[OrderManager] 서빙 성공: {food.foodName} ({item.currentAmount}/{item.requiredAmount})");
 
-                return true;
+                    EventManager.Instance?.Publish(EventType.OnOrderUpdated, order);
+
+                    if (order.IsFulfilled)
+                    {
+                        CompleteOrder(chairID);
+                    }
+
+                    return true;
+                }
             }
 
             return false;
         }
 
-        private void CompleteOrder(int tableIndex)
+        private void CompleteOrder(int chairID)
         {
-            if (activeOrders.TryGetValue(tableIndex, out OrderData order))
+            if (activeOrders.TryGetValue(chairID, out OrderData order))
             {
                 order.status = OrderStatus.Completed;
-
-                int earnedMoney = order.targetFood.price * order.requiredAmount;
-                CurrencyManager.Instance?.AddMoney(earnedMoney);
-
-                Debug.Log($"[OrderManager] {tableIndex}번 테이블 주문 완료! 획득 Money: {earnedMoney}");
+                Debug.Log($"[OrderManager] Chair ID {chairID} 모든 음식 서빙 완료!");
 
                 EventManager.Instance?.Publish(EventType.OnOrderCompleted, order);
-                activeOrders.Remove(tableIndex);
+                activeOrders.Remove(chairID);
             }
         }
 
-        public void CancelOrder(int tableIndex)
+        public OrderData GetOrder(int chairID)
         {
-            if (activeOrders.TryGetValue(tableIndex, out OrderData order))
-            {
-                order.status = OrderStatus.Canceled;
-                EventManager.Instance?.Publish(EventType.OnOrderCompleted, order);
-                activeOrders.Remove(tableIndex);
-            }
-        }
-
-        public OrderData GetOrder(int tableIndex)
-        {
-            activeOrders.TryGetValue(tableIndex, out OrderData order);
+            activeOrders.TryGetValue(chairID, out OrderData order);
             return order;
         }
     }
