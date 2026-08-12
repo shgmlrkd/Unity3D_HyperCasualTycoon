@@ -42,7 +42,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3928025732142949823}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,20 +58,20 @@ Transform:
   m_GameObject: {fileID: 9021820657292426781}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.06052, y: 0.11, z: -14.37796}
+  m_LocalPosition: {x: -16, y: 0, z: -5.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3993949469347743025}
   - {fileID: 7954350586702599610}
-  - {fileID: 3368112952432838291}
+  - {fileID: 1301071578419313253}
   - {fileID: 5602342390886175704}
   - {fileID: 8422969976060403975}
   - {fileID: 7120164954130131792}
   - {fileID: 3638443437781639586}
   m_Father: {fileID: 4442641744893696671}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &3368112952432450579
+--- !u!1001 &1301071578419437797
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -81,7 +81,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       propertyPath: m_Name
-      value: SM_Shutter_Window_Two (10)
+      value: SM_Shutter_Window_Two (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       propertyPath: m_LocalScale.x
@@ -97,7 +101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.06052
+      value: 16.05
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -145,20 +149,28 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1564216880002764010}
+      addedObject: {fileID: 4885521320355442860}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4225717718404256210}
   m_SourcePrefab: {fileID: 100100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
---- !u!1 &3368112952432482995 stripped
+--- !u!4 &1301071578419313253 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
+  m_PrefabInstance: {fileID: 1301071578419437797}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1301071578419537477 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
-  m_PrefabInstance: {fileID: 3368112952432450579}
+  m_PrefabInstance: {fileID: 1301071578419437797}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1564216880002764010
+--- !u!65 &4885521320355442860
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3368112952432482995}
+  m_GameObject: {fileID: 1301071578419537477}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -173,11 +185,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0011594, y: 1.5, z: 0.049999982}
   m_Center: {x: -0.5005814, y: 0, z: -0.0000015050173}
---- !u!4 &3368112952432838291 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
-  m_PrefabInstance: {fileID: 3368112952432450579}
+--- !u!208 &4225717718404256210
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301071578419537477}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.425, y: 0.75000006, z: 0.05}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.5, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &3638443437781777186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -189,6 +212,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       propertyPath: m_Name
       value: SM_Shutter_Window_Two (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       propertyPath: m_LocalScale.x
@@ -253,6 +280,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2311586046003033831}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8003434433746096061}
   m_SourcePrefab: {fileID: 100100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
 --- !u!4 &3638443437781639586 stripped
 Transform:
@@ -285,6 +315,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0011597, y: 1.5, z: 0.049999993}
   m_Center: {x: -0.5005815, y: 0, z: -0.0000017434362}
+--- !u!208 &8003434433746096061
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3638443437781745026}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.50100005, y: 0.75000006, z: 0.025}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.50100005, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &3993949469347618737
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -296,6 +342,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       propertyPath: m_Name
       value: SM_Shutter_Window_Two (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       propertyPath: m_LocalScale.x
@@ -360,6 +410,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2033920922236475490}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3627450141521450112}
   m_SourcePrefab: {fileID: 100100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
 --- !u!1 &3993949469347584273 stripped
 GameObject:
@@ -387,6 +440,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0011597, y: 1.5, z: 0.049999993}
   m_Center: {x: -0.5005815, y: 0, z: -0.0000015050176}
+--- !u!208 &3627450141521450112
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3993949469347584273}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1, y: 0.5, z: 0.005}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -1.05, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!4 &3993949469347743025 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
@@ -403,6 +472,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       propertyPath: m_Name
       value: SM_Shutter_Window_Two (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       propertyPath: m_LocalScale.x
@@ -507,9 +580,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4442641744893696671}
     m_Modifications:
+    - target: {fileID: 1367450911268055099, guid: ba55787fdb425b44ab29298578bcd4ee, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4747081004864901704, guid: ba55787fdb425b44ab29298578bcd4ee, type: 3}
       propertyPath: m_LocalScale.x
-      value: 6.68
+      value: 6.65
       objectReference: {fileID: 0}
     - target: {fileID: 4747081004864901704, guid: ba55787fdb425b44ab29298578bcd4ee, type: 3}
       propertyPath: m_LocalScale.y
@@ -525,11 +602,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4747081004864901704, guid: ba55787fdb425b44ab29298578bcd4ee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4747081004864901704, guid: ba55787fdb425b44ab29298578bcd4ee, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4747081004864901704, guid: ba55787fdb425b44ab29298578bcd4ee, type: 3}
       propertyPath: m_LocalRotation.w
@@ -588,6 +665,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       propertyPath: m_Name
       value: SM_Shutter_Window_Two (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       propertyPath: m_LocalScale.x
@@ -652,6 +733,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8395849163062873949}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8427156994855438382}
   m_SourcePrefab: {fileID: 100100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
 --- !u!1 &7120164954130036592 stripped
 GameObject:
@@ -679,6 +763,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0011597, y: 1.5, z: 0.049999993}
   m_Center: {x: -0.5005815, y: 0, z: -0.0000017434362}
+--- !u!208 &8427156994855438382
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7120164954130036592}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.50100005, y: 0.75000006, z: 0.025}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.50100005, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!4 &7120164954130131792 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
@@ -695,6 +795,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       propertyPath: m_Name
       value: SM_Shutter_Window_Two (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       propertyPath: m_LocalScale.x
@@ -759,6 +863,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7792495875130727928}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1249245349450019380}
   m_SourcePrefab: {fileID: 100100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
 --- !u!1 &7954350586702563738 stripped
 GameObject:
@@ -786,6 +893,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0011594, y: 1.5, z: 0.049999982}
   m_Center: {x: -0.5005814, y: 0, z: -0.0000015050173}
+--- !u!208 &1249245349450019380
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7954350586702563738}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.425, y: 0.75000006, z: 0.05}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.5, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!4 &7954350586702599610 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
@@ -802,6 +925,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       propertyPath: m_Name
       value: SM_Shutter_Window_Two (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       propertyPath: m_LocalScale.x
@@ -866,6 +993,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 13002903813182035}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7185660408157709210}
   m_SourcePrefab: {fileID: 100100000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
 --- !u!1 &8422969976060378407 stripped
 GameObject:
@@ -893,6 +1023,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0011594, y: 1.5, z: 0.049999982}
   m_Center: {x: -0.5005814, y: 0, z: -0.0000015050173}
+--- !u!208 &7185660408157709210
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8422969976060378407}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.50100005, y: 0.75000006, z: 0.025}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.50100005, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!4 &8422969976060403975 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d1193455e99a1417593825a82ccf18e5, type: 3}
