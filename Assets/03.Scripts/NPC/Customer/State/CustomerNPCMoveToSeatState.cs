@@ -9,6 +9,7 @@ public class CustomerNPCMoveToSeatState : CustomerNPCState
 
     public override void StateUpdate()
     {
+        // 현재 나아가는 방향으로 회전
         RotateToMovementDirection();
 
         if (!npc.MoveController.IsArrived)

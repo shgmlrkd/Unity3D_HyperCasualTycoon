@@ -18,6 +18,7 @@ public abstract class CustomerNPCState : MonoBehaviour
 
     public abstract void Exit();
 
+    // NPC가 나아갈 방향으로 회전시키기
     protected void RotateToMovementDirection()
     {
         Vector3 direction = npc.MoveController.Agent.desiredVelocity;

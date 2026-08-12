@@ -27,11 +27,13 @@ public class CustomerAnimationController : MonoBehaviour
         layerEating = animator.GetLayerIndex(LAYER_EATING);
     }
 
+    // 걷는 애니메이션
     public void SetMoveOrSeat(bool isStopped)
     {
         animator.SetBool(isStoppedHash, isStopped);
     }
 
+    // 먹는 애니메이션 (앉아있는 애니메이션과 먹는 애니메이션을 동시에 돌림)
     public void PlayEating()
     {
         isEatFinished = false;
@@ -39,6 +41,7 @@ public class CustomerAnimationController : MonoBehaviour
         animator.Play(EATING, layerEating);
     }
 
+    // 먹는 애니메이션 멈추기
     public void StopEat()
     {
         isEatFinished = true;
