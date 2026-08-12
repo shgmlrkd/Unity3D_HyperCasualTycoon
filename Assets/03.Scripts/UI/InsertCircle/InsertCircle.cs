@@ -7,8 +7,13 @@ public class InsertCircle : MonoBehaviour
 {
     //order food 이미지
     [SerializeField] private Sprite foodImg;
-    //1.팝업 2.음식 3.스레기통
-    [SerializeField] int type;
+    //1.팝업 2.음식 3.쓰레기통
+    [SerializeField] private int type;
+
+    //파업 타입(확정성 관련해서 생성)
+    //초기 : 0
+    [SerializeField] private int popuType;
+
 
     private void OnTriggerStay(Collider collision)
     {
@@ -20,6 +25,7 @@ public class InsertCircle : MonoBehaviour
         //팝업 
         if (type == 1) 
         {
+
             //npc x
             if (collision.CompareTag("EmployeeNPC")) return;
             //circleGauge 활성화
@@ -32,11 +38,18 @@ public class InsertCircle : MonoBehaviour
             UpGradePopup popup = 
                 GameObject.FindWithTag("UI").GetComponentInChildren<UpGradePopup>(true);
 
+            
+            
             //팝업 상태 비활성화
             //원상태에서 닫기 해도 열리는거 방지
             if (!popup.OpenState)
+            {
+                //ContentsScrollView contentsScrollView = 
+                //    popup.GetComponentInChildren<ContentsScrollView>(true);
                 //팝업 open
-                popup.OpenPopup();
+                popup.OpenPopup(popuType);
+            }
+                
 
             //circleGauge 비활성화
             circleGauge.SetActiveGauge(false);

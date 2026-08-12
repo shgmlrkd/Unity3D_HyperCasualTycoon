@@ -20,27 +20,22 @@ public class Content : MonoBehaviour
     //Upgrade 버튼
     [SerializeField] private Button upgradeBtn;
 
-    //- 임시 max :50
-    private int upgradCountMax = 50;
-    //1 count
-    private int upgradCountNum = 1;
+    //content data
+    private ContentData contentData;
+    //upgrade count
+    private int UpgradeCount = 0;
 
-    //upgrade 처음 - 10
-    private int payNum = 10;
+    private Image background;
+
+
 
     private void Awake()
-    {   
-        //논데이터 setting
-        //초기 setting 값
-        type.SetText("Your Manager"); //type
-        img.sprite = images[0];//임시 1 데이터
-        info.SetText("Your Holding Capacity");//임시 info
-        upgradCount.SetText(SetUpgradCount(upgradCountMax, upgradCountNum));//임시 upgrade gauge
-        PayCount.SetText(SetPayCount(payNum));//임시 UpGrade가격
+    {
+        background = GetComponent<Image>();
         upgradeBtn.onClick.AddListener(() => onClickUpgrade());//upgrade버튼
     }
     //SetUpgradCount
-    //20260609
+    //20260809
     //js.shin
     //머니 toString
     //para : 
@@ -55,7 +50,7 @@ public class Content : MonoBehaviour
         return sb.ToString();
     }
     //SetPayCount
-    //20260609
+    //20260809
     //js.shin
     //머니 toString
     //para : 
@@ -68,40 +63,69 @@ public class Content : MonoBehaviour
         return sb.ToString();
     }
     //onClickUpgrade
-    //20260609
+    //20260809
     //js.shin
     //버튼 이벤트
     private void onClickUpgrade()
     {
-        //Money Manager
-        CurrencyManager.Instance.TrySpendGold(payNum);
-
-
-        //레퍼런스 기준
-        payNum += 10;
-        upgradCountNum += 1;
-
-        //setting upgrade count
-        upgradCount.SetText(SetUpgradCount(upgradCountMax, upgradCountNum));
-        //setting Pay Count
-        PayCount.SetText(SetPayCount(payNum));
-    }
-    //임시 data setting 
-    public void LoadData(string type,int imgNum, string info, int upgradCount, int payNum)
-    {
-        this.type.SetText(type);
-        img.sprite = images[imgNum];
-        this.info.SetText(info);
-        this.upgradCount.SetText(SetUpgradCount(upgradCountMax, upgradCount));
-        this.PayCount.SetText(SetPayCount(payNum));
         
+        //Money Manager
+        CurrencyManager.Instance.TrySpendGold(contentData.PayCount[UpgradeCount]);
+        //Upgrade
+        UpgradeCount += 1;
+        //Load Data
+        LoadData();
+
+
+    }
+
+    //202600812
+    //js.shin
+    //SetDate : content data
+    //Para :
+    //contentData : content data
+    public void SetDate(ContentData contentData)
+    {
+        //data set
+        this.contentData = contentData;
+        //Load Data
+        LoadData();
+    }
+
+
+    //202600812
+    //js.shin
+    //LoadData : Load Data
+    private void LoadData()
+    {
+        //content data set
+        type.SetText(contentData.TypeText);
+        img.sprite = contentData.Image;
+        info.SetText(contentData.Info);
+        upgradCount.SetText(
+            SetUpgradCount(contentData.UpgradeMaxCount, contentData.UpgradCount[UpgradeCount])
+            );
+        PayCount.SetText(
+            SetPayCount(contentData.PayCount[UpgradeCount])
+            );
+
+        //content 색 변경
+        type.color = contentData.TextColor;
+        info.color = contentData.TextColor;
+        upgradCount.color = contentData.TextColor;
+        PayCount.color = Color.white;
+
+        background.color = contentData.BackgroundColor;
     }
     private void Update()
     {
         //버튼 비활성화
         upgradeBtn.interactable = false;
         //현재 보유 금액 아래면 return
-        if (CurrencyManager.Instance.CurrentGold < payNum) return;
+        if (CurrencyManager.Instance.CurrentGold < contentData.PayCount[UpgradeCount]
+            //최대치 업그레이드
+            || contentData.UpgradeMaxCount <= contentData.UpgradCount[UpgradeCount]) return;
+        
         //이상이면 활성화
         upgradeBtn.interactable = true;
     }
