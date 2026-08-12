@@ -1,21 +1,13 @@
 using System;
 using UnityEngine;
 
-public enum ChairState
-{ 
-    None = -1,
-
-    Locked,
-    Available,
-    Reserved,
-    Occupied,
-
-    Length
-}
-
 public class Chair : MonoBehaviour
 {
+    [SerializeField]
+    private ChairSide seatSide;
+
     public event Action OnStateChanged;
+    public ChairSide SeatSide => seatSide;
     public ChairState State { get; private set; } = ChairState.Locked;
 
     private void OnEnable()

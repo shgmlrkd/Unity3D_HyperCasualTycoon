@@ -45,3 +45,30 @@ public enum OrderStatus
     Completed,  // 음식 전달 완료 및 처리 상태
     Canceled    // 손님 퇴장 등으로 인한 취소
 }
+
+public enum ChairState
+{
+    None = -1,
+
+    Locked,     // 잠김
+    Available,  // 사용 가능
+    Reserved,   // 예약됨
+    Occupied,   // 사용 중
+
+    Length
+}
+
+public enum ChairSide
+{
+    Front,   // 의자 위치 (앞)
+    Back     // 의자 위치  (뒤)
+}
+
+public enum RestaurantType
+{
+    None = -1,
+
+    PizzaHambuger,
+
+    Length
+}

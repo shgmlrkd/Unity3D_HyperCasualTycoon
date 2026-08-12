@@ -14,11 +14,15 @@ public class CustomerNPC : MonoBehaviour
 
     private Chair currentChair;
 
+    private int restaurantID = -1;
+
     public Chair CurrentChair => currentChair;
     public Vector3 LeaveTargetPos { get; private set; }
     public Transform SeatTarget { get; private set; }
     public CustomerNPCMoveController MoveController => moveController;
     public CustomerNPCStateController StateController => stateController;
+
+    public int RestaurantID => restaurantID;
 
     public event Action<CustomerNPC> OnExitCompleted;
     
@@ -58,5 +62,15 @@ public class CustomerNPC : MonoBehaviour
     public void CompleteExit()
     {
         OnExitCompleted?.Invoke(this);
+    }
+
+    public void SetRestaurantID(int index)
+    {
+        restaurantID = index;
+    }
+
+    public void ResetRestaurantID()
+    {
+        restaurantID = -1;
     }
 }
