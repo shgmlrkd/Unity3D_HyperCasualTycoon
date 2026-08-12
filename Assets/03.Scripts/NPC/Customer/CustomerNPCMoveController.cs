@@ -35,12 +35,14 @@ public class CustomerNPCMoveController : MonoBehaviour
         agent.updateRotation = false;
     }
 
+    // 목적지로 이동 시키기
     public void MoveTo(Vector3 targetPosition)
     {
         agent.isStopped = false;
         agent.SetDestination(targetPosition);
     }
 
+    // 목적지 제거 후 멈추기
     public void Stop()
     {
         agent.ResetPath();
@@ -57,6 +59,7 @@ public class CustomerNPCMoveController : MonoBehaviour
         agent.Warp(position);
     }
 
+    // 멈춰있는지 확인하는 메서드
     public bool IsStopped()
     {
         return agent.isStopped;
