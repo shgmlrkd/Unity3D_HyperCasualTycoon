@@ -1,11 +1,16 @@
 ﻿using DG.Tweening;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UpGradePopup : MonoBehaviour
 {
+   
     //close 버튼
     [SerializeField] private Button closePopupBtn;
+    //private List<ContentsData> contentsData
+    [SerializeField] private List<ContentListData> contentList;
+    ContentsScrollView contentsScrollView;
 
     //팝업 상태 
     //원상태에서 닫기 해도 열리는거 방지
@@ -21,14 +26,34 @@ public class UpGradePopup : MonoBehaviour
         //close button AddListener
         closePopupBtn.onClick.AddListener(() => onClickClosePopup());
         OpenState = false;
+        //contents Scroll View
+        contentsScrollView = gameObject.GetComponentInChildren<ContentsScrollView>(true);
+
     }
-    //20260811
+
+
+   
+    //20260812
     //js.shin
     //OpenPopup : Open Popup   
-    public void OpenPopup()
+    //para 
+    //popupType : SO Data 순서(확정성 관련 생성)
+    public void OpenPopup(int popupType)
+    {
+        //show popup
+        ShowPopup();
+        //set content data
+        contentsScrollView.SetContentDate(contentList[popupType]);
+        //contents 생성
+        contentsScrollView.CreateScrollItems();
+    }
+
+    //20260812
+    //js.shin
+    //ShowPopup : Show Popup  
+    private void ShowPopup()
     {
         gameObject.SetActive(true);
-
         // DOTween 함수를 차례대로 수행하게 해줍니다.
         var seq = DOTween.Sequence();
 
@@ -37,7 +62,7 @@ public class UpGradePopup : MonoBehaviour
         seq.Append(transform.DOScale(1f, 0.1f));
         seq.Play().OnComplete(() =>
         {
-            OpenState = true; 
+            OpenState = true;
         });
     }
 

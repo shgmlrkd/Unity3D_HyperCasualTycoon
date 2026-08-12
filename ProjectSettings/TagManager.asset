@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Popup
   - UI
+  - EmployeeNPC
+  - CustomerNPC
   layers:
   - Default
   - TransparentFX
