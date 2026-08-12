@@ -54,21 +54,25 @@ public class CustomerNPC : MonoBehaviour
         StateController.InitMoveToSeatState();
     }
 
+    // 목적지로 삼은 의자 해제하는 이벤트
     public void ReleaseChair()
     {
         chairEventChannel.ReleaseChair(currentChair);
     }
 
+    // 손님 NPC가 다시 풀로 돌아갈 때 호출하는 이벤트
     public void CompleteExit()
     {
         OnExitCompleted?.Invoke(this);
     }
 
+    // 현재 들어간 레스토랑 ID 세팅
     public void SetRestaurantID(int index)
     {
         restaurantID = index;
     }
 
+    // 레스토랑 ID 초기화
     public void ResetRestaurantID()
     {
         restaurantID = -1;

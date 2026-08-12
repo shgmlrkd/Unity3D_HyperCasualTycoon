@@ -60,6 +60,7 @@ public class CustomerManager : MonoBehaviour
     {
         while (true)
         {
+            // 손님 NPC 스폰 시키기
             TrySpawnCustomer();
 
             yield return waitForSpawn;
@@ -68,15 +69,19 @@ public class CustomerManager : MonoBehaviour
 
     private void TrySpawnCustomer()
     {
+        // 이건 아직까진 보류 필요 없을 확률 있음
         if (currentCustomerCount >= maxCustomerCount)
             return;
 
+        // 사용 가능한 의자가 없으면 리턴
         if (!hasAvailableChair)
             return;
 
+        // 손님 NPC 스폰
         SpawnCustomer();
     }
 
+    // 랜덤한 위치에서 손님 NPC 스폰 후 사용 가능한 의자를 목적지로 삼아 이동
     private void SpawnCustomer()
     {
         int index = Random.Range(0, spawnPosData.Positions.Count);
