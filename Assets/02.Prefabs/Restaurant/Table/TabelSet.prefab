@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c18e0c1025fc3d4aa1db57928e1e943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Table
-  restaurantId: 1
+  restaurantId: 0
 --- !u!1001 &2935696006633668688
 PrefabInstance:
   m_ObjectHideFlags: 0
