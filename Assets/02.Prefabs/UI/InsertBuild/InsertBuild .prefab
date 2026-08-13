@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8146710876728391230}
   - component: {fileID: 5356543503418321661}
+  - component: {fileID: 4122338373246848388}
+  - component: {fileID: 7705021281890426790}
   m_Layer: 0
   m_Name: 'InsertBuild '
   m_TagString: Untagged
@@ -63,6 +65,41 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &4122338373246848388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061284629754032481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7d22a7a7ed99ee42965478756d1dd94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InsertBuild
+  buildMoneyText: {fileID: 276466649205337438}
+  payMoney: 10
+--- !u!65 &7705021281890426790
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061284629754032481}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2715732892139929353
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,8 +186,6 @@ GameObject:
   - component: {fileID: 7445439425236367008}
   - component: {fileID: 4433664501849092472}
   - component: {fileID: 5641887017961893574}
-  - component: {fileID: 5860612461792184856}
-  - component: {fileID: 83680945315721757}
   m_Layer: 0
   m_Name: Bacground
   m_TagString: Untagged
@@ -215,40 +250,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5860612461792184856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3447334401642521245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7d22a7a7ed99ee42965478756d1dd94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InsertBuild
-  money: {fileID: 276466649205337438}
---- !u!65 &83680945315721757
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3447334401642521245}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4704468640869418631
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +315,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 15
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

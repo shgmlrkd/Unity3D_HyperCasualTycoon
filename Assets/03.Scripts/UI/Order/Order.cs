@@ -10,8 +10,6 @@ public class Order : MonoBehaviour
     //order Count
     [SerializeField] private TextMeshProUGUI orderCount;
 
-
-
     //20260809
     //JS.Shin
     //SetOrderInfo - 주문정보 셋팅
@@ -24,6 +22,14 @@ public class Order : MonoBehaviour
         foodImg.sprite = image; 
         //주문 count
         this.orderCount.SetText(SetOrderCount(orderCount));    
+        
+    }
+    //20260813
+    //JS.Shin
+    //DestroyOrder : Destroy Order
+    public void DestroyOrder()
+    {
+        Destroy(gameObject);
     }
 
     //20260809
