@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -115,7 +115,8 @@ public class Content : MonoBehaviour
         upgradCount.color = contentData.TextColor;
         PayCount.color = Color.white;
 
-        background.color = contentData.BackgroundColor;
+        GetComponent<Image>().color = contentData.BackgroundColor;
+        //background.color = contentData.BackgroundColor;
     }
     private void Update()
     {

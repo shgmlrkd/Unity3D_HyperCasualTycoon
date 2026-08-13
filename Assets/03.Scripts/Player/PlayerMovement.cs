@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -12,11 +13,26 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float minZ = -20f;
     [SerializeField] private float maxZ = 20f;
 
+    [SerializeField] private CameraFollow cameraFollow;
+    
     private CharacterController characterController;
+
+    private bool canMove = true;
+    public bool CanMove => canMove;
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+    }
+
+    private void OnEnable()
+    {
+        cameraFollow.OnStoppedPlayerMove += SetMove;
+    }
+
+    private void SetMove(bool canMove)
+    {
+        this.canMove = canMove;
     }
 
     public void Move(Vector3 direction, float speed)

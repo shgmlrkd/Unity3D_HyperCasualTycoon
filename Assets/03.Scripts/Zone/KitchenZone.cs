@@ -1,6 +1,7 @@
+using System.Threading;
 using UnityEngine;
 
-public class KitchenZone : MonoBehaviour, IInteractable
+public class KitchenZone : MonoBehaviour
 {
     [Header("Zone Data")]
     [SerializeField] private ItemDataSO produceItemData; // 이 구역에서 나올 특정 음식 SO (예: 피자 또는 햄버거)
@@ -11,24 +12,31 @@ public class KitchenZone : MonoBehaviour, IInteractable
 
     private float timer = 0f;
 
-    public void OnInteract(Carrier carrier)
+    public void ResetTimer()
     {
-        if (produceItemData == null || produceItemData.ItemPrefab == null || carrier.IsFull) return;
+        timer = 0f;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (!other.TryGetComponent(out Carrier carrier)) return;
 
         timer += Time.deltaTime;
 
         if (timer >= interactInterval)
         {
-            timer = 0f;
+            timer = 0.0f;
 
             // 지정된 스폰 위치(없으면 현재 오브젝트 위치)에서 음식 생성 후 전달
             Vector3 spawnPos = (spawnPoint != null) ? spawnPoint.position : transform.position;
             carrier.TryAddCarrierItem(produceItemData.ItemPrefab, spawnPos);
         }
     }
-
-    public void ResetTimer()
+    
+    private void OnTriggerExit(Collider other)
     {
-        timer = 0f;
+        if (!other.TryGetComponent(out Carrier carrier)) return;
+
+        timer = 0.0f;
     }
 }

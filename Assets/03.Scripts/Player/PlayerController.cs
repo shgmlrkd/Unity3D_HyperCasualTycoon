@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!movement.CanMove) return;
+
         // 1. 이동 입력 받기
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
