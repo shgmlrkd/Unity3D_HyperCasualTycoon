@@ -7,11 +7,12 @@ public class InsertBuild : MonoBehaviour
 {
     //빌딩 건설시 지불금액 표시
     [SerializeField] private TextMeshProUGUI buildMoneyText;
-    //[SerializeField] private int buildMoney = 0;
+    //빌딩 가격
+    [SerializeField] private int buildMoney = 0;
     //지불금액
     [SerializeField] private int payMoney = 10;
     //빌딩 가격
-    private int buildMoney = 0;
+    //private int buildMoney = 0;
     //코루틴 start-end
     private bool isStart = true;
     //Complit
@@ -54,28 +55,35 @@ public class InsertBuild : MonoBehaviour
         sb.Append(buildMoney);
         buildMoneyText.SetText(sb.ToString());
     }
+    public void DestroyInsertBuild()
+    {
+        //삭제
+        Destroy(gameObject);
+    }
 
     private void OnTriggerStay(Collider collision)
     {
         //코루틴 스타드
         if (!isStart) return;
 
-        //지불완료
-        if (buildMoney <= 0)
-        {
-            //삭제
-            Destroy(gameObject);
-            //Complit - 지불 완료
-            SetIsComplit(true);
-        }
-            
+
         if (!collision.CompareTag("Player")) return;
-        
         //보유 금액이 지불 금액 보다 적으면 리턴
-        if (CurrencyManager.Instance.CurrentGold < payMoney) return;
+        //if (CurrencyManager.Instance.CurrentGold < payMoney) return;
+
+        
+        //MoneyShooter moneyShooter =
+        //        collision.GetComponentInChildren<MoneyShooter>();
+        //moneyShooter.SetIsStart(true);
+        //moneyShooter.SetEndPoint(gameObject.transform);
+
 
         //지불 코루틴
         StartCoroutine(PayMoney());
+        //if (isComplit)
+        //{
+        //    moneyShooter.SetIsStart(false);
+        //}
 
     }
 
@@ -84,6 +92,7 @@ public class InsertBuild : MonoBehaviour
     //PayMoney : Set Build Money
     private IEnumerator PayMoney()
     {
+
         isStart = false;
         //지불금액 마이너스
         buildMoney -= payMoney;
@@ -93,11 +102,25 @@ public class InsertBuild : MonoBehaviour
 
         //Set Build Money
         SetBuildMoney(buildMoney);
-        isStart = true;
+
+        //지불완료
+        if (buildMoney <= 0)
+        {
+            //Complit - 지불 완료
+            SetIsComplit(true);
+        }
+        else
+        {
+            isStart = true;
+        }
     }
     private void OnTriggerExit(Collider collision)
     {
         if (!collision.CompareTag("Player")) return;
-        Debug.Log("OnOnBoxTriggerExit");
+
+        //MoneyShooter moneyShooter =
+        //        collision.GetComponentInChildren<MoneyShooter>();
+        //moneyShooter.SetIsStart(false);
+
     }
 }

@@ -4,11 +4,34 @@ public class MoneyShooter : MonoBehaviour
 {
     [SerializeField] private GameObject throwPrefab; // 던질 프리팹
     [SerializeField] private Transform startPoint;    // 던지는 시작 위치
-    [SerializeField] private Transform endPoint;
+    //[SerializeField] private Transform endPoint;
     
 
     [SerializeField] float speed = 0.5f;
+
+    private Transform endPoint;
+
+    //private Transform endPoint2;
     private bool isStart = false;
+    public bool GetIsStart()
+    {
+        return isStart;
+    }
+    public void SetIsStart(bool isStart)
+    {
+        this.isStart = isStart; 
+    }
+
+
+    //private void Awake()
+    //{
+    //    endPoint2 = 
+    //}
+
+    public void SetEndPoint(Transform endPoin)
+    {
+        this.endPoint = endPoint;
+    }
 
     void Update()
     {
