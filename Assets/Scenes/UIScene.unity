@@ -1532,7 +1532,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2773,9 +2773,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2023993823}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f914cf06a5e6d34e84b88f7e8ec02aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 8fa0c97e026777f448795d67488e100d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Money
+  m_EditorClassIdentifier: Assembly-CSharp::InGameMoneyPanel
+  monenyTxt: {fileID: 1227904908}
 --- !u!1001 &2078584745
 PrefabInstance:
   m_ObjectHideFlags: 0
