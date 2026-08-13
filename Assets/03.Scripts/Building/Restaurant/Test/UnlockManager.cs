@@ -19,8 +19,9 @@ public class UnlockManager : MonoBehaviour
             unlockPoints[i].gameObject.SetActive(false);
         }
 
-        unlockPoints[currentIndex].OnUnlocked += HandleUnlockPointActivate;
+        SubscribeCurrentUnlockPoint();
     }
+
     private void SubscribeCurrentUnlockPoint()
     {
         unlockPoints[currentIndex].OnUnlocked += HandleUnlockPointActivate;
@@ -29,6 +30,8 @@ public class UnlockManager : MonoBehaviour
     private void HandleUnlockPointActivate()
     {
         unlockPoints[currentIndex].OnUnlocked -= HandleUnlockPointActivate;
+
+        unlockPoints[currentIndex].gameObject.SetActive(false);
 
         currentIndex++;
 
