@@ -7,10 +7,10 @@ public class InGameMoneyPanel : MonoBehaviour
     //inGame - top - money text
     [SerializeField] private TextMeshProUGUI monenyTxt;
 
-    private void Awake()
-    {
-        CurrencyManager.Instance.AddGold(1000);
-    }
+    //private void Awake()
+    //{
+    //    CurrencyManager.Instance.AddGold(1000);
+    //}
 
     // Update is called once per frame
     void Update()
