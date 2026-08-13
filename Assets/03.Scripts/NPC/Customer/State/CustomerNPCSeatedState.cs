@@ -1,3 +1,5 @@
+using Restaurant.Orders;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CustomerNPCSeatedState : CustomerNPCState
@@ -5,28 +7,30 @@ public class CustomerNPCSeatedState : CustomerNPCState
     private const float ORDER_TIME = 3.0f;
     private float orderTimer;
 
-    /*
-    private bool isFoorServed = false;
+    
+    private bool isFoodServed = false;
     private OrderData myOrder = null;
-
+    /*
      [Header("돈 뭉치 프리팹")]
     [SerializeField] private GameObject moneyChunkPrefab;
      */
 
     public override void Enter()
     {
-        
-        /*
-         isFoodServed = false;
-         */
-        
+        isFoodServed = false;
+         
         orderTimer = 0.0f;
         animController.SetMoveOrSeat(npc.MoveController.IsStopped());
         transform.rotation = Quaternion.LookRotation(npc.CurrentChair.transform.forward);
 
         // 착석 처리
         // 주문/음식 제공 요청
-        
+
+        if (OrderGenerator.Instance != null)
+        {
+            myOrder = OrderGenerator.Instance.CreateRandomOrder(npc.CustomerID, (RestaurantType)npc.RestaurantID);
+        }
+
         /*
           
          희강님, 
@@ -57,16 +61,20 @@ public class CustomerNPCSeatedState : CustomerNPCState
 
     public override void StateUpdate()
     {
-        // 음식 제공 이벤트를 받으면 Eating으로 전환 <- 해야할것
-        /*
-         이것도
-        if(isFoodServed)
+        /*if (myOrder != null)
         {
-            npc.StateController.SetState(CustomerState.Eating); 이렇게 해도 되구요.
-        }
-         */
-        // 임시로 일정 시간 지나면 Eating 상태로 변환
+            if (myOrder.status == OrderStatus.Completed)
+            {
+                npc.StateController.SetState(CustomerState.Eating);
+            }
 
+            if(myOrder.status == OrderStatus.Waiting)
+            {
+                print("빨리 가져와");
+            }
+        }*/
+
+        // 임시로 일정 시간 지나면 Eating 상태로 변환
         orderTimer += Time.deltaTime;
 
         if(orderTimer > ORDER_TIME)
