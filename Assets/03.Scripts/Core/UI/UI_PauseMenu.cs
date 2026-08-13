@@ -24,6 +24,30 @@ public class UI_PauseMenu : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (optionPanel != null && optionPanel.activeSelf)
+            {
+                OnClickCloseOption();
+                return;
+            }
+
+            if (GameManager.Instance != null)
+            {
+                if (GameManager.Instance.CurrentState == GameState.Play)
+                {
+                    GameManager.Instance.PauseGame();
+                }
+                else if (GameManager.Instance.CurrentState == GameState.Pause)
+                {
+                    GameManager.Instance.ResumeGame();
+                }
+            }
+        }
+    }
+
     private void OnGameStateChanged(object param)
     {
         if (GameManager.Instance == null || pausePanel == null) return;
