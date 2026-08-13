@@ -271,11 +271,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 156947184}
   m_CullTransparentMesh: 1
---- !u!224 &213868403 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
-  m_PrefabInstance: {fileID: 8858349623971543716}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &229174610
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,7 +962,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MoneyShooter
   throwPrefab: {fileID: 5043110711473846970, guid: fc0bb3095c7bb274b89c9124ffc392eb, type: 3}
   startPoint: {fileID: 556201792}
-  endPoint: {fileID: 213868403}
   speed: 0.5
 --- !u!1 &844097033
 GameObject:

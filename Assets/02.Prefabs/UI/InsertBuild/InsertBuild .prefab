@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InsertBuild
   buildMoneyText: {fileID: 276466649205337438}
+  buildMoney: 60
   payMoney: 10
 --- !u!65 &7705021281890426790
 BoxCollider:
