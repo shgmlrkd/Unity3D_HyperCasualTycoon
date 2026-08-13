@@ -3,25 +3,33 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     [Header("Target Settings")]
-    [SerializeField] private Transform target; // 따라갈 플레이어
+    [SerializeField] private Transform target;
+    [SerializeField] private Vector3 offset = new Vector3(0f, 5f, -7f); // 카메라 배치 위치
+    [SerializeField] private Vector3 focusOffset = new Vector3(0f, 1f, 0f); // 카메라가 바라볼 캐릭터의 중심점 (예: 가슴/머리 위치)
 
     [Header("Follow Settings")]
-    [SerializeField] private Vector3 offset = new Vector3(0f, 5f, -7f); // 카메라와 플레이어 간의 거리
-    [SerializeField] private float smoothSpeed = 5.0f; // 카메라 이동 부드러움 정도
+    [SerializeField] private float moveSmoothSpeed = 10f;
+    [SerializeField] private float rotateSmoothSpeed = 10f;
 
     private void LateUpdate()
     {
         if (target == null) return;
 
-        // 플레이어 위치 + 오프셋 위치 계산
-        Vector3 desiredPosition = target.position + offset;
+        // 1. 카메라가 실제 주시할 캐릭터 중심점 계산
+        Vector3 lookAtTarget = target.position + target.TransformDirection(focusOffset);
 
-        // 부드러운 카메라 이동 (Lerp)
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+        // 2. 캐릭터의 회전을 반영한 기본 카메라 목표 위치 계산
+        Vector3 finalTargetPos = target.position + target.rotation * offset;
 
-        transform.position = smoothedPosition;
+        // 3. 위치 보간
+        transform.position = Vector3.Lerp(transform.position, finalTargetPos, Time.deltaTime * moveSmoothSpeed);
 
-        // 카메라는 항상 플레이어를 바라보도록 설정
-        transform.LookAt(target);
+        // 4. 회전 보간 (캐릭터 중심점을 향해 대각선 아래로 내려다봄)
+        Vector3 direction = lookAtTarget - transform.position;
+        if (direction.sqrMagnitude > 0.001f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotateSmoothSpeed);
+        }
     }
 }

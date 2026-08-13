@@ -6,6 +6,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Rotation Settings")]
     [SerializeField] private float rotationSpeed = 12.0f;
 
+    [Header("Map Boundary Settings")]
+    [SerializeField] private float minX = -20f;
+    [SerializeField] private float maxX = 20f;
+    [SerializeField] private float minZ = -20f;
+    [SerializeField] private float maxZ = 20f;
+
     private CharacterController characterController;
 
     private void Awake()
@@ -30,5 +36,14 @@ public class PlayerMovement : MonoBehaviour
         // 중력 벡터 포함하여 한 번에 Move 호출
         moveVelocity.y = -9.81f;
         characterController.Move(moveVelocity * Time.deltaTime);
+    }
+    private void LateUpdate()
+    {
+        // 이동 계산이 끝난 후 플레이어 위치를 min ~ max 사이로 제한
+        Vector3 clampedPosition = transform.position;
+        clampedPosition.x = Mathf.Clamp(clampedPosition.x, minX, maxX);
+        clampedPosition.z = Mathf.Clamp(clampedPosition.z, minZ, maxZ);
+
+        transform.position = clampedPosition;
     }
 }
