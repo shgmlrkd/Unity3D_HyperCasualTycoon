@@ -115,6 +115,7 @@ MonoBehaviour:
   maxX: 100
   minZ: -100
   maxZ: 100
+  cameraFollow: {fileID: 0}
 --- !u!114 &3672463521290600339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,6 +237,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4151318502483408747}
     m_Modifications:
+    - target: {fileID: 1876037148194587715, guid: ca3d3bba70da5c94089869cb8e8746e6, type: 3}
+      propertyPath: m_Radius
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4238963136624438177, guid: ca3d3bba70da5c94089869cb8e8746e6, type: 3}
       propertyPath: m_Name
       value: Man_Pedestrian_Rival_Young_Rig

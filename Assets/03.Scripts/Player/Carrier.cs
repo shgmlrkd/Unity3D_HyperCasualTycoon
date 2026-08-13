@@ -8,6 +8,7 @@ public class Carrier : MonoBehaviour
     [SerializeField] private Transform carryPoint;
     [SerializeField] private int maxCapacity = 5;
     [SerializeField] private float itemSpacing = 0.05f;
+    private CircleGauge circleGauge;
 
     // Stack 대신 List로 변경 (인덱스 접근 및 순회 용이)
     private readonly List<CarrierItem> itemList = new List<CarrierItem>();
@@ -20,6 +21,11 @@ public class Carrier : MonoBehaviour
     public bool IsFull => itemList.Count >= maxCapacity;
     public bool HasItems => itemList.Count > 0;
     public IReadOnlyList<CarrierItem> ItemList => itemList;
+
+    private void Awake()
+    {
+        circleGauge = GetComponentInChildren<CircleGauge>(true);
+    }
 
     // 기본 생성 메서드
     public bool TryAddCarrierItem(CarrierItem itemPrefab)
@@ -49,6 +55,8 @@ public class Carrier : MonoBehaviour
         newItem.transform.localRotation = Quaternion.identity;
 
         itemList.Add(newItem);
+        circleGauge.StartGauge();
+
         OnItemCountChanged?.Invoke(itemList.Count);
         return true;
     }

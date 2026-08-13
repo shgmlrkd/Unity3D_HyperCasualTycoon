@@ -14,6 +14,7 @@ public class CustomerNPC : MonoBehaviour
 
     private Chair currentChair;
 
+    private int customerID = -1;
     private int restaurantID = -1;
 
     public Chair CurrentChair => currentChair;
@@ -22,12 +23,12 @@ public class CustomerNPC : MonoBehaviour
     public CustomerNPCMoveController MoveController => moveController;
     public CustomerNPCStateController StateController => stateController;
 
+    public event Action<CustomerNPC> OnExitCompleted;
+    public int CustomerID => customerID;
     public int RestaurantID => restaurantID;
 
-    public event Action<CustomerNPC> OnExitCompleted;
-    
     private void OnEnable()
-    {
+    { 
         chairEventChannel.OnChairAssigned += HandleChairAssigned;
     }
 
@@ -64,6 +65,14 @@ public class CustomerNPC : MonoBehaviour
     public void CompleteExit()
     {
         OnExitCompleted?.Invoke(this);
+    }
+
+    // 손님NPC 고유ID 세팅
+    public void AssignCustomerID(int customerID)
+    {
+        if (this.customerID != -1) return;
+        
+        this.customerID = customerID;
     }
 
     // 현재 들어간 레스토랑 ID 세팅

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 
@@ -43,6 +43,12 @@ public class CircleGauge : MonoBehaviour
                 Complit = true;
             }
         }
+    }
+    public void StartGauge()
+    {
+        SetResetData();
+        Complit = false;
+        SetActiveGauge(true);
     }
     //20260811
     //JS.S

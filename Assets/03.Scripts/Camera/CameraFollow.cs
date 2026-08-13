@@ -1,8 +1,65 @@
+using DG.Tweening;
+using System;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [Header("Target Settings")]
+    private const float CAMERA_OFFSET_DURATION = 0.5f;
+
+    [SerializeField]
+    private Transform target;
+
+    [SerializeField]
+    private Vector3 interiorOffset = new Vector3(0f, 5f, 7f);
+
+    [SerializeField]
+    private Vector3 exteriorOffset = new Vector3(0f, 5f, -7f);
+
+    private Vector3 currentOffset;
+    private Tween offsetTween;
+
+    public event Action<bool> OnStoppedPlayerMove;
+
+    private void Awake()
+    {
+        currentOffset = exteriorOffset;
+    }
+
+    private void LateUpdate()
+    {
+        transform.position = target.position + currentOffset;
+        transform.LookAt(target);
+    }
+
+    public void SetCameraView(bool isInterior)
+    {
+        OnStoppedPlayerMove?.Invoke(false);
+
+        Vector3 offset = isInterior ? interiorOffset : exteriorOffset;
+
+        ChangeOffset(offset);
+    }
+
+    private void ChangeOffset(Vector3 targetOffset)
+    {
+        offsetTween?.Kill();
+
+        Sequence sequence = DOTween.Sequence();
+
+        offsetTween = DOTween.To(() => currentOffset, value => currentOffset = value, targetOffset, CAMERA_OFFSET_DURATION).SetEase(Ease.InOutQuad);
+
+        sequence.Append(offsetTween)
+                .OnComplete(() =>
+                {
+                    OnStoppedPlayerMove?.Invoke(true);
+                });
+    }
+
+    private void OnDestroy()
+    {
+        offsetTween?.Kill();
+    }
+    /*[Header("Target Settings")]
     [SerializeField] private Transform target;
     [SerializeField] private Vector3 offset = new Vector3(0f, 5f, -7f); // 카메라 배치 위치
     [SerializeField] private Vector3 focusOffset = new Vector3(0f, 1f, 0f); // 카메라가 바라볼 캐릭터의 중심점 (예: 가슴/머리 위치)
@@ -31,5 +88,5 @@ public class CameraFollow : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotateSmoothSpeed);
         }
-    }
+    }*/
 }

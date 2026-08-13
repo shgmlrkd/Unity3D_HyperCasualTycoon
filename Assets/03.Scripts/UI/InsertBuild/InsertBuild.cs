@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using System.Collections;
@@ -35,11 +35,11 @@ public class InsertBuild : MonoBehaviour
 
     //    SetBuildMoneyText(buildMoney);
     //}
-    //private void Awake()
-    //{
-    //    CurrencyManager.Instance.AddGold(1000);
-    //    SetBuildMoney(160);
-    //}
+    private void Awake()
+    {
+        CurrencyManager.Instance.AddGold(1000);
+        SetBuildMoney(buildMoney);
+    }
 
     //202600813
     //js.shin

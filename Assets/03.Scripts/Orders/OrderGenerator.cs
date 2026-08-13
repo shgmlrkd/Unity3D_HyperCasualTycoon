@@ -4,7 +4,7 @@ using Restaurant.Foods;
 
 namespace Restaurant.Orders
 {
-    public class OrderGenerator : MonoSingleton<OrderGenerator>
+    public class OrderGenerator : LocalSingleton<OrderGenerator>
     {
         [Header("피햄 건물 음식 리스트")]
         [SerializeField] private List<FoodDataSO> pizzaHamburgerFoods = new List<FoodDataSO>();

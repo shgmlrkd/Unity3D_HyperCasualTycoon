@@ -91,6 +91,9 @@ public class CustomerManager : MonoBehaviour
         if (customer == null)
             return;
 
+        // 손님 고유ID 세팅
+        customer.AssignCustomerID(currentCustomerCount);
+
         // 아래처럼 했음에도 원점에서 스폰되는 버그가 발견
         //customer.transform.position = spawnPosData.Positions[index];
         //print($"현재 스폰 위치 : {customer.transform.position}");

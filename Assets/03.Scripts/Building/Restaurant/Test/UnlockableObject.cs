@@ -21,23 +21,44 @@ public class UnlockableObject : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (unlockPoint == null) return;
+
         unlockPoint.OnUnlocked -= HandleUnlocked;
     }
 
     private void HandleUnlocked()
     {
-        transform.GetChild(0).gameObject.SetActive(activeOnUnlock);
+        GameObject targetObject = transform.GetChild(0).gameObject;
+        NavMeshObstacle navMeshObstacle = GetComponentInChildren<NavMeshObstacle>(true);
 
-        NavMeshObstacle navMeshObstacle = GetComponentInChildren<NavMeshObstacle>();
-        Sequence sequence = DOTween.Sequence();
+        if (activeOnUnlock)
+        {
+            targetObject.SetActive(true);
 
-        sequence.Append(UnlockAnimation.PlayUnlockAnimation(transform))
-                .OnComplete(() =>
-                {
-                    if (navMeshObstacle == null) return;
+            Tween tween = UnlockAnimation.PlayUnlockAnimation(transform, true);
 
-                    navMeshObstacle.enabled = false;
-                    navMeshObstacle.enabled = true;
-                });
+            tween.OnComplete(() =>
+            {
+                ResetNavMeshObstacle(navMeshObstacle);
+            });
+
+            return;
+        }
+
+        Tween disableTween = UnlockAnimation.PlayUnlockAnimation(transform, false);
+
+        disableTween.OnComplete(() =>
+        {
+            ResetNavMeshObstacle(navMeshObstacle);
+            targetObject.SetActive(false);
+        });
+    }
+
+    private void ResetNavMeshObstacle(NavMeshObstacle navMeshObstacle)
+    {
+        if (navMeshObstacle == null) return;
+
+        navMeshObstacle.enabled = false;
+        navMeshObstacle.enabled = true;
     }
 }
