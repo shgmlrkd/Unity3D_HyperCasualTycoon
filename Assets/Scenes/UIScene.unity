@@ -960,7 +960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9e0b74383875d45a39a08fe8efea69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoneyShooter
-  throwPrefab: {fileID: 5043110711473846970, guid: fc0bb3095c7bb274b89c9124ffc392eb, type: 3}
+  moneyPrefab: {fileID: 0}
 --- !u!1 &844097033
 GameObject:
   m_ObjectHideFlags: 0
@@ -3176,13 +3176,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5772555824289722454, guid: 90a26d9ef9dea0b438d14c9beed1e4e2, type: 3}
+      propertyPath: type
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6469501848410420682, guid: 90a26d9ef9dea0b438d14c9beed1e4e2, type: 3}
       propertyPath: m_Name
       value: InsertCircle
       objectReference: {fileID: 0}
     - target: {fileID: 6469501848410420682, guid: 90a26d9ef9dea0b438d14c9beed1e4e2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
