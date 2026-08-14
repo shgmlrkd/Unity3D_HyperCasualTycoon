@@ -1,4 +1,4 @@
-using System.Text;
+﻿using System.Text;
 using TMPro;
 using UnityEngine;
 using System.Collections;
@@ -11,6 +11,8 @@ public class InsertBuild : MonoBehaviour
     [SerializeField] private int buildMoney = 0;
     //지불금액
     [SerializeField] private int payMoney = 10;
+    //코루틴 - 지불 지연 시간
+    [SerializeField] private float waitTime = 0.05f;
     //빌딩 가격
     //private int buildMoney = 0;
     //코루틴 start-end
@@ -37,14 +39,13 @@ public class InsertBuild : MonoBehaviour
     //}
     private void Awake()
     {
-        //CurrencyManager.Instance.AddGold(1000);
         SetBuildMoney(buildMoney);
     }
 
     //202600813
     //js.shin
     //SetBuildMoney : Set Build Money 
-    //parp 
+    //para 
     //buildMoney: 빌딩 가격
     public void SetBuildMoney(int buildMoney)
     {
@@ -71,35 +72,30 @@ public class InsertBuild : MonoBehaviour
         //보유 금액이 지불 금액 보다 적으면 리턴
         if (CurrencyManager.Instance.CurrentGold < payMoney) return;
 
-        
-        //MoneyShooter moneyShooter =
-        //        collision.GetComponentInChildren<MoneyShooter>();
-        //moneyShooter.SetIsStart(true);
-        //moneyShooter.SetEndPoint(gameObject.transform);
-
-
         //지불 코루틴
-        StartCoroutine(PayMoney());
-        //if (isComplit)
-        //{
-        //    moneyShooter.SetIsStart(false);
-        //}
-
+        StartCoroutine(PayMoney(collision));
+        
     }
 
     //202600813
     //js.shin
     //PayMoney : Set Build Money
-    private IEnumerator PayMoney()
+    private IEnumerator PayMoney(Collider collision)
     {
 
         isStart = false;
+        //지불 모션
+        MoneyShooter moneyShooter =
+                collision.GetComponentInChildren<MoneyShooter>();
+        //지불 모션 실행, endPoint set
+        moneyShooter.ShootMoneny(gameObject.transform);
+
         //지불금액 마이너스
         buildMoney -= payMoney;
         //보유 금액 마이너스
         CurrencyManager.Instance.TrySpendGold(payMoney);
-        yield return new WaitForSeconds(0.05f);
-
+        yield return new WaitForSeconds(waitTime);
+        
         //Set Build Money
         SetBuildMoney(buildMoney);
 
@@ -108,6 +104,7 @@ public class InsertBuild : MonoBehaviour
         {
             //Complit - 지불 완료
             SetIsComplit(true);
+            
         }
         else
         {
@@ -117,10 +114,6 @@ public class InsertBuild : MonoBehaviour
     private void OnTriggerExit(Collider collision)
     {
         if (!collision.CompareTag("Player")) return;
-
-        //MoneyShooter moneyShooter =
-        //        collision.GetComponentInChildren<MoneyShooter>();
-        //moneyShooter.SetIsStart(false);
 
     }
 }
