@@ -10,6 +10,7 @@ public class SaveData
     public int reputation;
     public int visitorCount;
     public int festivalStage;
+    //public int CurrentUnlockIndex; <- 이거 하나 추가해주시면 해금 시스템은 저장됩니다. - 노희강 -
 }
 
 [System.Serializable]
@@ -54,6 +55,12 @@ public class SaveManager : MonoSingleton<SaveManager>
             CurrentData.reputation = ReputationManager.Instance.CurrentReputation;
         }
 
+        // 이거 그대로 쓰시면 해금 시스템 저장될거에요. - 노희강 -
+        /*if (UnlockPointManager.Instance != null)
+        {
+            CurrentData.CurrentUnlockIndex = UnlockPointManager.Instance.CurrentUnlockPointIndex;
+        }*/
+
         string json = JsonUtility.ToJson(CurrentData, true);
         File.WriteAllText(saveFilePath, json);
 
@@ -89,6 +96,12 @@ public class SaveManager : MonoSingleton<SaveManager>
             if (CurrentData.reputation > currentRep) ReputationManager.Instance.AddReputation(CurrentData.reputation - currentRep);
             else if (CurrentData.reputation < currentRep) ReputationManager.Instance.DecreaseReputation(currentRep - CurrentData.reputation);
         }
+
+        // 이렇게 로드시키면 될듯합니다. - 노희강 -
+        /*if (UnlockPointManager.Instance != null)
+        {
+            UnlockPointManager.Instance.LoadUnlockPoint(CurrentData.CurrentUnlockIndex);
+        }*/
 
         Debug.Log($"[SaveManager] 게임 진행 JSON 불러오기 완료! (Day {CurrentData.currentDay})");
     }

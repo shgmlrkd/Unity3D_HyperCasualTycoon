@@ -12,11 +12,17 @@ public class UnlockableObject : MonoBehaviour
     [SerializeField]
     private bool activeOnUnlock = true;
 
+    private GameObject targetObject;
+
+    public UnlockPoint UnlockPoint => unlockPoint;
+
     private void Awake()
     {
+        targetObject = transform.GetChild(0).gameObject;
+
         unlockPoint.OnUnlocked += HandleUnlocked;
         // 해금됬을 때 활성화 <-> 비활성화 반대되야하므로 초기엔 active를 반대로함
-        transform.GetChild(0).gameObject.SetActive(!activeOnUnlock);
+        targetObject.SetActive(!activeOnUnlock);
     }
 
     private void OnDestroy()
@@ -28,7 +34,6 @@ public class UnlockableObject : MonoBehaviour
 
     private void HandleUnlocked()
     {
-        GameObject targetObject = transform.GetChild(0).gameObject;
         NavMeshObstacle navMeshObstacle = GetComponentInChildren<NavMeshObstacle>(true);
 
         if (activeOnUnlock)
@@ -60,5 +65,20 @@ public class UnlockableObject : MonoBehaviour
 
         navMeshObstacle.enabled = false;
         navMeshObstacle.enabled = true;
+    }
+
+    public void UnlockObject()
+    {
+        NavMeshObstacle navMeshObstacle = GetComponentInChildren<NavMeshObstacle>(true);
+
+        if (activeOnUnlock)
+        {
+            targetObject.SetActive(true);
+            ResetNavMeshObstacle(navMeshObstacle); 
+        }
+        else
+        {
+            targetObject.SetActive(false);
+        }
     }
 }

@@ -6,7 +6,6 @@ public class UnlockPoint : MonoBehaviour
     public event Action OnUnlocked;
 
     private InsertBuild payMoney;
-    private bool isUnlocked = false;
 
     private void Awake()
     {
