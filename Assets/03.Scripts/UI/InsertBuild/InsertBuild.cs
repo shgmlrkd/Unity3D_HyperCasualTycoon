@@ -37,7 +37,7 @@ public class InsertBuild : MonoBehaviour
     //}
     private void Awake()
     {
-        CurrencyManager.Instance.AddGold(1000);
+        //CurrencyManager.Instance.AddGold(1000);
         SetBuildMoney(buildMoney);
     }
 
@@ -46,7 +46,7 @@ public class InsertBuild : MonoBehaviour
     //SetBuildMoney : Set Build Money 
     //parp 
     //buildMoney: 빌딩 가격
-    private void SetBuildMoney(int buildMoney)
+    public void SetBuildMoney(int buildMoney)
     {
         //Set Build Money
         this.buildMoney = buildMoney;
@@ -69,7 +69,7 @@ public class InsertBuild : MonoBehaviour
 
         if (!collision.CompareTag("Player")) return;
         //보유 금액이 지불 금액 보다 적으면 리턴
-        //if (CurrencyManager.Instance.CurrentGold < payMoney) return;
+        if (CurrencyManager.Instance.CurrentGold < payMoney) return;
 
         
         //MoneyShooter moneyShooter =
@@ -98,7 +98,7 @@ public class InsertBuild : MonoBehaviour
         buildMoney -= payMoney;
         //보유 금액 마이너스
         CurrencyManager.Instance.TrySpendGold(payMoney);
-        yield return 10.0f;
+        yield return new WaitForSeconds(0.05f);
 
         //Set Build Money
         SetBuildMoney(buildMoney);
