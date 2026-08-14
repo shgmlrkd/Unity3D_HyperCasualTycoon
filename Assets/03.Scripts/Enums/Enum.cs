@@ -73,3 +73,15 @@ public enum RestaurantType
 
     Length
 }
+
+public enum FoodType
+{
+    None = -1,
+
+    Pizza,
+    Hambuger,
+    Cake,
+    IceCream,
+
+    Length
+}
