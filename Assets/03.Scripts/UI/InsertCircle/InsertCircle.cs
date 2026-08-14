@@ -7,12 +7,12 @@ public class InsertCircle : MonoBehaviour
 {
     //order food 이미지
     [SerializeField] private Sprite foodImg;
-    //1.팝업 2.음식 3.쓰레기통
-    [SerializeField] private int type;
+    //1.Popop 2.Food 3.Basic
+    [SerializeField] private CircleType type;
 
     //파업 타입(확정성 관련해서 생성)
-    //초기 : 0
-    [SerializeField] private int popuType;
+    //MainRestaurant : 0
+    [SerializeField] private PopupType popuType;
 
 
     private void OnTriggerStay(Collider collision)
@@ -22,8 +22,9 @@ public class InsertCircle : MonoBehaviour
         //play, npc 자식 - circle Gauge 
         CircleGauge circleGauge =
                 collision.GetComponentInChildren<CircleGauge>(true);
+        
         //팝업 
-        if (type == 1) 
+        if (CircleType.Popop == type) 
         {
 
             //npc x
@@ -47,7 +48,10 @@ public class InsertCircle : MonoBehaviour
                 //ContentsScrollView contentsScrollView = 
                 //    popup.GetComponentInChildren<ContentsScrollView>(true);
                 //팝업 open
-                popup.OpenPopup(popuType);
+
+                //(int)popuType.GetHashCode
+                //int num = int.TryParse(popuType);
+                popup.OpenPopup(popuType.GetHashCode());
             }
                 
 
@@ -55,7 +59,7 @@ public class InsertCircle : MonoBehaviour
             circleGauge.SetActiveGauge(false);
         }
         //음식
-        else if (type == 2) 
+        else if (CircleType.Food == type) 
         {
             if (foodImg != null)
             {
@@ -66,7 +70,7 @@ public class InsertCircle : MonoBehaviour
             circleGauge.SetActiveGauge(true);   
         }
         //쓰레기
-        else if (type == 3) 
+        else if (CircleType.Basic == type) 
         {
             //npc x
             if (collision.CompareTag("EmployeeNPC")) return;
@@ -85,7 +89,7 @@ public class InsertCircle : MonoBehaviour
         CircleGauge circleGauge =
                 collision.GetComponentInChildren<CircleGauge>(true);
         //팝업 
-        if (type == 1)
+        if (CircleType.Popop == type)
         {
             //npc x
             if (collision.CompareTag("EmployeeNPC")) return;
