@@ -1,4 +1,4 @@
-public enum CustomerState
+﻿public enum CustomerState
 {
     None = -1,
 
@@ -84,4 +84,17 @@ public enum FoodType
     IceCream,
 
     Length
+}
+
+public enum CircleType
+{
+    None = -1,
+    Basic,
+    Food,
+    Popop
+}
+public enum PopupType
+{
+    None = -1,
+    MainRestaurant = 0
 }
