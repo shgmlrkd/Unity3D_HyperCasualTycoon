@@ -961,8 +961,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoneyShooter
   throwPrefab: {fileID: 5043110711473846970, guid: fc0bb3095c7bb274b89c9124ffc392eb, type: 3}
-  startPoint: {fileID: 556201792}
-  speed: 0.5
 --- !u!1 &844097033
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,6 +1201,103 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1001 &927174627
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1061284629754032481, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_Name
+      value: InsertBuild  (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
 --- !u!1 &990706861
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,6 +1558,10 @@ PrefabInstance:
     - target: {fileID: 6469501848410420682, guid: 90a26d9ef9dea0b438d14c9beed1e4e2, type: 3}
       propertyPath: m_Name
       value: InsertCircle (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6469501848410420682, guid: 90a26d9ef9dea0b438d14c9beed1e4e2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2875,6 +2974,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InsertCircle (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6469501848410420682, guid: 90a26d9ef9dea0b438d14c9beed1e4e2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3077,6 +3180,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InsertCircle
       objectReference: {fileID: 0}
+    - target: {fileID: 6469501848410420682, guid: 90a26d9ef9dea0b438d14c9beed1e4e2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3185,6 +3292,10 @@ PrefabInstance:
     - target: {fileID: 6469501848410420682, guid: 90a26d9ef9dea0b438d14c9beed1e4e2, type: 3}
       propertyPath: m_Name
       value: InsertCircle (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6469501848410420682, guid: 90a26d9ef9dea0b438d14c9beed1e4e2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3308,6 +3419,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'InsertBuild '
       objectReference: {fileID: 0}
+    - target: {fileID: 1061284629754032481, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3410,3 +3525,4 @@ SceneRoots:
   - {fileID: 8858349623971543716}
   - {fileID: 8716870544792551752}
   - {fileID: 1920199485782002752}
+  - {fileID: 927174627}
