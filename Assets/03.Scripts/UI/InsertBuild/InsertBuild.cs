@@ -37,7 +37,7 @@ public class InsertBuild : MonoBehaviour
     //}
     private void Awake()
     {
-        CurrencyManager.Instance.AddGold(1000);
+        //CurrencyManager.Instance.AddGold(1000);
         SetBuildMoney(buildMoney);
     }
 

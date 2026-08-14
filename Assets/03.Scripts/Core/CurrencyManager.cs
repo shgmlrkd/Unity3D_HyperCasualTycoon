@@ -3,31 +3,89 @@ using UnityEngine;
 public class CurrencyManager : MonoSingleton<CurrencyManager>
 {
     [Header("재화 설정")]
-    [SerializeField] private int initialGold = 0;
-    [SerializeField] private int initialMoney = 0;
-    [SerializeField] private int initialGems = 0;
+    [SerializeField] private int initialGold = 120;
+    [SerializeField] private int initialMoney = 121;
+    //[SerializeField] private int initialGems = 0;
 
     public int CurrentGold { get; private set; }
     public int CurrentMoney { get; private set; }
-    public int CurrentGems { get; private set; }
+    //public int CurrentGems { get; private set; }
 
-    protected override void Awake()
+    //protected override void Awake()
+    //{
+    //    base.Awake();
+    //    //CurrentGold = initialGold;
+    //    //CurrentMoney = initialMoney;
+
+    //    // SaveManager에 남아있는(또는 준비된) CurrentData가 있다면 해당 액수로 시작
+    //    if (SaveManager.Instance != null && SaveManager.Instance.CurrentData != null)
+    //    {
+    //        CurrentMoney = SaveManager.Instance.CurrentData.money;
+    //        CurrentGold = SaveManager.Instance.CurrentData.gold;
+    //    }
+    //    else
+    //    {
+    //        CurrentGold = initialGold;
+    //        CurrentMoney = initialMoney;
+    //    }
+
+    //    CurrentGems = initialGems;
+    //}
+
+
+    private void Start()
     {
-        base.Awake();
-        CurrentGold = initialGold;
-        CurrentMoney = initialMoney;
-        CurrentGems = initialGems;
+        InitCurrencyData();
+    }
+
+    public void InitCurrencyData()
+    {
+        if(SaveManager.Instance != null && SaveManager.Instance.CurrentData != null)
+        {
+            //CurrentMoney = SaveManager.Instance.CurrentData.money;
+            //CurrentGold = SaveManager.Instance.CurrentData.gold;
+            ApplySaveData(SaveManager.Instance.CurrentData);
+        }
+        else
+        {
+            //CurrentMoney = initialMoney;
+            //CurrentGold = initialGold;
+            ResetData();
+        }
+
+        EventManager.Instance?.Publish(EventType.OnGoldChanged, CurrentGold);
+        EventManager.Instance?.Publish(EventType.OnMoneyChanged, CurrentMoney);
+
+        Debug.Log($"[CurrencyManager] 초기화 완료: Gold {CurrentGold}, Money {CurrentMoney}");
     }
 
     public void ResetData()
     {
         CurrentGold = initialGold;
         CurrentMoney = initialMoney;
-        CurrentGems = initialGems;
-        Debug.Log($"[CurrencyManager] 데이터 초기화: Gold {CurrentGold}, Money {CurrentMoney}, Gems {CurrentGems}");
+        //CurrentGems = initialGems;
+        Debug.Log($"[CurrencyManager] 데이터 초기화: Gold {CurrentGold}, Money {CurrentMoney}");
 
         EventManager.Instance?.Publish(EventType.OnGoldChanged, CurrentGold);
         EventManager.Instance?.Publish(EventType.OnMoneyChanged, CurrentMoney);
+    }
+
+    public void ApplySaveData(SaveData data)
+    {
+        if(data == null)
+        {
+            Debug.LogWarning("[CurrencyManager] 적용할 SaveData가 없슴당");
+            ResetData();
+            return;
+        }
+
+        CurrentMoney = Mathf.Max(0, data.money);
+        CurrentGold = Mathf.Max(0, data.gold);
+
+        EventManager.Instance?.Publish(EventType.OnMoneyChanged, CurrentMoney);
+        EventManager.Instance?.Publish(EventType.OnGoldChanged, CurrentGold);
+
+        Debug.Log($"[CurrencyManager] 세이브 데이터 적용 완료. " + $"Gold {CurrentGold}, Money {CurrentMoney}");
     }
 
     public void SetMoney(int amount)
@@ -100,20 +158,20 @@ public class CurrencyManager : MonoSingleton<CurrencyManager>
                 return false;
             }
     
-    public void AddGems(int amount)
-    {
-        if (amount <= 0) return;
-        CurrentGems += amount;
-    }
+    //public void AddGems(int amount)
+    //{
+    //    if (amount <= 0) return;
+    //    CurrentGems += amount;
+    //}
 
-    public bool TrySpendGems(int amount)
-    {
-        if (amount <= 0) return false;
-        if (CurrentGems >= amount)
-        {
-            CurrentGems -= amount;
-            return true;
-        }
-        return false;
-    }
+    //public bool TrySpendGems(int amount)
+    //{
+    //    if (amount <= 0) return false;
+    //    if (CurrentGems >= amount)
+    //    {
+    //        CurrentGems -= amount;
+    //        return true;
+    //    }
+    //    return false;
+    //}
 }
