@@ -1290,8 +1290,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b46d058f7744f934fa9671342dffba58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CurrencyManager
-  initialGold: 0
-  initialMoney: 0
+  initialGold: 120
+  initialMoney: 121
   initialGems: 0
 --- !u!1 &1524996088
 GameObject:
@@ -2404,6 +2404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf92c98046f2ca489a6e1907b9c87e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneManagerEx
+  InGameSceneName: InGameScene
 --- !u!1 &1970958256 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4878165103135528585, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
