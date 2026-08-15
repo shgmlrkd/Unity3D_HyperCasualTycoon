@@ -11,12 +11,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Test_System/New Scene.unity
     guid: d55ece6bd4ca7dd4fb5c3f0f350eb109
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test_System/Test01_TitleScene.unity
     guid: d75c4841c5d9f8347803bae907856d50
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test_System/Test02_InGameScene.unity
     guid: b36fd2655dbbb8549a8998e5ebc17fd5
+  - enabled: 1
+    path: Assets/Scenes/TitleScene.unity
+    guid: 03ed5129b6df9284eb1bf6c84d5b0fc5
+  - enabled: 1
+    path: Assets/Scenes/InGameScene.unity
+    guid: 77f597a15f07683418d17da3001e4796
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
