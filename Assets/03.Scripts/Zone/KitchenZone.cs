@@ -1,10 +1,10 @@
-using System.Threading;
+using Restaurant.Foods;
 using UnityEngine;
 
 public class KitchenZone : MonoBehaviour
 {
     [Header("Zone Data")]
-    [SerializeField] private ItemDataSO produceItemData; // 이 구역에서 나올 특정 음식 SO (예: 피자 또는 햄버거)
+    [SerializeField] private FoodDataSO produceItemData; // 이 구역에서 나올 특정 음식 SO (예: 피자 또는 햄버거)
     [SerializeField] private float interactInterval = 1.0f; // 생산 주기(초)
 
     [Header("Spawn Point")]
@@ -29,7 +29,7 @@ public class KitchenZone : MonoBehaviour
 
             // 지정된 스폰 위치(없으면 현재 오브젝트 위치)에서 음식 생성 후 전달
             Vector3 spawnPos = (spawnPoint != null) ? spawnPoint.position : transform.position;
-            carrier.TryAddCarrierItem(produceItemData.ItemPrefab, spawnPos);
+            carrier.TryAddCarrierItem(produceItemData.foodPrefab, spawnPos);
         }
     }
     

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9ce83a587d957f4dbe364ff4c2a5bd0, type: 3}
   m_Name: Pizza
   m_EditorClassIdentifier: Assembly-CSharp::Restaurant.Foods.FoodDataSO
-  foodID: Pizza
+  foodID: 0
   foodName: Pizza
   foodIcon: {fileID: 0}
-  foodPrefab: {fileID: 4072871096752303961, guid: cc3a5ef921ded7949b26e1dcd908ee19, type: 3}
+  foodPrefab: {fileID: -290903836724709718, guid: cc3a5ef921ded7949b26e1dcd908ee19, type: 3}
   restaurantType: 0

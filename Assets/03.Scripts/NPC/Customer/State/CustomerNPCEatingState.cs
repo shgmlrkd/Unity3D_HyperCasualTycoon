@@ -17,5 +17,6 @@ public class CustomerNPCEatingState : CustomerNPCState
 
     public override void Exit()
     {
+        npc.FinishEating();
     }
 }

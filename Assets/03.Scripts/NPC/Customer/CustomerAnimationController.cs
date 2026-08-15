@@ -1,6 +1,4 @@
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
-
 public class CustomerAnimationController : MonoBehaviour
 {
     private const string EATING = "Eating";

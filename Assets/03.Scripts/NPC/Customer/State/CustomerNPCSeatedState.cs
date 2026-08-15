@@ -1,5 +1,4 @@
 using Restaurant.Orders;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CustomerNPCSeatedState : CustomerNPCState
@@ -9,7 +8,6 @@ public class CustomerNPCSeatedState : CustomerNPCState
 
     
     private bool isFoodServed = false;
-    private OrderData myOrder = null;
     /*
      [Header("돈 뭉치 프리팹")]
     [SerializeField] private GameObject moneyChunkPrefab;
@@ -28,22 +26,13 @@ public class CustomerNPCSeatedState : CustomerNPCState
 
         if (OrderGenerator.Instance != null)
         {
-            myOrder = OrderGenerator.Instance.CreateRandomOrder(npc.CustomerID, (RestaurantType)npc.RestaurantID);
+            OrderData orderData = OrderGenerator.Instance.CreateRandomOrder(npc.CustomerID, (RestaurantType)npc.RestaurantID);
+
+            npc.SetMyOrder(orderData);
         }
 
-        /*
-          
-         희강님, 
-         의자 InstanceID를 기반으로 OrderManager에 주문 등록한다면,
-        int chairID = npc.CurrentChair.GetInstanceID(); 뭐 이런 식으로 NPC한테 위치(테이블이든 의자든 암튼 고유 데이터 받고
-        RestaurantType restaurantType = (RestaurantType)npc.RestaurantID; 이런 식으로 레스토랑 타입도 받고
-
-        if(OrderGenerator.Instance != null)
-        {
-            myOrder = OrderGenerator.Instance.CreateRandomOrder(chairID, restaurantType); 뭐 이런 식으로 주문하면 될 것 같아요
-        }
-
-         */
+        // 주문 후 UI를 띄워야함
+       
     }
 
     /*
@@ -61,26 +50,22 @@ public class CustomerNPCSeatedState : CustomerNPCState
 
     public override void StateUpdate()
     {
-        /*if (myOrder != null)
+        if (npc.MyOrder != null)
         {
-            if (myOrder.status == OrderStatus.Completed)
+            if (npc.MyOrder.status == OrderStatus.Completed)
             {
+                print("식사 시작");
                 npc.StateController.SetState(CustomerState.Eating);
             }
-
-            if(myOrder.status == OrderStatus.Waiting)
-            {
-                print("빨리 가져와");
-            }
-        }*/
+        }
 
         // 임시로 일정 시간 지나면 Eating 상태로 변환
-        orderTimer += Time.deltaTime;
+        /*orderTimer += Time.deltaTime;
 
         if(orderTimer > ORDER_TIME)
         {
             npc.StateController.SetState(CustomerState.Eating);
-        }
+        }*/
     }
 
     public override void Exit()
