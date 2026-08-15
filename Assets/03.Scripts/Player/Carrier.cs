@@ -111,6 +111,32 @@ public class Carrier : MonoBehaviour
         OnItemCountChanged?.Invoke(0);
     }
 
+    public CarrierItem GetOrderItem(FoodType foodType)
+    {
+        if (itemList.Count == 0) return null;
+
+        for(int i = 0; i < itemList.Count; i++)
+        {
+            if(foodType == itemList[i].ItemId)
+            {
+                CarrierItem item = itemList[i];
+                itemList.RemoveAt(i);
+
+                if (item != null)
+                {
+                    item.transform.SetParent(null);
+                }
+
+                RealignStackPositions(); // 중간 아이템이 빠진 경우 위치 재정렬
+                OnItemCountChanged?.Invoke(itemList.Count);
+
+                return item;
+            }
+        }
+
+        return null;
+    }
+
     // 중간 아이템이 제거되었을 때 남은 아이템들의 위치를 차곡차곡 재정렬
     private void RealignStackPositions()
     {

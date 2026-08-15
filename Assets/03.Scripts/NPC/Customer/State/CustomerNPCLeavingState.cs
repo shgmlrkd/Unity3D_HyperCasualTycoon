@@ -7,6 +7,9 @@ public class CustomerNPCLeavingState : CustomerNPCState
         // 의사 사용가능하게 바꾸는 이벤트 호출
         npc.ReleaseChair();
 
+        CurrencyManager.Instance.AddGold(20);
+
+
         // 다시 떠날 위치를 설정
         npc.MoveController.MoveTo(npc.LeaveTargetPos);
 

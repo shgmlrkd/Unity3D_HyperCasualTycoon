@@ -1,3 +1,4 @@
+using Restaurant.Orders;
 using System;
 using UnityEngine;
 
@@ -14,21 +15,26 @@ public class CustomerNPC : MonoBehaviour
 
     private Chair currentChair;
 
+    private OrderData myOrder = null;
+
     private int customerID = -1;
     private int restaurantID = -1;
+    private bool isEatFinished = false;
 
     public Chair CurrentChair => currentChair;
     public Vector3 LeaveTargetPos { get; private set; }
     public Transform SeatTarget { get; private set; }
+    public OrderData MyOrder => myOrder;
     public CustomerNPCMoveController MoveController => moveController;
     public CustomerNPCStateController StateController => stateController;
 
+    public event Action<CustomerNPC> OnEatFinished;
     public event Action<CustomerNPC> OnExitCompleted;
     public int CustomerID => customerID;
     public int RestaurantID => restaurantID;
 
     private void OnEnable()
-    { 
+    {
         chairEventChannel.OnChairAssigned += HandleChairAssigned;
     }
 
@@ -49,9 +55,14 @@ public class CustomerNPC : MonoBehaviour
     // 목표 의자, 의자 위치, 떠날 위치, 손님 NPC의 상태를 초기화
     private void Initialize(Chair targetChair)
     {
-        currentChair = targetChair;
+        myOrder = null;
+        restaurantID = -1;
+        isEatFinished = false;
         LeaveTargetPos = transform.position;
+
+        currentChair = targetChair;
         SeatTarget = targetChair.transform;
+
         StateController.InitMoveToSeatState();
     }
 
@@ -81,9 +92,15 @@ public class CustomerNPC : MonoBehaviour
         restaurantID = index;
     }
 
-    // 레스토랑 ID 초기화
-    public void ResetRestaurantID()
+    public void SetMyOrder(OrderData orderData)
     {
-        restaurantID = -1;
+        myOrder = orderData;
+    }
+
+    public void FinishEating()
+    {
+        isEatFinished = true;
+
+        OnEatFinished?.Invoke(this);
     }
 }
