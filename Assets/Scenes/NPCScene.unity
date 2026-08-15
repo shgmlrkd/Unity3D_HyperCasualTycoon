@@ -2558,8 +2558,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerManager
   customerPrefab: {fileID: 927875852834584218, guid: 7e072cc0223330041a6555fdb9ad03cc, type: 3}
-  customerPoolSize: 16
-  maxCustomerCount: 16
+  customerPoolSize: 2
+  maxCustomerCount: 2
   spawnInterval: 2
   spawnPosData: {fileID: 11400000, guid: 4ace155234a3cf94c8e253a694eb4eac, type: 2}
   chairEventChannel: {fileID: 11400000, guid: 6daeff051c50989488e40ab91a0e1e85, type: 2}

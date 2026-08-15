@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9ce83a587d957f4dbe364ff4c2a5bd0, type: 3}
   m_Name: Hambuger
   m_EditorClassIdentifier: Assembly-CSharp::Restaurant.Foods.FoodDataSO
-  foodID: Hambuger
+  foodID: 1
   foodName: Hambuger
   foodIcon: {fileID: 0}
-  foodPrefab: {fileID: 7536868933032368024, guid: 24f4bc2476fa09a47b1c30c3a3b86b4c, type: 3}
+  foodPrefab: {fileID: 7253765113541217920, guid: 24f4bc2476fa09a47b1c30c3a3b86b4c, type: 3}
   restaurantType: 0
