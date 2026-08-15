@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0602cc20704ee754aa5c54e492bb1759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnlockManager
-  currentUnlockPointIndex: 9
+  currentUnlockPointIndex: 0
 --- !u!1 &1539562353105917663
 GameObject:
   m_ObjectHideFlags: 0
@@ -1766,7 +1766,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1213975860315420547, guid: 4878efd1e0be27d4f9aebe037eafe5ab, type: 3}
       propertyPath: type
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1213975860315420547, guid: 4878efd1e0be27d4f9aebe037eafe5ab, type: 3}
       propertyPath: foodImg
@@ -1828,9 +1828,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7236224060282959975, guid: 4878efd1e0be27d4f9aebe037eafe5ab, type: 3}
+      propertyPath: produceItemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 5c4c412c6f0727045995495cd6409835, type: 2}
+    - target: {fileID: 7634807560975088712, guid: 4878efd1e0be27d4f9aebe037eafe5ab, type: 3}
+      propertyPath: produceItemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3a8cd4704a06751458ed8674398ca0d0, type: 2}
     - target: {fileID: 8149031922504642236, guid: 4878efd1e0be27d4f9aebe037eafe5ab, type: 3}
       propertyPath: type
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8149031922504642236, guid: 4878efd1e0be27d4f9aebe037eafe5ab, type: 3}
       propertyPath: foodImg
@@ -1989,6 +1997,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 262474512099886406}
     m_Modifications:
+    - target: {fileID: 1165654904414062427, guid: 775633029a3649542818f182193e571d, type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8726938351919023752, guid: 775633029a3649542818f182193e571d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2723,6 +2735,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4493689388143909857}
     m_Modifications:
+    - target: {fileID: 202212665080035742, guid: 717f84a64d257b34098f3509757c9ed2, type: 3}
+      propertyPath: type
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5488705759601879889, guid: 717f84a64d257b34098f3509757c9ed2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
