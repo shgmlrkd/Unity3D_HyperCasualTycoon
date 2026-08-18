@@ -16,7 +16,6 @@ public class UnlockPointManager : LocalSingleton<UnlockPointManager>
 
         unlockPoints = GetComponentsInChildren<UnlockPoint>(true);
 
-        // SaveManager에 저장되어 넘어온 해금 인덱스가 있다면 적용
         int targetIndex = 0;
         Debug.Log("SaveManager.Instance.CurrentData 까보까잉");
         if (SaveManager.Instance != null && SaveManager.Instance.CurrentData != null)
@@ -51,6 +50,8 @@ public class UnlockPointManager : LocalSingleton<UnlockPointManager>
             return;
 
         currentUnlockPointIndex++;
+
+        SaveManager.Instance?.SetDirty();
 
         unlockPoints[currentUnlockPointIndex].gameObject.SetActive(true);
         
