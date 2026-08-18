@@ -101,6 +101,8 @@ public class CurrencyManager : MonoSingleton<CurrencyManager>
         CurrentMoney += amount;
         Debug.Log($"[CurrencyManager] 돈 획득: +{amount} (현재 Money: {CurrentMoney})");
 
+        SaveManager.Instance?.SetDirty();
+
         EventManager.Instance?.Publish(EventType.OnMoneyChanged, CurrentMoney);
     }
 
@@ -118,6 +120,8 @@ public class CurrencyManager : MonoSingleton<CurrencyManager>
             CurrentMoney -= amount;
             Debug.Log($"[CurrencyManager] 돈 소비: -{amount} (현재 Money: {CurrentMoney})");
 
+            SaveManager.Instance?.SetDirty();
+
             EventManager.Instance?.Publish(EventType.OnMoneyChanged, CurrentMoney);
             return true;
         }
@@ -132,6 +136,8 @@ public class CurrencyManager : MonoSingleton<CurrencyManager>
 
                 CurrentGold += amount;
                 Debug.Log($"[CurrencyManager] 골드 획득: +{amount} (현재 골드: {CurrentGold})");
+
+                SaveManager.Instance?.SetDirty();
 
                 EventManager.Instance?.Publish(EventType.OnGoldChanged, CurrentGold);
             }
@@ -149,6 +155,8 @@ public class CurrencyManager : MonoSingleton<CurrencyManager>
                 {
                     CurrentGold -= amount;
                     Debug.Log($"[CurrencyManager] 골드 소비: -{amount} (현재 골드: {CurrentGold})");
+
+                    SaveManager.Instance?.SetDirty();
 
                     EventManager.Instance?.Publish(EventType.OnGoldChanged, CurrentGold);
                     return true;

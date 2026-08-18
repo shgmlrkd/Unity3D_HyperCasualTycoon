@@ -6,6 +6,10 @@ public class UI_PauseMenu : MonoBehaviour
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject optionPanel;
 
+    [Header("Confirm Modal Popup")]
+    [SerializeField] private UI_ConfirmModal confirmModal;
+
+    [Header("Scene Settings")]
     [SerializeField] private string titleSceneName = "TitleScene";
 
     private void Start()
@@ -63,10 +67,51 @@ public class UI_PauseMenu : MonoBehaviour
 
     public void OnClickSave()
     {
-        SaveManager.Instance?.SaveGameData();
+        if (SaveManager.Instance == null) return;
+
+        if (SaveManager.Instance.HasSaveFile())
+        {
+            confirmModal?.ShowConfirm(
+                "You already have a save file.\nDo you want to overwrite?",
+                onYes: ExecuteSave
+            );
+        }
+        else
+        {
+            ExecuteSave();
+        }
+    }
+
+    private void ExecuteSave()
+    {
+        bool success = SaveManager.Instance.SaveGameData();
+
+        if (success)
+        {
+            confirmModal?.ShowAlert("Game Save Complete.");
+        }
+        else
+        {
+            confirmModal?.ShowAlert("Game Save Failed. Try Again Later.");
+        }
     }
 
     public void OnClickToTitle()
+    {
+        if (SaveManager.Instance != null && SaveManager.Instance.IsDirty)
+        {
+            confirmModal?.ShowConfirm(
+                "You have not saved the game.\nDo you want to go to title without saving?",
+                onYes: GoToTitleScene
+            );
+        }
+        else
+        {
+            GoToTitleScene();
+        }
+    }
+
+    private void GoToTitleScene()
     {
         if (GameManager.Instance != null)
         {
