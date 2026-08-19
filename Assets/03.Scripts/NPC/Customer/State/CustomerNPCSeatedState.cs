@@ -3,21 +3,20 @@ using UnityEngine;
 
 public class CustomerNPCSeatedState : CustomerNPCState
 {
+    /*
     private const float ORDER_TIME = 3.0f;
     private float orderTimer;
 
-    
     private bool isFoodServed = false;
-    /*
+    
      [Header("돈 뭉치 프리팹")]
     [SerializeField] private GameObject moneyChunkPrefab;
      */
 
     public override void Enter()
     {
-        isFoodServed = false;
-         
-        orderTimer = 0.0f;
+        npc.ResetFoodWaitTime();
+
         animController.SetMoveOrSeat(npc.MoveController.IsStopped());
         transform.rotation = Quaternion.LookRotation(npc.CurrentChair.transform.forward);
 
@@ -50,14 +49,15 @@ public class CustomerNPCSeatedState : CustomerNPCState
 
     public override void StateUpdate()
     {
-        if (npc.MyOrder != null)
+        if (npc.MyOrder == null)
+            return;
+
+        if (npc.MyOrder.status == OrderStatus.Completed)
         {
-            if (npc.MyOrder.status == OrderStatus.Completed)
-            {
-                print("식사 시작");
-                npc.StateController.SetState(CustomerState.Eating);
-            }
+            npc.StateController.SetState(CustomerState.Eating);
         }
+
+        npc.AddFoodWaitTime(Time.deltaTime);
 
         // 임시로 일정 시간 지나면 Eating 상태로 변환
         /*orderTimer += Time.deltaTime;

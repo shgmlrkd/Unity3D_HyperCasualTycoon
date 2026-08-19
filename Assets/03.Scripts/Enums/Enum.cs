@@ -1,4 +1,4 @@
-﻿public enum CustomerState
+public enum CustomerState
 {
     None = -1,
 
@@ -6,6 +6,16 @@
     Seated,     // 착석 및 음식 제공 처리
     Eating,     // 식사
     Leaving,    // 퇴장
+
+    Length
+}
+
+public enum EmployeeState
+{
+    None = -1,
+
+    MoveToFood,         // 음식받으러 이동 후 음식 받기
+    MoveToCustomer,     // 손님 NPC에게 이동 후 서빙
 
     Length
 }

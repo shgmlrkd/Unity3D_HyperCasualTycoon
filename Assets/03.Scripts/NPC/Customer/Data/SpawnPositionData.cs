@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SpawnPositionData", menuName = "CustomerNPCSpawnPosition/SpawnPositionData")]
+[CreateAssetMenu(fileName = "SpawnPositionData", menuName = "CustomerNPC/SpawnPositionData")]
 public class SpawnPositionData : ScriptableObject
 {
     [SerializeField]

@@ -1,11 +1,12 @@
 using Restaurant.Orders;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class CustomerNPC : MonoBehaviour
+public class CustomerNPC : MonoBehaviour, IPoolInitialize
 {
     [SerializeField]
-    private CustomerNPCMoveController moveController;
+    private NPCMoveController moveController;
 
     [SerializeField]
     private CustomerNPCStateController stateController;
@@ -13,10 +14,14 @@ public class CustomerNPC : MonoBehaviour
     [SerializeField]
     private ChairEventData chairEventChannel;
 
+    [SerializeField]
+    private SkinnedMeshRenderer skinnedMeshRenderer;
+
     private Chair currentChair;
 
     private OrderData myOrder = null;
 
+    private float foodWaitTime = 0.0f;
     private int customerID = -1;
     private int restaurantID = -1;
     private bool isEatFinished = false;
@@ -25,11 +30,12 @@ public class CustomerNPC : MonoBehaviour
     public Vector3 LeaveTargetPos { get; private set; }
     public Transform SeatTarget { get; private set; }
     public OrderData MyOrder => myOrder;
-    public CustomerNPCMoveController MoveController => moveController;
+    public NPCMoveController MoveController => moveController;
     public CustomerNPCStateController StateController => stateController;
 
     public event Action<CustomerNPC> OnEatFinished;
     public event Action<CustomerNPC> OnExitCompleted;
+    public float FoodWaitTime => foodWaitTime;
     public int CustomerID => customerID;
     public int RestaurantID => restaurantID;
 
@@ -66,6 +72,11 @@ public class CustomerNPC : MonoBehaviour
         StateController.InitMoveToSeatState();
     }
 
+    public void SetSkinnedMesh(Mesh mesh)
+    {
+        skinnedMeshRenderer.sharedMesh = mesh;
+    }
+
     // 목적지로 삼은 의자 해제하는 이벤트
     public void ReleaseChair()
     {
@@ -78,23 +89,48 @@ public class CustomerNPC : MonoBehaviour
         OnExitCompleted?.Invoke(this);
     }
 
-    // 손님NPC 고유ID 세팅
-    public void AssignCustomerID(int customerID)
-    {
-        if (this.customerID != -1) return;
-        
-        this.customerID = customerID;
-    }
-
     // 현재 들어간 레스토랑 ID 세팅
     public void SetRestaurantID(int index)
     {
         restaurantID = index;
     }
 
+    // 손님NPC 고유ID 세팅
+    public void InitializePool(int id)
+    {
+        customerID = id;
+    }
+
     public void SetMyOrder(OrderData orderData)
     {
         myOrder = orderData;
+    }
+
+    public void ResetFoodWaitTime()
+    {
+        foodWaitTime = 0.0f;
+    }
+
+    public void AddFoodWaitTime(float deltaTime)
+    {
+        foodWaitTime += deltaTime;
+    }
+
+    public bool NeedFood(FoodType foodType)
+    {
+        if (myOrder == null)
+            return false;
+
+        List<OrderItem> orders = myOrder.orderItems;
+
+        for(int i = 0; i < orders.Count; i++)
+        {
+            if (orders[i].food.foodID == foodType &&
+                !orders[i].IsFulfilled)
+                return true;
+        }
+
+        return false;
     }
 
     public void FinishEating()

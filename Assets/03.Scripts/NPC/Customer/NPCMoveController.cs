@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CustomerNPCMoveController : MonoBehaviour
+public class NPCMoveController : MonoBehaviour
 {
     [SerializeField]
     private NavMeshAgent agent;
@@ -18,7 +18,7 @@ public class CustomerNPCMoveController : MonoBehaviour
             if (agent.pathPending)
                 return false;
 
-            if (agent.remainingDistance >= agent.stoppingDistance)
+            if (agent.remainingDistance > agent.stoppingDistance)
                 return false;
 
             return true;
