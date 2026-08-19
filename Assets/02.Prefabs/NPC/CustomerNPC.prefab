@@ -639,7 +639,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 5447626435885615309}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.25
+  m_Radius: 0.3
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -730,6 +730,7 @@ MonoBehaviour:
   moveController: {fileID: 1097729697238718511}
   stateController: {fileID: 1869863424830491231}
   chairEventChannel: {fileID: 11400000, guid: 6daeff051c50989488e40ab91a0e1e85, type: 2}
+  skinnedMeshRenderer: {fileID: 4362670413394937503}
 --- !u!114 &1097729697238718511
 MonoBehaviour:
   m_ObjectHideFlags: 0
