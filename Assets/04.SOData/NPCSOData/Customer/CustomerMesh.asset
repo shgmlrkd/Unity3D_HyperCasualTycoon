@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71f6045f8d46c2b46badd51abc21254b, type: 3}
+  m_Name: CustomerMesh
+  m_EditorClassIdentifier: Assembly-CSharp::CustomerData
+  meshes:
+  - {fileID: 4300000, guid: 45f763508ed8cb847ae570978ea65f07, type: 2}
+  - {fileID: 4300000, guid: 96851f68ca8e8484baa8abc093b4439d, type: 2}
+  - {fileID: 4300000, guid: c677fb83060e8b34081244b8b71cdd3f, type: 2}
+  - {fileID: 4300000, guid: fcd6e353b4f98bc40a84351548707677, type: 2}

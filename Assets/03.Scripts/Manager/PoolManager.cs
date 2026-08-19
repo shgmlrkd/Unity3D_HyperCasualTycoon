@@ -28,6 +28,11 @@ public class PoolManager : LocalSingleton<PoolManager>
         {
             T obj = Instantiate(prefab, parent);
 
+            if (obj is IPoolInitialize poolInitialize)
+            {
+                poolInitialize.InitializePool(i);
+            }
+
             obj.gameObject.SetActive(false);
 
             pool.Enqueue(obj);

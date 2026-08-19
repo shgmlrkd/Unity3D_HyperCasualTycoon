@@ -1,11 +1,15 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class CustomerManager : MonoBehaviour
+public class CustomerManager : LocalSingleton<CustomerManager>
 {
     [Header("Customer")]
     [SerializeField]
     private CustomerNPC customerPrefab;
+
+    [SerializeField]
+    private CustomerMeshData meshData;
 
     [SerializeField]
     private int customerPoolSize = 10;
@@ -26,11 +30,17 @@ public class CustomerManager : MonoBehaviour
 
     private WaitForSeconds waitForSpawn;
 
+    private readonly List<CustomerNPC> activeCustomers = new List<CustomerNPC>();
+
     private int currentCustomerCount;
     private bool hasAvailableChair;
 
+    public IReadOnlyList<CustomerNPC> ActiveCustomers => activeCustomers;
+
     private void Awake()
     {
+        base.Awake();
+
         CreateCustomerPool();
 
         waitForSpawn = new WaitForSeconds(spawnInterval);
@@ -91,8 +101,10 @@ public class CustomerManager : MonoBehaviour
         if (customer == null)
             return;
 
-        // 손님 고유ID 세팅
-        customer.AssignCustomerID(currentCustomerCount);
+        activeCustomers.Add(customer);
+
+        // 손님 외형 세팅
+        customer.SetSkinnedMesh(meshData.GetRandomMesh());
 
         // 아래처럼 했음에도 원점에서 스폰되는 버그가 발견
         //customer.transform.position = spawnPosData.Positions[index];
@@ -119,6 +131,8 @@ public class CustomerManager : MonoBehaviour
     private void OnCustomerExit(CustomerNPC customer)
     {
         currentCustomerCount--;
+
+        activeCustomers.Remove(customer);
 
         customer.OnExitCompleted -= OnCustomerExit;
 
