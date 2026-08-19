@@ -1112,11 +1112,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 708579460}
   m_CullTransparentMesh: 1
---- !u!4 &738001001 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8565477064536609493, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-  m_PrefabInstance: {fileID: 2970725182803910750}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &738396011
 GameObject:
   m_ObjectHideFlags: 0
@@ -1620,11 +1615,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 819923423}
   m_CullTransparentMesh: 1
---- !u!4 &830385493 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5835059048356280760, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-  m_PrefabInstance: {fileID: 2970725182803910750}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &881691121
 GameObject:
   m_ObjectHideFlags: 0
@@ -2763,11 +2753,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1408376335}
   m_CullTransparentMesh: 1
---- !u!4 &1424421830 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1140628065181977342, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-  m_PrefabInstance: {fileID: 2970725182803910750}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1510300827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2777,8 +2762,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 704264081548519506, guid: 3fef6d8979b6b7840ab5b52fd2078279, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 0.05
+      propertyPath: m_Radius
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 704264081548519506, guid: 3fef6d8979b6b7840ab5b52fd2078279, type: 3}
+      propertyPath: m_ObstacleAvoidanceType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 883006131414419459, guid: 3fef6d8979b6b7840ab5b52fd2078279, type: 3}
       propertyPath: m_Name
@@ -2824,46 +2813,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5589517639115830911, guid: 3fef6d8979b6b7840ab5b52fd2078279, type: 3}
-      propertyPath: stateController
-      value: 
-      objectReference: {fileID: 2129941249}
-    - target: {fileID: 5589517639115830911, guid: 3fef6d8979b6b7840ab5b52fd2078279, type: 3}
-      propertyPath: 'foodTransforms.Array.data[0]'
-      value: 
-      objectReference: {fileID: 1424421830}
-    - target: {fileID: 5589517639115830911, guid: 3fef6d8979b6b7840ab5b52fd2078279, type: 3}
-      propertyPath: 'foodTransforms.Array.data[1]'
-      value: 
-      objectReference: {fileID: 738001001}
-    - target: {fileID: 5589517639115830911, guid: 3fef6d8979b6b7840ab5b52fd2078279, type: 3}
-      propertyPath: 'foodTransforms.Array.data[2]'
-      value: 
-      objectReference: {fileID: 830385493}
-    - target: {fileID: 5589517639115830911, guid: 3fef6d8979b6b7840ab5b52fd2078279, type: 3}
-      propertyPath: 'foodTransforms.Array.data[3]'
-      value: 
-      objectReference: {fileID: 1715254715}
-    - target: {fileID: 6010599842695507190, guid: 3fef6d8979b6b7840ab5b52fd2078279, type: 3}
-      propertyPath: employeeNPC
-      value: 
-      objectReference: {fileID: 2129941239}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 883006131414419459, guid: 3fef6d8979b6b7840ab5b52fd2078279, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2129941250}
-    - targetCorrespondingSourceObject: {fileID: 883006131414419459, guid: 3fef6d8979b6b7840ab5b52fd2078279, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2129941249}
-    - targetCorrespondingSourceObject: {fileID: 883006131414419459, guid: 3fef6d8979b6b7840ab5b52fd2078279, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2129941248}
-    - targetCorrespondingSourceObject: {fileID: 883006131414419459, guid: 3fef6d8979b6b7840ab5b52fd2078279, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2129941251}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fef6d8979b6b7840ab5b52fd2078279, type: 3}
 --- !u!1001 &1562164361
 PrefabInstance:
@@ -3290,11 +3243,6 @@ CanvasRenderer:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4151318502483408747, guid: 62bc4aef8985d5e48bfdc30c4d836135, type: 3}
   m_PrefabInstance: {fileID: 1089526300}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1715254715 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3022100502948274579, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-  m_PrefabInstance: {fileID: 2970725182803910750}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1723238435
 GameObject:
@@ -4172,77 +4120,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121227863}
   m_CullTransparentMesh: 1
---- !u!1 &2129941237 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 883006131414419459, guid: 3fef6d8979b6b7840ab5b52fd2078279, type: 3}
-  m_PrefabInstance: {fileID: 1510300827}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2129941239 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5589517639115830911, guid: 3fef6d8979b6b7840ab5b52fd2078279, type: 3}
-  m_PrefabInstance: {fileID: 1510300827}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129941237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25dc49fda2c136b41b54d4341d79cbb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EmployeeNPC
---- !u!114 &2129941248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129941237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3778ee369653b4d4f852ffe834aa8413, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EmployeeNPCMoveToFood
---- !u!114 &2129941249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129941237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 526f3e154815eaf489a3d54bae1e5e5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EmployeeNPCStateController
-  statePairs:
-  - state: 0
-    npcState: {fileID: 2129941248}
-  - state: 1
-    npcState: {fileID: 2129941251}
-  animController: {fileID: 2129941250}
-  currentState: -1
---- !u!114 &2129941250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129941237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 664f0e6ab6583e54a93d08733f15e2b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EmployeeAnimationController
---- !u!114 &2129941251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129941237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef74f8d98f7b8cf48b4dc6de6f069818, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EmployeeNPCMoveToCustomer
 --- !u!1001 &2133344247
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -147,4 +147,15 @@ public class Carrier : MonoBehaviour
             currentYOffset += itemList[i].ItemHeight + itemSpacing;
         }
     }
+
+    public bool HasFood(FoodType foodType)
+    {
+        for (int i = 0; i < itemList.Count; i++)
+        {
+            if (itemList[i].ItemId == foodType)
+                return true;
+        }
+
+        return false;
+    }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Table : MonoBehaviour
-{ 
+{
     // 그릇을 놓을 위치 2개가 필요함
     // 어떤 손님이 무엇을 주문 했는지 알아야함
     // 플레이어 또는 직원 NPC와 어떠한 음식을 들고 있고
@@ -15,88 +15,47 @@ public class Table : MonoBehaviour
     private int restaurantId;
 
     [SerializeField]
+    private Transform[] serveTransforms = new Transform[2];
+
+    [SerializeField]
     private Transform[] plateTransforms = new Transform[2];
 
     [SerializeField]
     private Transform[] chairTransforms = new Transform[2];
 
     // 좌석 위치별 현재 손님
-    private Dictionary<ChairSide, CustomerNPC> customerSides = new Dictionary<ChairSide, CustomerNPC>();
-    
+    private Dictionary<ChairSide, CustomerNPC> customers = new Dictionary<ChairSide, CustomerNPC>();
+
     // 손님별 테이블 위 음식
     private Dictionary<ChairSide, List<CarrierItem>> servedItems = new Dictionary<ChairSide, List<CarrierItem>>();
-    
-    public IReadOnlyDictionary<ChairSide, CustomerNPC> CustomerSides => customerSides;
-    
+
+    public Transform ServePoint
+    {
+        get
+        {
+            return serveTransforms[Random.Range(0, serveTransforms.Length)];
+        }
+    }
+    public IEnumerable<CustomerNPC> Customers => customers.Values;
+
     public int RestaurantId => restaurantId;
-
-    private void OnTriggerEnter(Collider other)
-    {
-        /*// 테이블에 손님이 들어온 경우 등록
-        if (other.TryGetComponent(out CustomerNPC customerNPC))
-        {
-            RegisterCustomer(customerNPC);
-        }*/
-
-        Debug.Log($"[Table] TriggerEnter : {other.name}");
-
-        if (other.TryGetComponent(out CustomerNPC customerNPC))
-        {
-            if (customerNPC.CurrentChair == null)
-                return;
-
-            // 현재 손님이 목표로 한 의자가
-            // 이 테이블의 의자 중 하나인지 확인
-            for (int i = 0; i < chairTransforms.Length; i++)
-            {
-                if (customerNPC.CurrentChair.transform == chairTransforms[i])
-                {
-                    Debug.Log(
-                        $"[Table] 올바른 의자 확인 : {customerNPC.name}, " +
-                        $"ChairSide = {customerNPC.CurrentChair.SeatSide}");
-
-                    RegisterCustomer(customerNPC);
-                    break;
-                }
-            }
-        }
-
-        // 테이블에 플레이어 or 직원 NPC가 들어온 경우 서빙
-        if (other.TryGetComponent(out Carrier carrier))
-        {
-            ServeFood(carrier);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (!other.TryGetComponent(out CustomerNPC customerNPC))
-            return;
-
-        // 손님 등록 해제
-        UnregisterCustomer(customerNPC);
-    }
 
     private void RegisterCustomer(CustomerNPC customerNPC)
     {
         /*ChairSide chairSide = customerNPC.CurrentChair.SeatSide;*/
 
-        Debug.Log($"[Table] RegisterCustomer : {customerNPC.name}");
+        //Debug.Log($"[Table] RegisterCustomer : {customerNPC.name}");
 
         ChairSide chairSide = customerNPC.CurrentChair.SeatSide;
 
-        Debug.Log(
-            $"[Table] 등록 좌석 : {chairSide}, " +
-            $"Customer : {customerNPC.name}");
-
         // 이미 해당 좌석에 같은 손님이 등록되어 있다면 무시
-        if (customerSides.TryGetValue(chairSide, out CustomerNPC currentCustomer) &&
+        if (customers.TryGetValue(chairSide, out CustomerNPC currentCustomer) &&
             currentCustomer == customerNPC)
         {
             return;
         }
 
-        customerSides[chairSide] = customerNPC;
+        customers[chairSide] = customerNPC;
 
         // 해당 좌석의 음식 목록 생성
         if (!servedItems.ContainsKey(chairSide))
@@ -106,6 +65,8 @@ public class Table : MonoBehaviour
 
         customerNPC.SetRestaurantID(restaurantId);
 
+        //Debug.Log($"손님 NPC가 있는 식당 : {(RestaurantType)restaurantId}");
+
         // 식사 종료 시 테이블 위 음식 제거
         customerNPC.OnEatFinished += RemoveServedFood;
     }
@@ -114,7 +75,7 @@ public class Table : MonoBehaviour
     {
         ChairSide chairSide = customerNPC.CurrentChair.SeatSide;
 
-        if (!customerSides.TryGetValue(chairSide, out CustomerNPC currentCustomer))
+        if (!customers.TryGetValue(chairSide, out CustomerNPC currentCustomer))
             return;
 
         if (currentCustomer != customerNPC)
@@ -124,7 +85,7 @@ public class Table : MonoBehaviour
         customerNPC.OnEatFinished -= RemoveServedFood;
 
         // 손님 등록 해제
-        customerSides.Remove(chairSide);
+        customers.Remove(chairSide);
 
         // 해당 좌석의 음식 데이터 초기화
         if (servedItems.TryGetValue(chairSide, out List<CarrierItem> items))
@@ -134,9 +95,9 @@ public class Table : MonoBehaviour
     }
 
     // 음식 서빙
-    private void ServeFood(Carrier carrier)
+    public void ServeFood(Carrier carrier)
     {
-        foreach (KeyValuePair<ChairSide, CustomerNPC> customer in customerSides)
+        foreach (KeyValuePair<ChairSide, CustomerNPC> customer in customers)
         {
             CustomerNPC customerNPC = customer.Value;
 
@@ -165,10 +126,10 @@ public class Table : MonoBehaviour
     private void ServeFoodToCustomer(ChairSide chairSide, CustomerNPC customerNPC, Carrier carrier)
     {
         OrderData orderData = OrderManager.Instance.GetOrder(customerNPC.CustomerID);
-        
+
         if (orderData == null)
             return;
-        
+
         if (!servedItems.TryGetValue(chairSide, out List<CarrierItem> items))
         {
             return;
@@ -249,5 +210,103 @@ public class Table : MonoBehaviour
 
         // 식사 종료 이벤트 구독 해제
         customerNPC.OnEatFinished -= RemoveServedFood;
+    }
+
+    public bool NeedFood(FoodType foodType)
+    {
+        if (customers.Count == 0)
+            return false;
+
+        foreach (CustomerNPC customer in customers.Values)
+        {
+            if (customer.MyOrder == null)
+                continue;
+
+            foreach (OrderItem item in customer.MyOrder.orderItems)
+            {
+                if (item.food.foodID == foodType && !item.IsFulfilled)
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool HasServedAssignedFood(FoodType foodType)
+    {
+        if (customers.Count == 0)
+            return false;
+
+        bool hasFood = false;
+
+        foreach (CustomerNPC customer in customers.Values)
+        {
+            if (customer.MyOrder == null)
+                continue;
+
+            foreach (OrderItem item in customer.MyOrder.orderItems)
+            {
+                if (item.food.foodID != foodType)
+                    continue;
+
+                hasFood = true;
+
+                if (!item.IsFulfilled)
+                    return false;
+            }
+        }
+
+        return hasFood;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        /*// 테이블에 손님이 들어온 경우 등록
+        if (other.TryGetComponent(out CustomerNPC customerNPC))
+        {
+            RegisterCustomer(customerNPC);
+        }*/
+
+        //Debug.Log($"[Table] TriggerEnter : {other.name}");
+
+        if (other.TryGetComponent(out CustomerNPC customerNPC))
+        {
+            if (customerNPC.CurrentChair == null)
+                return;
+
+            // 현재 손님이 목표로 한 의자가
+            // 이 테이블의 의자 중 하나인지 확인
+            for (int i = 0; i < chairTransforms.Length; i++)
+            {
+                if (customerNPC.CurrentChair.transform == chairTransforms[i])
+                {
+                    /*Debug.Log(
+                        $"손님 NPC ID : {customerNPC.CustomerID}, " +
+                        $"손님 NPC 위치 : {customerNPC.transform.position}, " +
+                        $"ChairSide = {customerNPC.CurrentChair.SeatSide}");*/
+
+                    RegisterCustomer(customerNPC);
+                    break;
+                }
+            }
+        }
+
+        // 테이블에 플레이어가 들어온 경우 서빙
+        if (other.TryGetComponent(out Carrier carrier))
+        {
+            if(other.CompareTag("Player"))
+            { 
+                ServeFood(carrier);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.TryGetComponent(out CustomerNPC customerNPC))
+            return;
+
+        // 손님 등록 해제
+        UnregisterCustomer(customerNPC);
     }
 }
