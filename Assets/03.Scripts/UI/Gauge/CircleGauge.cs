@@ -9,6 +9,7 @@ public class CircleGauge : MonoBehaviour
     [SerializeField] private float itemCoolDownTime = 5.0f; //쿨타임
     private float updateTime = 0.0f; //타임
     //private bool complit = false; //게이지 완료
+    private Transform mainCamTransform;
     public bool Complit {  get; set; }
 
 
@@ -18,6 +19,8 @@ public class CircleGauge : MonoBehaviour
         //비활성화
         gameObject.SetActive(false);
         Complit = false;
+
+        if (Camera.main != null) mainCamTransform = Camera.main.transform;
     }
 
     private void Update()
@@ -92,6 +95,12 @@ public class CircleGauge : MonoBehaviour
     //    this.complit = complit;
     //}
 
-
+    private void LateUpdate()
+    {
+        if (mainCamTransform != null)
+        {
+            transform.rotation = mainCamTransform.rotation;
+        }
+    }
 
 }
