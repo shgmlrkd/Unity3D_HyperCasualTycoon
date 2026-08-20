@@ -9,16 +9,26 @@ public class ContentsScrollView : MonoBehaviour
 
 
     //content date list
-    private ContentListData contents;
+    private ContentsData contents;
+
+    //Restaurant Type
+    private RestaurantType restaurantType;
 
 
     //202600812
     //js.shin
     //SetContentDate : content date list set
-
-    public void SetContentDate(ContentListData contents)
+    public void SetContentDate(ContentsData contents)
     {
         this. contents = contents;  
+    }
+
+    //202600820
+    //js.shin
+    //SetRestaurantType : Restaurant Type
+    public void SetRestaurantType(RestaurantType restaurantType)
+    {
+        this.restaurantType = restaurantType;   
     }
 
 
@@ -34,7 +44,7 @@ public class ContentsScrollView : MonoBehaviour
         }
         
         // 반복문을 돌며 프리팹 동적 생성
-        for (int i = 0; i < contents.ContentList.Count; i++)
+        for (int i = 0; i < contents.Contents.Count; i++)
         {
             // 1. 프리팹을 생성하면서 부모(Content)를 지정합니다.
             GameObject newItem = Instantiate(itemPrefab, contentTransform);
@@ -45,7 +55,8 @@ public class ContentsScrollView : MonoBehaviour
             if (itemScript != null)
             {
                 //content data set, load
-                itemScript.SetDate(contents.ContentList[i]);
+                itemScript.SetDate(contents.Contents[i]);
+                itemScript.SetRestaurantType(restaurantType);
             }
         }
     }

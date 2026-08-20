@@ -7,12 +7,14 @@ public class InsertCircle : MonoBehaviour
 {
     //order food 이미지
     [SerializeField] private Sprite foodImg;
+    [Header("Circle Type")]
     //1.Popop 2.Food 3.Basic
     [SerializeField] private CircleType type;
 
+    [Header("Popup Type")]
     //파업 타입(확정성 관련해서 생성)
     //MainRestaurant : 0
-    [SerializeField] private PopupType popuType;
+    [SerializeField] private RestaurantType restaurantType;
 
 
     private void OnTriggerStay(Collider collision)
@@ -24,7 +26,7 @@ public class InsertCircle : MonoBehaviour
                 collision.GetComponentInChildren<CircleGauge>(true);
         
         //팝업 
-        if (CircleType.Popop == type) 
+        if (CircleType.Popup == type) 
         {
 
             //npc x
@@ -45,13 +47,8 @@ public class InsertCircle : MonoBehaviour
             //원상태에서 닫기 해도 열리는거 방지
             if (!popup.OpenState)
             {
-                //ContentsScrollView contentsScrollView = 
-                //    popup.GetComponentInChildren<ContentsScrollView>(true);
-                //팝업 open
-
-                //(int)popuType.GetHashCode
-                //int num = int.TryParse(popuType);
-                popup.OpenPopup(popuType.GetHashCode());
+                //오픈 팝업 - restaurant Type
+                popup.OpenPopup(restaurantType);
             }
                 
 
@@ -89,7 +86,7 @@ public class InsertCircle : MonoBehaviour
         CircleGauge circleGauge =
                 collision.GetComponentInChildren<CircleGauge>(true);
         //팝업 
-        if (CircleType.Popop == type)
+        if (CircleType.Popup == type)
         {
             //npc x
             if (collision.CompareTag("EmployeeNPC")) return;

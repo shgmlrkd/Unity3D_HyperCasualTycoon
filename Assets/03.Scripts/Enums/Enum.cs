@@ -1,4 +1,4 @@
-public enum CustomerState
+﻿public enum CustomerState
 {
     None = -1,
 
@@ -101,10 +101,14 @@ public enum CircleType
     None = -1,
     Basic,
     Food,
-    Popop
+    Popup
 }
-public enum PopupType
+public enum TypeId
 {
     None = -1,
-    MainRestaurant = 0
+    Player,
+    Employee01,
+    Employee02,
+    Employee03,
+    Length
 }

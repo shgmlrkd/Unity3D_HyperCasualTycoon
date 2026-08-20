@@ -9,7 +9,11 @@ public class UpGradePopup : MonoBehaviour
     //close 버튼
     [SerializeField] private Button closePopupBtn;
     //private List<ContentsData> contentsData
-    [SerializeField] private List<ContentListData> contentList;
+    //[SerializeField] private List<ContentsData> contentList;
+    [SerializeField] private ContentsListSOData contentsList;
+    //[SerializeField] private List<ContentsData> contentList;
+
+
     ContentsScrollView contentsScrollView;
 
     //팝업 상태 
@@ -38,12 +42,21 @@ public class UpGradePopup : MonoBehaviour
     //OpenPopup : Open Popup   
     //para 
     //popupType : SO Data 순서(확정성 관련 생성)
-    public void OpenPopup(int popupType)
+    public void OpenPopup(RestaurantType restaurantType)
     {
         //show popup
         ShowPopup();
         //set content data
-        contentsScrollView.SetContentDate(contentList[popupType]);
+        //contentsScrollView.SetContentDate(contentList[popupType]);
+        foreach (var contents in contentsList.ContentsList)
+        {
+            if (contents.type == restaurantType) {
+                contentsScrollView.SetRestaurantType(restaurantType);
+                contentsScrollView.SetContentDate(contents.contents);
+            }
+        }
+        
+
         //contents 생성
         contentsScrollView.CreateScrollItems();
     }
