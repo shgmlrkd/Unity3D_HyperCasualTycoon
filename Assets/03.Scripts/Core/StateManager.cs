@@ -9,8 +9,11 @@ public class StateManager : MonoSingleton<StateManager>
     //모든 level State 
     private Dictionary<RestaurantType, Dictionary<TypeId, StateData>> dicData =
         new Dictionary<RestaurantType, Dictionary<TypeId, StateData>>();
-    private void Start()
+
+    protected override void Awake()
     {
+        base.Awake();
+
         //Resources Load : basic state
         ContentsListSOData contentsList = Resources.Load<ContentsListSOData>("UI/Content/ContentsListSOData");
 
