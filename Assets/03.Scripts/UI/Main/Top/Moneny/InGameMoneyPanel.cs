@@ -16,11 +16,11 @@ public class InGameMoneyPanel : MonoBehaviour
     void Update()
     {
         //money text 변경시 변경
-        if (int.Parse(monenyTxt.text)!= CurrencyManager.Instance.CurrentGold)
+        if (int.Parse(monenyTxt.text)!= CurrencyManager.Instance.CurrentMoney)
         {
             //Set Moneny Text
             monenyTxt.SetText(
-                    SetMonenyTxt(CurrencyManager.Instance.CurrentGold)
+                    SetMonenyTxt(CurrencyManager.Instance.CurrentMoney)
              );
         }
         
