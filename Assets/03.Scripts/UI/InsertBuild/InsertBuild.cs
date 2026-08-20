@@ -70,7 +70,7 @@ public class InsertBuild : MonoBehaviour
 
         if (!collision.CompareTag("Player")) return;
         //보유 금액이 지불 금액 보다 적으면 리턴
-        if (CurrencyManager.Instance.CurrentGold < payMoney) return;
+        if (CurrencyManager.Instance.CurrentMoney < payMoney) return;
 
         //지불 코루틴
         StartCoroutine(PayMoney(collision));
@@ -93,7 +93,7 @@ public class InsertBuild : MonoBehaviour
         //지불금액 마이너스
         buildMoney -= payMoney;
         //보유 금액 마이너스
-        CurrencyManager.Instance.TrySpendGold(payMoney);
+        CurrencyManager.Instance.TrySpendMoney(payMoney);
         yield return new WaitForSeconds(waitTime);
         
         //Set Build Money

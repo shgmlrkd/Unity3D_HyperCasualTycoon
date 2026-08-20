@@ -72,7 +72,8 @@ public class Content : MonoBehaviour
     {
 
         //Money Manager
-        CurrencyManager.Instance.TrySpendGold(UpgradePay);
+        //CurrencyManager.Instance.TrySpendGold(UpgradePay);
+        CurrencyManager.Instance.TrySpendMoney(UpgradePay);
         //Upgrade
         StateManager.Instance.AddUpgradeLevel(restaurantType, contentData.TypeId);
         //Load Data
@@ -141,7 +142,7 @@ public class Content : MonoBehaviour
         //버튼 비활성화
         upgradeBtn.interactable = false;
         //현재 보유 금액 아래면 return
-        if (CurrencyManager.Instance.CurrentGold < UpgradePay
+        if (CurrencyManager.Instance.CurrentMoney < UpgradePay
             //최대치 업그레이드
             || contentData.UpgradeMaxCount <= StateManager.Instance.GetPopupUpgradeLevel(restaurantType, contentData.TypeId)) return;
 
