@@ -1,4 +1,4 @@
-using System.Text;
+﻿using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,16 +22,18 @@ public class Content : MonoBehaviour
 
     //content data
     private ContentData contentData;
-    //upgrade count
-    private int UpgradeCount = 0;
+    //restaurant Type
+    private RestaurantType restaurantType;
+    //upgrade 가격
+    private int UpgradePay = 0;
 
-    private Image background;
+    //private Image background;
 
 
 
     private void Awake()
     {
-        background = GetComponent<Image>();
+        //background = GetComponent<Image>();
         upgradeBtn.onClick.AddListener(() => onClickUpgrade());//upgrade버튼
     }
     //SetUpgradCount
@@ -68,15 +70,19 @@ public class Content : MonoBehaviour
     //버튼 이벤트
     private void onClickUpgrade()
     {
-        
+
         //Money Manager
-        CurrencyManager.Instance.TrySpendGold(contentData.PayCount[UpgradeCount]);
+        CurrencyManager.Instance.TrySpendGold(UpgradePay);
         //Upgrade
-        UpgradeCount += 1;
+        StateManager.Instance.AddUpgradeLevel(restaurantType, contentData.TypeId);
         //Load Data
         LoadData();
 
 
+    }
+    public void SetRestaurantType(RestaurantType restaurantType)
+    {
+        this.restaurantType = restaurantType;   
     }
 
     //202600812
@@ -102,11 +108,23 @@ public class Content : MonoBehaviour
         type.SetText(contentData.TypeText);
         img.sprite = contentData.Image;
         info.SetText(contentData.Info);
+        
+        //level 표시
         upgradCount.SetText(
-            SetUpgradCount(contentData.UpgradeMaxCount, contentData.UpgradCount[UpgradeCount])
+            SetUpgradCount(contentData.UpgradeMaxCount,
+                           StateManager.Instance.GetPopupUpgradeLevel(restaurantType, contentData.TypeId))
             );
+        //NPC 초기값 level = 0, pay  = 500
+        if(StateManager.Instance.GetPopupUpgradeLevel(restaurantType, contentData.TypeId) == 0)
+        {
+            UpgradePay = 500;
+        }
+        else
+        {
+            UpgradePay = StateManager.Instance.GetPopupUpgradeLevel(restaurantType, contentData.TypeId) * 10;
+        }
         PayCount.SetText(
-            SetPayCount(contentData.PayCount[UpgradeCount])
+            SetPayCount(UpgradePay)
             );
 
         //content 색 변경
@@ -123,10 +141,10 @@ public class Content : MonoBehaviour
         //버튼 비활성화
         upgradeBtn.interactable = false;
         //현재 보유 금액 아래면 return
-        if (CurrencyManager.Instance.CurrentGold < contentData.PayCount[UpgradeCount]
+        if (CurrencyManager.Instance.CurrentGold < UpgradePay
             //최대치 업그레이드
-            || contentData.UpgradeMaxCount <= contentData.UpgradCount[UpgradeCount]) return;
-        
+            || contentData.UpgradeMaxCount <= StateManager.Instance.GetPopupUpgradeLevel(restaurantType, contentData.TypeId)) return;
+
         //이상이면 활성화
         upgradeBtn.interactable = true;
     }
