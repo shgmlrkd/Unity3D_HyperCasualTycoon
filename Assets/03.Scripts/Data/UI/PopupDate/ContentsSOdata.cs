@@ -25,6 +25,10 @@ public class ContentData
 
     [SerializeField] private Color textColor;
     [SerializeField] private Color backgroundColor;
+
+   
+    [SerializeField] private Vector3 position;
+    [SerializeField] private GameObject employeePrefab;
     
 
     public TypeId TypeId => typeId;
@@ -35,4 +39,8 @@ public class ContentData
     public int UpgradeMaxCount => upgradeMaxCount;
     public Color TextColor => textColor;
     public Color BackgroundColor => backgroundColor;
+
+    public Vector3 Position => position;
+
+    public GameObject EmployeePrefab => employeePrefab;
 }
