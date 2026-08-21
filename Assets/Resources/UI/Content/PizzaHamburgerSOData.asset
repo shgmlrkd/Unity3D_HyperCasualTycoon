@@ -21,6 +21,8 @@ MonoBehaviour:
     upgradeMaxCount: 50
     textColor: {r: 1, g: 1, b: 1, a: 1}
     backgroundColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    position: {x: 0, y: 0, z: 0}
+    employeePrefab: {fileID: 883006131414419459, guid: 3fef6d8979b6b7840ab5b52fd2078279, type: 3}
   - typeId: 1
     foodType: 0
     typeText: Pizza Assistant
@@ -29,6 +31,8 @@ MonoBehaviour:
     upgradeMaxCount: 50
     textColor: {r: 0, g: 0, b: 0, a: 1}
     backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    position: {x: -3.5, y: -0.01000017, z: -7.5}
+    employeePrefab: {fileID: 883006131414419459, guid: 3fef6d8979b6b7840ab5b52fd2078279, type: 3}
   - typeId: 2
     foodType: 1
     typeText: Sandwich Assistant
@@ -37,3 +41,5 @@ MonoBehaviour:
     upgradeMaxCount: 50
     textColor: {r: 0, g: 0, b: 0, a: 1}
     backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    position: {x: -5.5, y: -0.01000017, z: -7.5}
+    employeePrefab: {fileID: 883006131414419459, guid: 3fef6d8979b6b7840ab5b52fd2078279, type: 3}

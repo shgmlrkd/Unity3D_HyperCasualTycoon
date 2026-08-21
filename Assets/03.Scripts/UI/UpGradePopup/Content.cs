@@ -75,7 +75,7 @@ public class Content : MonoBehaviour
         //CurrencyManager.Instance.TrySpendGold(UpgradePay);
         CurrencyManager.Instance.TrySpendMoney(UpgradePay);
         //Upgrade
-        StateManager.Instance.AddUpgradeLevel(restaurantType, contentData.TypeId);
+        StateManager.Instance.AddUpgradeLevel(restaurantType, contentData.TypeId, 1);
         //Load Data
         LoadData();
 
