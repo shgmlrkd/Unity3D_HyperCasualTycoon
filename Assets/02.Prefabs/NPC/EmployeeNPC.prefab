@@ -124,7 +124,7 @@ Animator:
   m_GameObject: {fileID: 883006131414419459}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 9176ad6995583644e88ea93d5a5123ed, type: 3}
-  m_Controller: {fileID: 9100000, guid: fae071ae78014224bb0e96ad13e4a9a7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2074efb19c2bad14f8a4d54c138eb6f9, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -145,11 +145,11 @@ NavMeshAgent:
   m_GameObject: {fileID: 883006131414419459}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.25
+  m_Radius: 0.3
   m_Speed: 2.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 250
   m_StoppingDistance: 0.05
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -157,7 +157,7 @@ NavMeshAgent:
   m_Height: 1.8
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!136 &8794727443199402732
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -223,6 +223,7 @@ MonoBehaviour:
   targetSelector: {fileID: 6010599842695507190}
   stateController: {fileID: 4665564779210156202}
   moveController: {fileID: 7492376252458592222}
+  index: 0
   serveFoodType: -1
   carrier: {fileID: 6795787007588090412}
 --- !u!114 &6010599842695507190
@@ -237,6 +238,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0380ff68ca90394ab77eef3ca2e82fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmployeeTargetSelector
+  maxWaitTime: 20
+  maxDistance: 10
+  waitWeight: 0.65
+  distanceWeight: 0.35
   employeeNPC: {fileID: 5589517639115830911}
 --- !u!114 &4489039950813248121
 MonoBehaviour:
@@ -290,6 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664f0e6ab6583e54a93d08733f15e2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmployeeAnimationController
+  animator: {fileID: 0}
 --- !u!114 &4665564779210156202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,6 +314,7 @@ MonoBehaviour:
   - state: 1
     npcState: {fileID: 5092543731683821965}
   animController: {fileID: 6754048282330504485}
+  decisionDelay: 1
   currentState: -1
 --- !u!114 &703450041720459453
 MonoBehaviour:
