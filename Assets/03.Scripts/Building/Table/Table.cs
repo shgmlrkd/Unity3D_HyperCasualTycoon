@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Restaurant.Orders;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,24 +29,15 @@ public class Table : MonoBehaviour
 
     // 손님별 테이블 위 음식
     private Dictionary<ChairSide, List<CarrierItem>> servedItems = new Dictionary<ChairSide, List<CarrierItem>>();
-
-    public Transform ServePoint
-    {
-        get
-        {
-            return serveTransforms[Random.Range(0, serveTransforms.Length)];
-        }
-    }
+    private Sequence serveSequence;
+    private bool isServing;
+    
     public IEnumerable<CustomerNPC> Customers => customers.Values;
 
     public int RestaurantId => restaurantId;
 
     private void RegisterCustomer(CustomerNPC customerNPC)
     {
-        /*ChairSide chairSide = customerNPC.CurrentChair.SeatSide;*/
-
-        //Debug.Log($"[Table] RegisterCustomer : {customerNPC.name}");
-
         ChairSide chairSide = customerNPC.CurrentChair.SeatSide;
 
         // 이미 해당 좌석에 같은 손님이 등록되어 있다면 무시
@@ -94,9 +86,37 @@ public class Table : MonoBehaviour
         }
     }
 
+    // 서빙할 위치 중 가까운 위치 반환
+    public Transform GetServePoint(EmployeeNPC npc)
+    {
+        Transform transform = null;
+        float distance = float.MaxValue;
+
+        for (int i = 0; i < serveTransforms.Length; i++)
+        {
+            float servePointDistance = Vector3.Distance(npc.transform.position, serveTransforms[i].position);
+
+            if (servePointDistance < distance)
+            {
+                distance = servePointDistance;
+                transform = serveTransforms[i];
+            }
+        }
+
+        return transform;
+    }
+
     // 음식 서빙
     public void ServeFood(Carrier carrier)
     {
+        if (isServing)
+            return;
+
+        isServing = true;
+
+        serveSequence?.Kill();
+        serveSequence = DOTween.Sequence();
+
         foreach (KeyValuePair<ChairSide, CustomerNPC> customer in customers)
         {
             CustomerNPC customerNPC = customer.Value;
@@ -104,8 +124,75 @@ public class Table : MonoBehaviour
             if (!CanServe(customerNPC))
                 continue;
 
-            ServeFoodToCustomer(customer.Key, customerNPC, carrier);
+            AppendCustomerServeSequence(serveSequence, customer.Key, customerNPC, carrier);
         }
+
+        serveSequence.OnComplete(() =>
+        {
+            isServing = false;
+            serveSequence = null;
+        });
+
+        serveSequence.OnKill(() =>
+        {
+            isServing = false;
+            serveSequence = null;
+        });
+    }
+
+    // 진행 중인 서빙 취소
+    public void CancelServing()
+    {
+        serveSequence?.Kill();
+    }
+
+    private void AppendCustomerServeSequence(Sequence sequence, ChairSide chairSide, CustomerNPC customerNPC, Carrier carrier)
+    {
+        if (!servedItems.TryGetValue(chairSide, out List<CarrierItem> items))
+        {
+            return;
+        }
+
+        OrderData orderData = OrderManager.Instance.GetOrder(customerNPC.CustomerID);
+
+        if (orderData == null)
+            return;
+
+        foreach (OrderItem orderItem in orderData.orderItems)
+        {
+            if (orderItem.IsFulfilled)
+                continue;
+
+            int count = orderItem.requiredAmount;
+
+            sequence.AppendCallback(() =>
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    AppendSingleFoodServe(sequence, chairSide, customerNPC, carrier, orderItem, items);
+                }
+            });
+
+            sequence.AppendInterval(0.5f);
+        }
+    }
+
+    private void AppendSingleFoodServe(Sequence sequence, ChairSide chairSide, CustomerNPC customerNPC, Carrier carrier, OrderItem orderItem, List<CarrierItem> items)
+    {
+        if (orderItem.IsFulfilled)
+            return;
+
+        CarrierItem item = carrier.GetOrderItem(orderItem.food.foodID);
+
+        if (item == null)
+            return;
+
+        bool isServed = OrderManager.Instance.ServeFoodToTable(customerNPC.CustomerID, orderItem.food);
+
+        if (!isServed)
+            return;
+
+        PlaceFood(chairSide, item, items);
     }
 
     // 주문 상태가 Completed가 아니고 주문 데이터가 존재하면 true
@@ -122,59 +209,6 @@ public class Table : MonoBehaviour
         return orderData.status != OrderStatus.Completed;
     }
 
-    // 주문 데이터를 받아 요구한 수량만큼 받았는지 확인 후 아니라면 서빙함
-    private void ServeFoodToCustomer(ChairSide chairSide, CustomerNPC customerNPC, Carrier carrier)
-    {
-        OrderData orderData = OrderManager.Instance.GetOrder(customerNPC.CustomerID);
-
-        if (orderData == null)
-            return;
-
-        if (!servedItems.TryGetValue(chairSide, out List<CarrierItem> items))
-        {
-            return;
-        }
-
-        foreach (OrderItem orderItem in orderData.orderItems)
-        {
-            if (orderItem.IsFulfilled)
-                continue;
-
-            ServeOrderItem(chairSide, customerNPC, carrier, orderItem, items);
-
-            // 주문이 완료되었으면 더 이상 서빙하지 않음
-            if (orderData.status == OrderStatus.Completed)
-                break;
-        }
-    }
-
-    private void ServeOrderItem(ChairSide chairSide, CustomerNPC customerNPC, Carrier carrier, OrderItem orderItem, List<CarrierItem> items)
-    {
-        // 이미 필요한 수량을 모두 받은 경우
-        if (orderItem.IsFulfilled)
-            return;
-
-        // 필요한 수량만큼 실제 음식을 하나씩 가져옴
-        while (!orderItem.IsFulfilled)
-        {
-            CarrierItem item = carrier.GetOrderItem(orderItem.food.foodID);
-
-            // Carrier에 해당 음식이 없으면 종료
-            if (item == null)
-                break;
-
-            // 실제 음식 1개를 OrderManager에 서빙
-            bool isServed = OrderManager.Instance.ServeFoodToTable(customerNPC.CustomerID, orderItem.food);
-
-            // 주문 등록에 실패했다면 음식도 테이블에 놓지 않음
-            if (!isServed)
-                break;
-
-            // OrderManager에 정상적으로 반영된 음식만 테이블에 배치
-            PlaceFood(chairSide, item, items);
-        }
-    }
-
     private void PlaceFood(ChairSide chairSide, CarrierItem item, List<CarrierItem> items)
     {
         // 기존 음식 개수를 기준으로 음식 높이 계산
@@ -182,7 +216,9 @@ public class Table : MonoBehaviour
 
         position.y += items.Count * item.ItemHeight;
 
-        item.transform.position = position;
+        item.transform.DOKill();
+
+        item.transform.DOMove(position, 0.5f);
 
         // 테이블 위 음식으로 등록
         items.Add(item);
@@ -261,14 +297,6 @@ public class Table : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        /*// 테이블에 손님이 들어온 경우 등록
-        if (other.TryGetComponent(out CustomerNPC customerNPC))
-        {
-            RegisterCustomer(customerNPC);
-        }*/
-
-        //Debug.Log($"[Table] TriggerEnter : {other.name}");
-
         if (other.TryGetComponent(out CustomerNPC customerNPC))
         {
             if (customerNPC.CurrentChair == null)
@@ -280,11 +308,6 @@ public class Table : MonoBehaviour
             {
                 if (customerNPC.CurrentChair.transform == chairTransforms[i])
                 {
-                    /*Debug.Log(
-                        $"손님 NPC ID : {customerNPC.CustomerID}, " +
-                        $"손님 NPC 위치 : {customerNPC.transform.position}, " +
-                        $"ChairSide = {customerNPC.CurrentChair.SeatSide}");*/
-
                     RegisterCustomer(customerNPC);
                     break;
                 }
@@ -292,12 +315,20 @@ public class Table : MonoBehaviour
         }
 
         // 테이블에 플레이어가 들어온 경우 서빙
-        if (other.TryGetComponent(out Carrier carrier))
+        if (other.TryGetComponent(out PlayerServe playerServe))
         {
-            if(other.CompareTag("Player"))
-            { 
-                ServeFood(carrier);
-            }
+            playerServe.SetTargetTable(this);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (!other.TryGetComponent(out PlayerServe playerServe))
+            return;
+
+        if (playerServe.IsMoving)
+        {
+            CancelServing();
         }
     }
 
@@ -308,5 +339,16 @@ public class Table : MonoBehaviour
 
         // 손님 등록 해제
         UnregisterCustomer(customerNPC);
+
+        // 테이블에서 플레이어가 나간 경우 클리어
+        if (other.TryGetComponent(out PlayerServe playerServe))
+        {
+            playerServe.ClearTargetTable(this);
+
+            // 실행 중인 서빙 Sequence 종료
+            serveSequence?.Kill();
+            serveSequence = null;
+            isServing = false;
+        }
     }
 }

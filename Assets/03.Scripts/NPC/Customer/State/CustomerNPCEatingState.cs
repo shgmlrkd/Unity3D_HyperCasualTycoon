@@ -10,7 +10,7 @@ public class CustomerNPCEatingState : CustomerNPCState
 
     public override void StateUpdate()
     {
-        if (!animController.IsEatFinished) return;
+        if (animController.IsEatting) return;
 
         npc.StateController.SetState(CustomerState.Leaving);
     }

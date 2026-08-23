@@ -1,19 +1,16 @@
 using UnityEngine;
 public class CustomerAnimationController : MonoBehaviour
 {
-    private const string EATING = "Eating";
-    private const string LAYER_EATING = "Eat Layer";
+    private const string ISEATTING = "IsEatting";
 
     [SerializeField]
     private Animator animator;
 
-    private int layerEating;
-
     private int isStoppedHash = Animator.StringToHash("IsStopped");
 
-    private bool isEatFinished = false;
+    private bool isEatting = false;
 
-    public bool IsEatFinished => isEatFinished;
+    public bool IsEatting => isEatting;
 
     private void Awake()
     {
@@ -21,8 +18,6 @@ public class CustomerAnimationController : MonoBehaviour
         {
             animator = GetComponent<Animator>();
         }
-
-        layerEating = animator.GetLayerIndex(LAYER_EATING);
     }
 
     // 걷는 애니메이션
@@ -34,15 +29,14 @@ public class CustomerAnimationController : MonoBehaviour
     // 먹는 애니메이션 (앉아있는 애니메이션과 먹는 애니메이션을 동시에 돌림)
     public void PlayEating()
     {
-        isEatFinished = false;
-        animator.SetLayerWeight(layerEating, 1.0f);
-        animator.Play(EATING, layerEating);
+        isEatting = true;
+        animator.SetBool(ISEATTING, isEatting);
     }
 
     // 먹는 애니메이션 멈추기
     public void StopEat()
     {
-        isEatFinished = true;
-        animator.SetLayerWeight(layerEating, 0.0f);
+        isEatting = false;
+        animator.SetBool(ISEATTING, isEatting);
     }
 }

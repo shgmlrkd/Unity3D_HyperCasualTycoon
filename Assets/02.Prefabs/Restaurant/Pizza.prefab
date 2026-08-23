@@ -56,6 +56,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8827762526944824653}
     m_Modifications:
+    - target: {fileID: -5105028306811887973, guid: b56ff3f8f1ee0ca49a8fa6e9424a4881, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1199913090618409803, guid: b56ff3f8f1ee0ca49a8fa6e9424a4881, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -121,6 +125,10 @@ PrefabInstance:
     - target: {fileID: 429006481315491806, guid: 4d657f2206b714a4796c2270328a12b2, type: 3}
       propertyPath: m_Name
       value: SM_Food_Pizza_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3000298111692817681, guid: 4d657f2206b714a4796c2270328a12b2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5374015800466781383, guid: 4d657f2206b714a4796c2270328a12b2, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,19 +28,13 @@ public class Carrier : MonoBehaviour
         circleGauge = GetComponentInChildren<CircleGauge>(true);
     }
 
-    // 기본 생성 메서드
-    public bool TryAddCarrierItem(CarrierItem itemPrefab)
-    {
-        return TryAddCarrierItem(itemPrefab, carryPoint != null ? carryPoint.position : transform.position);
-    }
-
     // 스폰 위치를 지정하여 생성하는 메서드
     public bool TryAddCarrierItem(CarrierItem itemPrefab, Vector3 spawnWorldPosition)
     {
         if (IsFull || itemPrefab == null) return false;
 
         // List를 순회하여 현재 Y축 높이 계산
-        float currentYOffset = 0f;
+        float currentYOffset = 0.0f;
         for (int i = 0; i < itemList.Count; i++)
         {
             currentYOffset += itemList[i].ItemHeight + itemSpacing;
@@ -51,7 +46,7 @@ public class Carrier : MonoBehaviour
         newItem.transform.SetParent(targetParent);
 
         // 머리 위/손 로컬 위치 및 회전 설정
-        newItem.transform.localPosition = new Vector3(0f, currentYOffset, 0f);
+        newItem.transform.localPosition = new Vector3(0.0f, currentYOffset, 0.0f);
         newItem.transform.localRotation = Quaternion.identity;
 
         itemList.Add(newItem);
@@ -59,42 +54,6 @@ public class Carrier : MonoBehaviour
 
         OnItemCountChanged?.Invoke(itemList.Count);
         return true;
-    }
-
-    // 맨 위(마지막) 아이템 꺼내기 (LIFO 형태 구현)
-    public CarrierItem PopCarrierItem()
-    {
-        if (!HasItems) return null;
-
-        int lastIndex = itemList.Count - 1;
-        CarrierItem item = itemList[lastIndex];
-        itemList.RemoveAt(lastIndex);
-
-        if (item != null)
-        {
-            item.transform.SetParent(null);
-        }
-
-        OnItemCountChanged?.Invoke(itemList.Count);
-        return item;
-    }
-
-    // 특정 위치/종류의 아이템을 꺼낼 때 사용 (List의 장점 활용)
-    public CarrierItem RemoveItemAt(int index)
-    {
-        if (index < 0 || index >= itemList.Count) return null;
-
-        CarrierItem item = itemList[index];
-        itemList.RemoveAt(index);
-
-        if (item != null)
-        {
-            item.transform.SetParent(null);
-        }
-
-        RealignStackPositions(); // 중간 아이템이 빠진 경우 위치 재정렬
-        OnItemCountChanged?.Invoke(itemList.Count);
-        return item;
     }
 
     // 모든 아이템 삭제 (쓰레기통 등)
@@ -115,35 +74,55 @@ public class Carrier : MonoBehaviour
     {
         if (itemList.Count == 0) return null;
 
-        for(int i = 0; i < itemList.Count; i++)
+        for(int i = itemList.Count - 1; i >= 0; i--)
         {
-            if(foodType == itemList[i].ItemId)
+            if (foodType != itemList[i].ItemId)
+                continue;
+            
+            CarrierItem item = itemList[i];
+            itemList.RemoveAt(i);
+
+            if (item != null)
             {
-                CarrierItem item = itemList[i];
-                itemList.RemoveAt(i);
-
-                if (item != null)
-                {
-                    item.transform.SetParent(null);
-                }
-
-                RealignStackPositions(); // 중간 아이템이 빠진 경우 위치 재정렬
-                OnItemCountChanged?.Invoke(itemList.Count);
-
-                return item;
+                item.transform.SetParent(null);
             }
+
+            RealignStackPositions(i); // 중간 아이템이 빠진 경우 위치 재정렬
+            OnItemCountChanged?.Invoke(itemList.Count);
+
+            return item;
+            
         }
 
         return null;
     }
 
     // 중간 아이템이 제거되었을 때 남은 아이템들의 위치를 차곡차곡 재정렬
-    private void RealignStackPositions()
+    private void RealignStackPositions(int startIndex)
     {
-        float currentYOffset = 0f;
-        for (int i = 0; i < itemList.Count; i++)
+        float currentYOffset = 0.0f;
+
+        // startIndex 이전의 아이템들은 기존 위치 유지
+        for (int i = 0; i < startIndex; i++)
         {
-            itemList[i].transform.localPosition = new Vector3(0f, currentYOffset, 0f);
+            if (itemList[i] == null)
+                continue;
+
+            currentYOffset += itemList[i].ItemHeight + itemSpacing;
+        }
+
+        // 제거된 위치 이후의 아이템만 재정렬
+        for (int i = startIndex; i < itemList.Count; i++)
+        {
+            if (itemList[i] == null)
+                continue;
+
+            itemList[i].transform.DOKill();
+
+            Vector3 targetPosition = new Vector3(0.0f, currentYOffset, 0.0f);
+
+            itemList[i].transform.DOLocalMove(targetPosition, 0.2f);
+
             currentYOffset += itemList[i].ItemHeight + itemSpacing;
         }
     }
