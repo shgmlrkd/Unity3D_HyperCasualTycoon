@@ -4,15 +4,18 @@ public class GetFoodAction : IEmployeeAction
 {
     public float CalculateScore(EmployeeNPC employee)
     {
-        if (employee.IsCarryCapacityFull)
+        // 이미 보충 중이라면 계속 음식 보충
+        if (employee.IsRestocking)
+            return 1.0f;
+
+        // 음식을 들고 있다면 보충할 필요 없음
+        if (employee.HasFood(employee.ServeFoodType))
             return 0.0f;
 
-        if (!employee.TargetSelector.FindTarget())
-            return 0.0f;
+        // 손이 비었으면 새로운 보충 사이클 시작
+        employee.StartRestocking();
 
-        float fillRate = employee.CurrentCarryCount / (float)employee.MaxCarryCapacity;
-
-        return 1.0f - fillRate;
+        return 1.0f;
     }
 
     public EmployeeState GetState()

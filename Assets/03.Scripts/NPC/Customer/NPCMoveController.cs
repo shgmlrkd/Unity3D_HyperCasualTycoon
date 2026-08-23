@@ -12,9 +12,6 @@ public class NPCMoveController : MonoBehaviour
     {
         get
         {
-            if (!agent.hasPath)
-                return false;
-
             if (agent.pathPending)
                 return false;
 

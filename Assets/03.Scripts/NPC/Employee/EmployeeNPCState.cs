@@ -14,7 +14,12 @@ public abstract class EmployeeNPCState : MonoBehaviour
 
     public abstract void Enter();
 
-    public virtual void StateUpdate() { }
+    public virtual void StateUpdate() 
+    {
+        animController.SetMove(npc.MoveController.IsArrived);
+
+        animController.SetPlayCarry(npc.HasCarriedItem);
+    }
 
     public abstract void Exit();
 

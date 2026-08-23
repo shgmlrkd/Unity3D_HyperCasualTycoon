@@ -15,6 +15,9 @@ public class EmployeeNPC : MonoBehaviour
     private NPCMoveController moveController;
 
     [SerializeField]
+    private int index = 0;
+
+    [SerializeField]
     private FoodType serveFoodType = FoodType.None;
 
     [SerializeField]
@@ -22,31 +25,35 @@ public class EmployeeNPC : MonoBehaviour
 
     private Transform foodTargetTransform;
 
-    private Table targetTable; 
+    private Table targetTable;
 
+    // 음식을 다시 채우기 시작했는지 여부
+    private bool isRestocking;
     public EmployeeTargetSelector TargetSelector => targetSelector;
     public EmployeeNPCStateController StateController => stateController;
     public NPCMoveController MoveController => moveController;
     
-    public Vector3 TargetTablePosition
+    public Transform TargetTableServePoint
     {
         get
         {
             if (targetTable == null)
-                return transform.position;
+                return transform;
 
-            return targetTable.ServePoint.position;
+            return targetTable.GetServePoint(this);
         }
     }
     public Vector3 FoodPickupTarget => foodTargetTransform.position;
     public FoodType ServeFoodType => serveFoodType;
-    public bool IsCarryCapacityFull => carrier.IsFull;
     public int CurrentCarryCount => carrier.CurrentCount;
     public int MaxCarryCapacity => carrier.MaxCapacity;
+    public bool IsRestocking => isRestocking;
+    public bool IsCarryCapacityFull => carrier.IsFull;
+    public bool HasCarriedItem => carrier.CurrentCount > 0;
 
     private void Start()
     {
-        SetEmployee(0);
+        SetEmployee(index);
     }
 
     public void SetEmployee(int index)
@@ -55,32 +62,55 @@ public class EmployeeNPC : MonoBehaviour
         foodTargetTransform = RestaurantZoneManager.Instance.GetFoodPickupPoint(index);
     }
 
-    public void SetTargetCustomer()
+    public bool TrySetTargetCustomer()
     {
+        // 이전 대상 제거
+        targetTable = null;
+
         if (!targetSelector.FindTarget())
-            return;
+            return false;
 
         targetTable = targetSelector.TargetTable;
+
+        return targetTable != null;
     }
 
-    public bool IsServeComplete()
+    public bool CanContinueServing()
     {
         if (targetTable == null)
-            return true;
+            return false;
 
+        // 해당 음식에 아직 서빙할 주문이 있는지 확인
         if (!targetTable.NeedFood(ServeFoodType))
-            return true;
+            return false;
 
-        return !carrier.HasFood(ServeFoodType);
+        // 직원이 해당 음식을 가지고 있는지 확인
+        if (!carrier.HasFood(ServeFoodType))
+            return false;
+
+        return true;
     }
 
     public void ServeFood()
     {
+        if (targetTable == null)
+            return;
+
         targetTable.ServeFood(carrier);
     }
 
     public bool HasFood(FoodType serveFoodType)
     {
         return carrier.HasFood(serveFoodType);
+    }
+
+    public void StartRestocking()
+    {
+        isRestocking = true;
+    }
+
+    public void CompleteRestocking()
+    {
+        isRestocking = false;
     }
 }

@@ -18,7 +18,9 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController characterController;
 
     private bool canMove = true;
+    private bool isMoving;
     public bool CanMove => canMove;
+    public bool IsMoving => isMoving;
 
     private void Awake()
     {
@@ -37,9 +39,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(Vector3 direction, float speed)
     {
+        isMoving = direction.sqrMagnitude >= 0.01f;
+
         Vector3 moveVelocity = Vector3.zero;
 
-        if (direction.magnitude >= 0.1f)
+        if (isMoving)
         {
             // 이동 방향을 바라보도록 회전
             Quaternion targetRotation = Quaternion.LookRotation(direction);

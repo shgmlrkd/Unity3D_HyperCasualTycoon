@@ -18,6 +18,10 @@ public class EmployeeNPCStateController : MonoBehaviour
 
     [SerializeField]
     private EmployeeAnimationController animController;
+    
+    [Header("Decision Settings")]
+    [SerializeField]
+    private float decisionDelay = 1.0f;
 
     [SerializeField]
     private EmployeeState currentState = EmployeeState.None;
@@ -25,6 +29,8 @@ public class EmployeeNPCStateController : MonoBehaviour
     private EmployeeNPC npc;
 
     private EmployeeDecision decision;
+
+    private float decisionTimer;
 
     public EmployeeState CurrentEmployeeState => currentState;
 
@@ -52,11 +58,13 @@ public class EmployeeNPCStateController : MonoBehaviour
 
     private void Update()
     {
-        // 현재 상태가 없으면 어떤 행동을 할지 점수에 따라 실행함
-        if (currentState == EmployeeState.None)
+        // 일정 시간마다 어떤 행동을 할지 결정
+        decisionTimer += Time.deltaTime;
+
+        if (decisionTimer >= decisionDelay)
         {
+            decisionTimer = 0.0f;
             EvaluateNextAction();
-            return;
         }
 
         if (stateDict.TryGetValue(currentState, out EmployeeNPCState state))
@@ -65,6 +73,7 @@ public class EmployeeNPCStateController : MonoBehaviour
         }
     }
 
+    // 지금 해야할 행동을 결정하고 그에 맞는 상태로 변경
     private void EvaluateNextAction()
     {
         IEmployeeAction action = decision.SelectAction(npc);
@@ -73,10 +82,9 @@ public class EmployeeNPCStateController : MonoBehaviour
             return;
 
         SetState(action.GetState()); 
-        //Debug.Log($"선택된 행동 : {action.GetState().ToString()}");
     }
 
-    public void SetState(EmployeeState state)
+    private void SetState(EmployeeState state)
     {
         if (currentState == state)
             return;
@@ -108,5 +116,6 @@ public class EmployeeNPCStateController : MonoBehaviour
         }
 
         currentState = EmployeeState.None;
+        decisionTimer = 0.0f;
     }
 }
