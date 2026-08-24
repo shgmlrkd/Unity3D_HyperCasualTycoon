@@ -1,4 +1,4 @@
-public enum CustomerState
+﻿public enum CustomerState
 {
     None = -1,
 
@@ -111,5 +111,6 @@ public enum TypeId
     Employee01,
     Employee02,
     Employee03,
+    Employee04,
     Length
 }
