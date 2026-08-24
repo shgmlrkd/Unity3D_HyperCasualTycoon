@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using System.Collections;
@@ -84,16 +84,26 @@ public class InsertBuild : MonoBehaviour
     {
 
         isStart = false;
+
+        // 실제 지불할 금액 계산
+        int currentPayMoney = Mathf.Min(payMoney, buildMoney);
+
         //지불 모션
         MoneyShooter moneyShooter =
                 collision.GetComponentInChildren<MoneyShooter>();
         //지불 모션 실행, endPoint set
         moneyShooter.ShootMoneny(gameObject.transform);
 
+        // 건설에 필요한 금액에서 실제 지불 금액만 차감
+        buildMoney -= currentPayMoney;
+
         //지불금액 마이너스
-        buildMoney -= payMoney;
+        //buildMoney -= payMoney;
         //보유 금액 마이너스
-        CurrencyManager.Instance.TrySpendMoney(payMoney);
+        //CurrencyManager.Instance.TrySpendMoney(payMoney);
+
+        CurrencyManager.Instance.TrySpendMoney(currentPayMoney);
+
         yield return new WaitForSeconds(waitTime);
         
         //Set Build Money
