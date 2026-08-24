@@ -1,4 +1,4 @@
-﻿
+
 
 using System;
 using System.Collections.Generic;
@@ -16,6 +16,9 @@ public class StateManager : MonoSingleton<StateManager>
         new Dictionary<RestaurantType, Dictionary<TypeId, StateData>>();
 
     private ContentsListSOData contentsList;// Resources Load data
+
+    public event Action<TypeId, int> OnUpgradeChanged;
+
     protected override void Awake()
     {
         base.Awake();
@@ -79,7 +82,7 @@ public class StateManager : MonoSingleton<StateManager>
                             //Employee.SetEmployee(stateData.FoodType);
 
                             //Employee FoodType setting
-                            Employee.SetEmployee((int)content.FoodType);
+                            Employee.SetEmployee((int)content.FoodType, content.TypeId);
                         }
                     }
 
@@ -116,7 +119,7 @@ public class StateManager : MonoSingleton<StateManager>
     //   addLevel : level count
     public void AddUpgradeLevel(RestaurantType restaurantType, TypeId typeId, int addLevel)
     {
-        //max 레벨 보다 작으면
+        /*//max 레벨 보다 작으면
         if (dicData[restaurantType][typeId].UpgradeMaxCount <= dicData[restaurantType][typeId].UpgradCount) return;
 
         if (typeId != TypeId.Player // Employee 
@@ -127,9 +130,31 @@ public class StateManager : MonoSingleton<StateManager>
 
 
             //restaurantType - TypeId 레벨 업그레이드
-            dicData[restaurantType][typeId].UpgradCount += addLevel;
+            dicData[restaurantType][typeId].UpgradCount += addLevel;*/
 
 
+        StateData state = dicData[restaurantType][typeId];
+
+        // 최대 레벨이면 종료
+        if (state.UpgradCount >= state.UpgradeMaxCount)
+            return;
+
+        // 최초 직원 해금 여부 확인
+        bool isFirstUnlock = typeId != TypeId.Player &&
+                             state.UpgradCount == 0 &&
+                             addLevel > 0;
+
+        // 레벨 증가
+        state.UpgradCount += addLevel;
+
+        // 최초 직원 해금
+        if (isFirstUnlock)
+        {
+            MakeEmployee(restaurantType, typeId);
+        }
+
+        // 업그레이드 이벤트 발생
+        OnUpgradeChanged?.Invoke(typeId, state.UpgradCount);
     }
 
     //202600820

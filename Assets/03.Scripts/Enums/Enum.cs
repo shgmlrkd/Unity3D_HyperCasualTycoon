@@ -1,4 +1,4 @@
-﻿public enum CustomerState
+public enum CustomerState
 {
     None = -1,
 
@@ -88,10 +88,11 @@ public enum FoodType
 {
     None = -1,
 
-    Pizza,
-    Hambuger,
-    Cake,
-    IceCream,
+    Pizza,      // 피자            (직원 NPC)
+    Hambuger,   // 햄버거          (직원 NPC)
+    Cake,       // 케이크          (직원 NPC)
+    IceCream,   // 아이스크림       (직원 NPC)
+    All,        // 플레이어는 모든 음식 다 가능
 
     Length
 }

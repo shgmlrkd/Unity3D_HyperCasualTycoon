@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerServe : MonoBehaviour
@@ -8,11 +9,43 @@ public class PlayerServe : MonoBehaviour
     [SerializeField]
     private Carrier carrier;
 
+    private TypeId typeId = TypeId.Player;
+
     private Table targetTable;
     private bool serveRequested;
 
     public bool IsMoving => playerMovement.IsMoving;
-    public Table TargetTable => targetTable;
+
+    private void OnEnable()
+    {
+        if (StateManager.Instance != null)
+        {
+            StateManager.Instance.OnUpgradeChanged += UpgradeChanged;
+        }
+    }
+
+    private void Start()
+    {
+        int upgradeLevel = StateManager.Instance.GetPlayerUpgradeLevel();
+
+        carrier.SetMaxCapacity(upgradeLevel);
+    }
+
+    private void OnDisable()
+    {
+        if (StateManager.Instance != null)
+        {
+            StateManager.Instance.OnUpgradeChanged -= UpgradeChanged;
+        }
+    }
+
+    private void UpgradeChanged(TypeId id, int upgradeLevel)
+    {
+        if (typeId != id)
+            return;
+
+        carrier.SetMaxCapacity(upgradeLevel);
+    }
 
     private void Update()
     {

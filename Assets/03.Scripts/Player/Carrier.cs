@@ -7,7 +7,7 @@ public class Carrier : MonoBehaviour
 {
     [Header("Stacking Settings")]
     [SerializeField] private Transform carryPoint;
-    [SerializeField] private int maxCapacity = 5;
+    [SerializeField] private int maxCapacity = 0;
     [SerializeField] private float itemSpacing = 0.05f;
     private CircleGauge circleGauge;
 
@@ -26,6 +26,11 @@ public class Carrier : MonoBehaviour
     private void Awake()
     {
         circleGauge = GetComponentInChildren<CircleGauge>(true);
+    }
+
+    public void SetMaxCapacity(int maxCapacity)
+    {
+        this.maxCapacity = maxCapacity;
     }
 
     // 스폰 위치를 지정하여 생성하는 메서드

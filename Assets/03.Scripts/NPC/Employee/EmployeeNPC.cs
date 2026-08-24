@@ -1,6 +1,4 @@
-using DG.Tweening;
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EmployeeNPC : MonoBehaviour
@@ -14,12 +12,12 @@ public class EmployeeNPC : MonoBehaviour
     [SerializeField]
     private NPCMoveController moveController;
 
-    [SerializeField]
+    /*[SerializeField]
     private int index = 0;
 
-    [SerializeField]
+    [SerializeField]*/
     private FoodType serveFoodType = FoodType.None;
-
+    private TypeId employeeTypeId;
     [SerializeField]
     private Carrier carrier;
 
@@ -53,13 +51,38 @@ public class EmployeeNPC : MonoBehaviour
 
     private void Start()
     {
-        SetEmployee(index);
+        //SetEmployee(index);
     }
 
-    public void SetEmployee(int index)
+    private void OnEnable()
+    {
+        if (StateManager.Instance != null)
+        {
+            StateManager.Instance.OnUpgradeChanged += UpgradeChanged;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (StateManager.Instance != null)
+        {
+            StateManager.Instance.OnUpgradeChanged -= UpgradeChanged;
+        }
+    }
+
+    public void SetEmployee(int index, TypeId typeId)
     {
         serveFoodType = (FoodType)index;
+        employeeTypeId = typeId;
         foodTargetTransform = RestaurantZoneManager.Instance.GetFoodPickupPoint(index);
+    }
+
+    private void UpgradeChanged(TypeId id, int upgradeLevel)
+    {
+        if (employeeTypeId != id)
+            return;
+
+        carrier.SetMaxCapacity(upgradeLevel);
     }
 
     public bool TrySetTargetCustomer()
