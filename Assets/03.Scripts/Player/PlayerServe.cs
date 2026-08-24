@@ -68,6 +68,11 @@ public class PlayerServe : MonoBehaviour
         ServeFood();
     }
 
+    public bool HasTargetTable()
+    {
+        return targetTable != null;
+    }
+
     public void SetTargetTable(Table table)
     {
         targetTable = table;

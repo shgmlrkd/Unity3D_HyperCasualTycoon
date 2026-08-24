@@ -1,4 +1,4 @@
-﻿public enum CustomerState
+public enum CustomerState
 {
     None = -1,
 
@@ -23,8 +23,7 @@ public enum EmployeeState
 public enum PoolType
 {
     Customer,
-    Employee,
-    Food
+    Money
 }
 
 public enum EventType

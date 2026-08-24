@@ -313,12 +313,6 @@ public class Table : MonoBehaviour
                 }
             }
         }
-
-        // 테이블에 플레이어가 들어온 경우 서빙
-        if (other.TryGetComponent(out PlayerServe playerServe))
-        {
-            playerServe.SetTargetTable(this);
-        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -330,16 +324,17 @@ public class Table : MonoBehaviour
         {
             CancelServing();
         }
+
+        // 플레이어가 목표로한 테이블이 있는지 검사
+        if (playerServe.HasTargetTable())
+            return;
+        
+        // 없다면 타겟 세팅
+        playerServe.SetTargetTable(this);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.TryGetComponent(out CustomerNPC customerNPC))
-            return;
-
-        // 손님 등록 해제
-        UnregisterCustomer(customerNPC);
-
         // 테이블에서 플레이어가 나간 경우 클리어
         if (other.TryGetComponent(out PlayerServe playerServe))
         {
@@ -350,5 +345,11 @@ public class Table : MonoBehaviour
             serveSequence = null;
             isServing = false;
         }
+
+        if (!other.TryGetComponent(out CustomerNPC customerNPC))
+            return;
+
+        // 손님 등록 해제
+        UnregisterCustomer(customerNPC);
     }
 }

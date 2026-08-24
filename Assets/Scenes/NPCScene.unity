@@ -2513,57 +2513,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218286978}
   m_CullTransparentMesh: 1
---- !u!1 &1267840443
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1267840444}
-  - component: {fileID: 1267840445}
-  m_Layer: 0
-  m_Name: CustomerPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1267840444
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267840443}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1575543528}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1267840445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267840443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0b5291df94658c4babe17c713aa623c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CustomerManager
-  customerPrefab: {fileID: 927875852834584218, guid: 7e072cc0223330041a6555fdb9ad03cc, type: 3}
-  meshData: {fileID: 11400000, guid: 24a414e50db86c84dbb97476029f22e9, type: 2}
-  customerPoolSize: 32
-  maxCustomerCount: 32
-  spawnInterval: 2
-  spawnPosData: {fileID: 11400000, guid: 4ace155234a3cf94c8e253a694eb4eac, type: 2}
-  chairEventChannel: {fileID: 11400000, guid: 6daeff051c50989488e40ab91a0e1e85, type: 2}
 --- !u!1 &1312325730
 GameObject:
   m_ObjectHideFlags: 0
@@ -2977,52 +2926,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1459019293398819785, guid: 9dc8a22ecd9589647854470524024be0, type: 3}
   m_PrefabInstance: {fileID: 1562164361}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1575543525
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1575543528}
-  - component: {fileID: 1575543527}
-  m_Layer: 0
-  m_Name: Managers
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1575543527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1575543525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 742f32a4ce387d14f8f43b412325c4d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PoolManager
---- !u!4 &1575543528
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1575543525}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1267840444}
-  - {fileID: 2137691397}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1666647961
 GameObject:
   m_ObjectHideFlags: 0
@@ -4094,56 +3997,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 854d4a935cc2217408843735f959e1d5, type: 3}
---- !u!1 &2137691396
-GameObject:
+--- !u!1001 &1347289931078384238
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2137691397}
-  - component: {fileID: 2137691398}
-  m_Layer: 0
-  m_Name: OrderGenerator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2137691397
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2137691396}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1575543528}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2137691398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2137691396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5cb91caca3fc3649b49a7956c19c585, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Restaurant.Orders.OrderGenerator
-  pizzaHamburgerFoods:
-  - {fileID: 11400000, guid: 3a8cd4704a06751458ed8674398ca0d0, type: 2}
-  - {fileID: 11400000, guid: 5c4c412c6f0727045995495cd6409835, type: 2}
-  cakeIcecreamFoods:
-  - {fileID: 11400000, guid: 090e8705336868941b413d1675684f60, type: 2}
-  - {fileID: 11400000, guid: 895f4a116bc94384696c8a8d6a595360, type: 2}
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2991766416458910880, guid: 6bb8deac4d38ffa48af3abb099a12f02, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2991766416458910880, guid: 6bb8deac4d38ffa48af3abb099a12f02, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2991766416458910880, guid: 6bb8deac4d38ffa48af3abb099a12f02, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2991766416458910880, guid: 6bb8deac4d38ffa48af3abb099a12f02, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2991766416458910880, guid: 6bb8deac4d38ffa48af3abb099a12f02, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2991766416458910880, guid: 6bb8deac4d38ffa48af3abb099a12f02, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2991766416458910880, guid: 6bb8deac4d38ffa48af3abb099a12f02, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2991766416458910880, guid: 6bb8deac4d38ffa48af3abb099a12f02, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2991766416458910880, guid: 6bb8deac4d38ffa48af3abb099a12f02, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2991766416458910880, guid: 6bb8deac4d38ffa48af3abb099a12f02, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741689726515604919, guid: 6bb8deac4d38ffa48af3abb099a12f02, type: 3}
+      propertyPath: m_Name
+      value: Managers
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6bb8deac4d38ffa48af3abb099a12f02, type: 3}
 --- !u!1001 &2970725182803910750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4155,10 +4065,6 @@ PrefabInstance:
     - target: {fileID: 3121681174263744775, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
       propertyPath: m_Name
       value: RestaurantManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 5752793258009465292, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-      propertyPath: buildMoney
-      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 7950900313752555377, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4214,7 +4120,7 @@ SceneRoots:
   - {fileID: 1312325731}
   - {fileID: 401243045}
   - {fileID: 1980706880}
-  - {fileID: 1575543528}
+  - {fileID: 1347289931078384238}
   - {fileID: 2970725182803910750}
   - {fileID: 1089526300}
   - {fileID: 570601480}
