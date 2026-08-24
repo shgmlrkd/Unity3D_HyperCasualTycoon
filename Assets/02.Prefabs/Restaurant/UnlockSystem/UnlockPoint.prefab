@@ -79,6 +79,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'InsertBuild '
       objectReference: {fileID: 0}
+    - target: {fileID: 4122338373246848388, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
+      propertyPath: payMoney
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8146710876728391230, guid: 65aa44ea7a546a246bb9ee3e5cec9c7e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

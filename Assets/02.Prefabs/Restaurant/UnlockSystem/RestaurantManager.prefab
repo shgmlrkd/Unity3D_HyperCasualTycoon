@@ -625,6 +625,7 @@ GameObject:
   - component: {fileID: 304342884684080227}
   - component: {fileID: 949444277922090070}
   - component: {fileID: 1346534437924460406}
+  - component: {fileID: 4707815573079284905}
   m_Layer: 0
   m_Name: RestaurantObjects
   m_TagString: Untagged
@@ -698,6 +699,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnlockObjectManager
   unlockPointmanager: {fileID: 4305043782859776201}
+--- !u!114 &4707815573079284905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131734968785136203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f90be916efb6e9449c02fd052ab9bf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KitchenZoneManager
 --- !u!1 &2150404925601545141
 GameObject:
   m_ObjectHideFlags: 0
@@ -2015,6 +2028,10 @@ PrefabInstance:
     - target: {fileID: 1165654904414062427, guid: 775633029a3649542818f182193e571d, type: 3}
       propertyPath: type
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165654904414062427, guid: 775633029a3649542818f182193e571d, type: 3}
+      propertyPath: restaurantType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8726938351919023752, guid: 775633029a3649542818f182193e571d, type: 3}
       propertyPath: m_LocalPosition.x
