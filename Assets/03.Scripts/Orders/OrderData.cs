@@ -18,6 +18,7 @@ namespace Restaurant.Orders
             this.currentAmount = 0;
         }
 
+        public int RemainAmount => requiredAmount - currentAmount;
         public bool IsFulfilled => currentAmount >= requiredAmount;
     }
 
@@ -25,14 +26,14 @@ namespace Restaurant.Orders
     public class OrderData
     {
         public string orderID;           // 주문 고유 ID
-        public int tableIndex;           // 의자(Chair)의 GetInstanceID()? 이렇게 하면 되나?
+        public int customerID;           // 손님 고유 ID
         public List<OrderItem> orderItems; // 무작위 메뉴 조합 리스트
         public OrderStatus status;       // 주문 상태
 
-        public OrderData(int tableIndex, List<OrderItem> items)
+        public OrderData(int customerID, List<OrderItem> items)
         {
             this.orderID = Guid.NewGuid().ToString();
-            this.tableIndex = tableIndex;
+            this.customerID = customerID;
             this.orderItems = items;
             this.status = OrderStatus.Waiting;
         }
