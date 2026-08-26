@@ -238,8 +238,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EmployeeTargetSelector
   maxWaitTime: 20
   maxDistance: 10
-  waitWeight: 0.65
-  distanceWeight: 0.35
+  waitWeight: 0.5
+  distanceWeight: 0.2
+  processWeight: 0.3
   employeeNPC: {fileID: 5589517639115830911}
 --- !u!114 &4489039950813248121
 MonoBehaviour:
