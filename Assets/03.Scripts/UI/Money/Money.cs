@@ -1,11 +1,23 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Money : MonoBehaviour
 {
     [SerializeField] private int money = 0;
+    [SerializeField]
+    private float jumpPower = 1.0f;
+    [SerializeField]
+    private float jumpDuration = 0.2f;
 
     private Collider collider;
+
+    private Tween attractTween;
+
+    private bool isAttracted = false;
+
+    public bool IsAttracted => isAttracted;
 
     private void Awake()
     {
@@ -14,9 +26,14 @@ public class Money : MonoBehaviour
 
     private void OnEnable()
     {
-        // 회전값 초기화, DOTween 하는 동안 충돌체 끄기
-        transform.rotation = Quaternion.identity;
-        collider.enabled = false;
+        ResetMoney();
+    }
+
+    private void OnDisable()
+    {
+        KillTweens();
+
+        isAttracted = false;
     }
 
     // 스폰 후 회전 시키기
@@ -42,22 +59,76 @@ public class Money : MonoBehaviour
                 });
     }
 
-    // 플레이어와 충돌 시 풀에 집어넣기
-    public void ReleaseMoney()
+    private void ResetMoney()
     {
-        DOTween.Kill(transform);
+        KillTweens();
+
+        transform.rotation = Quaternion.identity;
+
+        collider.enabled = false;
+
+        isAttracted = false;
+    }
+
+    private void KillTweens()
+    {
+        transform.DOKill();
+
+        attractTween?.Kill();
+        attractTween = null;
+    }
+
+    // 플레이어와 충돌 시 풀에 집어넣기
+    private void ReleaseMoney()
+    {
+        KillTweens();
 
         PoolManager.Instance.Release(PoolType.Money, this);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void AttractTo(Transform target)
     {
-        if (!other.CompareTag("Player"))
+        if (isAttracted || target == null)
             return;
 
-        CurrencyManager.Instance.AddMoney(money);
+        isAttracted = true;
 
-        // 플레이어가 돈을 획득
-        ReleaseMoney();
+        collider.enabled = false;
+
+        // 기존 회전/드랍 트윈 정지
+        KillTweens();
+
+        // 1. 점프 흡수의 기준이 될 시작 위치 기록
+        Vector3 startPos = transform.position;
+        float elapsed = 0f;
+
+        attractTween = DOTween.To(() => elapsed, value => elapsed = value, 1f, jumpDuration)
+            .SetEase(Ease.InQuad)
+            .OnUpdate(() =>
+            {
+                if (!gameObject.activeSelf)
+                    return;
+
+                if (target == null)
+                    return;
+
+                Vector3 position = Vector3.Lerp(startPos, target.position, elapsed);
+
+                position.y += Mathf.Sin(elapsed * Mathf.PI) * jumpPower;
+
+                transform.position = position;
+            })
+            .OnComplete(() =>
+            {
+                attractTween = null;
+
+                if (!gameObject.activeSelf) return;
+
+                transform.position = target.position;
+
+                CurrencyManager.Instance.AddMoney(money);
+
+                ReleaseMoney();
+            });
     }
 }
