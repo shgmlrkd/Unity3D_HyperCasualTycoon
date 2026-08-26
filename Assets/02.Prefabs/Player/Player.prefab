@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 2313118060578640928}
   - component: {fileID: 5091348353828483779}
   - component: {fileID: 4467767995393409510}
+  - component: {fileID: 571375160675516901}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -291,6 +292,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerServe
   playerMovement: {fileID: 6728109189097079686}
   carrier: {fileID: 5781620103787067688}
+--- !u!114 &571375160675516901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5587544132410444638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae81780b48ceff0488d02503d32334e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMagnet
+  magnetRadius: 3
+  jumpPower: 1.5
+  jumpDuration: 0.5
+  moneyLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  scanInterval: 0.05
 --- !u!1001 &2154552097028240810
 PrefabInstance:
   m_ObjectHideFlags: 0
