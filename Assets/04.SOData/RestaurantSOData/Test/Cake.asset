@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Restaurant.Foods.FoodDataSO
   foodID: 2
   foodName: Cake
-  foodIcon: {fileID: 0}
+  foodIcon: {fileID: -257383199, guid: 975d4a44176d45c408daf3efd303f5ab, type: 3}
   foodPrefab: {fileID: 4463328494833577549, guid: 2cd37887fd1067c438f08954305ab062, type: 3}
   restaurantType: 1
