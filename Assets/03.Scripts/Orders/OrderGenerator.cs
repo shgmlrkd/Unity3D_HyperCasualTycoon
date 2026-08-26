@@ -12,7 +12,7 @@ namespace Restaurant.Orders
         [Header("케아 건물 음식 리스트")]
         [SerializeField] private List<FoodDataSO> cakeIcecreamFoods = new List<FoodDataSO>();
 
-        public OrderData CreateRandomOrder(int chairID, RestaurantType restaurantType, int maxMenuTypes = 2, int maxAmountPerMenu = 2)
+        public OrderData CreateRandomOrder(int customerID, RestaurantType restaurantType, int maxMenuTypes = 2, int maxAmountPerMenu = 2)
         {
             List<FoodDataSO> targetFoods = null;
 
@@ -50,7 +50,7 @@ namespace Restaurant.Orders
                 orderItems.Add(new OrderItem(selectedFood, amount));
             }
 
-            OrderData newOrder = new OrderData(chairID, orderItems);
+            OrderData newOrder = new OrderData(customerID, orderItems);
 
             if (OrderManager.Instance != null)
             {

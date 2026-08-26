@@ -27,11 +27,11 @@ public class CustomerNPCSeatedState : CustomerNPCState
         {
             OrderData orderData = OrderGenerator.Instance.CreateRandomOrder(npc.CustomerID, (RestaurantType)npc.RestaurantID);
 
+            // 주문 후 UI를 띄워야함
+            OrderUIManager.Instance.SetCustomerOrderUI(orderData, transform);
+
             npc.SetMyOrder(orderData);
         }
-
-        // 주문 후 UI를 띄워야함
-       
     }
 
     /*

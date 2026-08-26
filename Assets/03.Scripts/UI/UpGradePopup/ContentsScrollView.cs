@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -55,8 +55,8 @@ public class ContentsScrollView : MonoBehaviour
             if (itemScript != null)
             {
                 //content data set, load
-                itemScript.SetDate(contents.Contents[i]);
                 itemScript.SetRestaurantType(restaurantType);
+                itemScript.SetDate(contents.Contents[i]);
             }
         }
     }

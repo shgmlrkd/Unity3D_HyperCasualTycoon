@@ -23,6 +23,7 @@ public enum EmployeeState
 public enum PoolType
 {
     Customer,
+    Order,
     Money
 }
 

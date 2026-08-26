@@ -1,31 +1,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Restaurant.Foods;
+using System;
 
 namespace Restaurant.Orders
 {
     public class OrderManager : MonoSingleton<OrderManager>
     {
-        // Key: 의자(Chair)의 InstanceID
+        // Key: 손님(Customer)의 InstanceID
         private Dictionary<int, OrderData> activeOrders = new Dictionary<int, OrderData>();
 
+        public event Action<int, OrderItem> OnChangeOrderItem;
         public void RegisterOrder(OrderData newOrder)
         {
             if (newOrder == null) return;
 
-            if (activeOrders.ContainsKey(newOrder.tableIndex))
+            if (activeOrders.ContainsKey(newOrder.customerID))
             {
-                Debug.LogWarning($"[OrderManager] Chair ID {newOrder.tableIndex} 위치에 이미 주문이 존재합니다.");
+                Debug.LogWarning($"[OrderManager] Customer ID {newOrder.customerID} 위치에 이미 주문이 존재합니다.");
                 return;
             }
 
-            activeOrders.Add(newOrder.tableIndex, newOrder);
-            Debug.Log($"[OrderManager] Chair ID {newOrder.tableIndex} 주문 등록 완료");
+            activeOrders.Add(newOrder.customerID, newOrder);
+            Debug.Log($"[OrderManager] Customer ID {newOrder.customerID} 주문 등록 완료");
 
             EventManager.Instance?.Publish(EventType.OnOrderCreated, newOrder);
         }
 
-        public bool ServeFoodToTable(int chairID, FoodDataSO food)
+        public bool ServeFoodToTable(int customerID, FoodDataSO food)
         {
             // 매개변수로 FoodData가 없다면 false
             if (food == null)
@@ -34,7 +36,7 @@ namespace Restaurant.Orders
             }
             
             // 이건 원래 있었던 코드입니다.
-            if (!activeOrders.TryGetValue(chairID, out OrderData order))
+            if (!activeOrders.TryGetValue(customerID, out OrderData order))
             {
                 return false;
             }
@@ -60,14 +62,15 @@ namespace Restaurant.Orders
                 // 음식 수량 증가
                 item.currentAmount++;
 
-                Debug.Log($"Chair ID {chairID} [OrderManager] 서빙 성공: {food.foodName} ({item.currentAmount}/{item.requiredAmount})");
+                Debug.Log($"Customer ID {customerID} [OrderManager] 서빙 성공: {food.foodName} ({item.currentAmount}/{item.requiredAmount})");
 
+                OnChangeOrderItem?.Invoke(customerID, item);
                 EventManager.Instance?.Publish(EventType.OnOrderUpdated, order);
                 
                 // 모든 주문 음식이 충족되었다면 주문 완료
                 if (order.IsFulfilled)
                 {
-                    CompleteOrder(chairID);
+                    CompleteOrder(customerID);
                 }
 
                 return true;
@@ -76,21 +79,21 @@ namespace Restaurant.Orders
             return false;
         }
 
-        private void CompleteOrder(int chairID)
+        private void CompleteOrder(int customerID)
         {
-            if (activeOrders.TryGetValue(chairID, out OrderData order))
+            if (activeOrders.TryGetValue(customerID, out OrderData order))
             {
                 order.status = OrderStatus.Completed;
-                Debug.Log($"[OrderManager] Chair ID {chairID} 모든 음식 서빙 완료!");
+                Debug.Log($"[OrderManager] Customer ID {customerID} 모든 음식 서빙 완료!");
 
                 EventManager.Instance?.Publish(EventType.OnOrderCompleted, order);
-                activeOrders.Remove(chairID);
+                activeOrders.Remove(customerID);
             }
         }
 
-        public OrderData GetOrder(int chairID)
+        public OrderData GetOrder(int customerID)
         {
-            activeOrders.TryGetValue(chairID, out OrderData order);
+            activeOrders.TryGetValue(customerID, out OrderData order);
             return order;
         }
     }

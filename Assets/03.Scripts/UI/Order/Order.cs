@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +9,32 @@ public class Order : MonoBehaviour
     [SerializeField] private Image foodImg;
     //order Count
     [SerializeField] private TextMeshProUGUI orderCount;
+
+    private Transform camTransform;
+
+    public Sprite FoodSprite => foodImg.sprite;
+
+    private void Awake()
+    {
+        camTransform = Camera.main.transform;
+    }
+
+    private void OnEnable()
+    {
+        foodImg.sprite = null;
+    }
+
+    private void LateUpdate()
+    {
+        if (camTransform != null)
+        {
+            Vector3 rotation = transform.eulerAngles;
+
+            rotation.y = camTransform.eulerAngles.y;
+
+            transform.eulerAngles = rotation;
+        }
+    }
 
     //20260809
     //JS.Shin
@@ -24,6 +50,20 @@ public class Order : MonoBehaviour
         this.orderCount.SetText(SetOrderCount(orderCount));    
         
     }
+
+    // 서빙 시 갱신
+    public void UpdateOrderInfo(int orderCount)
+    {
+        // 주문 개수가 0이면 완료된 제품
+        if (orderCount == 0)
+        {
+            PoolManager.Instance.Release(PoolType.Order, this);
+            return;
+        }
+
+        this.orderCount.SetText(SetOrderCount(orderCount));
+    }
+
     //20260813
     //JS.Shin
     //DestroyOrder : Destroy Order
