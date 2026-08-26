@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 5092543731683821965}
   m_Layer: 3
   m_Name: EmployeeNPC
-  m_TagString: Untagged
+  m_TagString: EmployeeNPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,8 +223,6 @@ MonoBehaviour:
   targetSelector: {fileID: 6010599842695507190}
   stateController: {fileID: 4665564779210156202}
   moveController: {fileID: 7492376252458592222}
-  index: 0
-  serveFoodType: -1
   carrier: {fileID: 6795787007588090412}
 --- !u!114 &6010599842695507190
 MonoBehaviour:
