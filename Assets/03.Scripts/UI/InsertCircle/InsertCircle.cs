@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,11 +16,50 @@ public class InsertCircle : MonoBehaviour
     //MainRestaurant : 0
     [SerializeField] private RestaurantType restaurantType;
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.TryGetComponent(out Carrier carrier)) return;
+
+        //play, npc 자식 - circle Gauge 
+        CircleGauge circleGauge =
+                other.GetComponentInChildren<CircleGauge>(true);
+
+        if (CircleType.Food == type)
+        {
+            // 음식 용량 최대치면 상호작용 X
+            if (carrier.IsFull)
+            {
+                return;
+            }
+
+            if (foodImg != null)
+            {
+                //circleGauge 내의 푸드 이미지
+                circleGauge.SetFoodImg(foodImg);
+            }
+
+            //circleGauge 활성화
+            circleGauge.SetActiveGauge(true);
+        }
+        //쓰레기
+        else if (CircleType.Basic == type)
+        {
+            //npc x
+            if (other.CompareTag("EmployeeNPC")) return;
+
+            // 음식을 들고 있지 않으면 X
+            if (!carrier.HasItems) return;
+
+            //circleGauge 활성화
+            circleGauge.SetActiveGauge(true);
+        }
+    }
 
     private void OnTriggerStay(Collider collision)
     {
-        
-        if (!collision.CompareTag("Player") && !collision.CompareTag("EmployeeNPC")) return;
+
+        if (!collision.TryGetComponent(out Carrier carrier)) return;
+
         //play, npc 자식 - circle Gauge 
         CircleGauge circleGauge =
                 collision.GetComponentInChildren<CircleGauge>(true);
@@ -58,21 +97,25 @@ public class InsertCircle : MonoBehaviour
         //음식
         else if (CircleType.Food == type) 
         {
-            if (foodImg != null)
+            // 최대치면 게이지 비활성화
+            if (carrier.IsFull)
             {
-                //circleGauge 내의 푸드 이미지
-                circleGauge.SetFoodImg(foodImg);
+                circleGauge.SetActiveGauge(false);
+                return;
             }
-            //circleGauge 활성화
-            circleGauge.SetActiveGauge(true);   
         }
         //쓰레기
         else if (CircleType.Basic == type) 
         {
             //npc x
             if (collision.CompareTag("EmployeeNPC")) return;
-            //circleGauge 활성화
-            circleGauge.SetActiveGauge(true);
+            
+            // 음식을 들고 있지 않으면 X
+            if (!carrier.HasItems)
+            {
+                circleGauge.SetActiveGauge(false);
+                return;
+            }
         }  
         
 

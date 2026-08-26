@@ -27,4 +27,11 @@ public class TrashCanZone : MonoBehaviour, IInteractable
     {
         timer = 0f;
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.CompareTag("Player")) return;
+
+        ResetTimer();
+    }
 }
