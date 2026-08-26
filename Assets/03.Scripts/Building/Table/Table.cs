@@ -295,6 +295,33 @@ public class Table : MonoBehaviour
         return hasFood;
     }
 
+    public int GetNeedFoodCount(FoodType foodType)
+    {
+        int needCount = 0;
+
+        if (customers.Count == 0)
+            return needCount;
+
+        foreach (CustomerNPC customer in customers.Values)
+        {
+            if (customer.MyOrder == null)
+                continue;
+
+            foreach (OrderItem item in customer.MyOrder.orderItems)
+            {
+                if (item.food.foodID != foodType)
+                    continue;
+
+                if (item.IsFulfilled)
+                    continue;
+
+                needCount += item.requiredAmount;
+            }
+        }
+
+        return needCount;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out CustomerNPC customerNPC))
