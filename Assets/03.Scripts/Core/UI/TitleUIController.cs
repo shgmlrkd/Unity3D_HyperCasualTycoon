@@ -7,11 +7,13 @@ public class TitleUIController : MonoBehaviour
 
     public void OnClickNewGame()
     {
+        SoundManager.Instance.PlaySFX();
         UIManager.Instance?.OnClickNewGame();
     }
 
     public void OnClickLoad()
     {
+        SoundManager.Instance.PlaySFX();
         UIManager.Instance?.OnClickLoad();
     }
 
@@ -19,6 +21,7 @@ public class TitleUIController : MonoBehaviour
     {
         if (optionPanel != null)
         {
+            SoundManager.Instance.PlaySFX();
             optionPanel.SetActive(true);
         }
     }
@@ -27,12 +30,14 @@ public class TitleUIController : MonoBehaviour
     {
         if (optionPanel != null)
         {
+            SoundManager.Instance.PlaySFX();
             optionPanel.SetActive(false);
         }
     }
 
     public void OnClickExit()
     {
+        SoundManager.Instance.PlaySFX();
         UIManager.Instance?.OnClickExit();
     }
 }

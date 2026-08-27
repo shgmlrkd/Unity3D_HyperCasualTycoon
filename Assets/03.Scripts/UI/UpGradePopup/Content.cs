@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -70,6 +70,7 @@ public class Content : MonoBehaviour
     //버튼 이벤트
     private void onClickUpgrade()
     {
+        SoundManager.Instance.PlaySFX();
 
         //Money Manager
         //CurrencyManager.Instance.TrySpendGold(UpgradePay);
