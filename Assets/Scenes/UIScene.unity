@@ -1040,7 +1040,7 @@ PrefabInstance:
     - target: {fileID: 5772555824289722454, guid: 90a26d9ef9dea0b438d14c9beed1e4e2, type: 3}
       propertyPath: foodImg
       value: 
-      objectReference: {fileID: -306352619, guid: f2525cf5f6703c441aee60b7cfcaa237, type: 3}
+      objectReference: {fileID: 254808196, guid: 3eee46b9dc2962441942817b8a9c7065, type: 3}
     - target: {fileID: 5772555824289722454, guid: 90a26d9ef9dea0b438d14c9beed1e4e2, type: 3}
       propertyPath: restaurantType
       value: -1
