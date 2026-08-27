@@ -8,9 +8,15 @@ public class SaveData
     public int money = 121;
     public int gold = 120;
     public int CurrentUnlockIndex = 0;
-        
-        // 구 기획의 데이터. 일단 지우지는 않고 남겨둠.
-        public int currentDay = 1;
+
+    public int playerUpgradeLevel = 1;      // 기본값 1로 하면 되나? 몇으로 해야되지?
+    public int employee01UpgradeLevel = 0;
+    public int employee02UpgradeLevel = 0;
+    public int employee03UpgradeLevel = 0;
+    public int employee04UpgradeLevel = 0;
+
+    // 구 기획의 데이터. 일단 지우지는 않고 남겨둠.
+    public int currentDay = 1;
         public int reputation;
         public int visitorCount;
         public int festivalStage;
@@ -78,6 +84,15 @@ public class SaveManager : MonoSingleton<SaveManager>
             CurrentData.CurrentUnlockIndex = UnlockPointManager.Instance.CurrentUnlockPointIndex;
         }
 
+        if (StateManager.Instance != null)
+        {
+            CurrentData.playerUpgradeLevel = StateManager.Instance.GetPopupUpgradeLevel(RestaurantType.PizzaHamburger, TypeId.Player);
+            CurrentData.employee01UpgradeLevel = StateManager.Instance.GetPopupUpgradeLevel(RestaurantType.PizzaHamburger, TypeId.Employee01);
+            CurrentData.employee02UpgradeLevel = StateManager.Instance.GetPopupUpgradeLevel(RestaurantType.PizzaHamburger, TypeId.Employee02);
+            CurrentData.employee03UpgradeLevel = StateManager.Instance.GetPopupUpgradeLevel(RestaurantType.CakeIcecream, TypeId.Employee03);
+            CurrentData.employee04UpgradeLevel = StateManager.Instance.GetPopupUpgradeLevel(RestaurantType.CakeIcecream, TypeId.Employee04);
+        }
+
         try
         {
             string json = JsonUtility.ToJson(CurrentData, true);
@@ -119,6 +134,12 @@ public class SaveManager : MonoSingleton<SaveManager>
 
             CurrentData = loadedData;
             IsDirty = false;
+
+            if (StateManager.Instance != null)
+            {
+                StateManager.Instance.ApplyLoadedLevels(CurrentData);
+            }
+
             Debug.Log($"[SaveManager] 세이브 로드 성공! Money: {CurrentData.money}, Gold: {CurrentData.gold}, UnlockIndex: {CurrentData.CurrentUnlockIndex}");
             return true;
         }
