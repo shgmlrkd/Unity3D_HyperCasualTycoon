@@ -166,7 +166,7 @@ public class UI_PauseMenu : MonoBehaviour
             SetConfirmModalWidth(SAVE_WIDTH);
 
             confirmModal?.ShowConfirm(
-                "You already have a save file.\nDo you want to overwrite?",
+                "이미 저장된 게임이 있습니다.\n덮어쓰시겠습니까?",
                 onYes: ExecuteSave
             );
         }
@@ -183,12 +183,12 @@ public class UI_PauseMenu : MonoBehaviour
         if (success)
         {
             SetConfirmModalWidth(SAVE_COMPLETE_WIDTH);
-            confirmModal?.ShowAlert("Game Save Complete.");
+            confirmModal?.ShowAlert("게임 저장이 완료되었습니다.");
         }
         else
         {
             SetConfirmModalWidth(SAVE_FAILED_WIDTH);
-            confirmModal?.ShowAlert("Game Save Failed. Try Again Later.");
+            confirmModal?.ShowAlert("게임 저장에 실패했습니다.\n잠시 후 다시 시도해주세요.");
         }
     }
 
@@ -201,7 +201,7 @@ public class UI_PauseMenu : MonoBehaviour
         if (SaveManager.Instance != null && SaveManager.Instance.IsDirty)
         {
             confirmModal?.ShowConfirm(
-                "You have not saved the game.\nDo you want to go to title without saving?",
+                "저장하지 않은 내용이 있습니다.\n저장하지 않고 타이틀 화면으로 이동하시겠습니까?",
                 onYes: GoToTitleScene
             );
         }

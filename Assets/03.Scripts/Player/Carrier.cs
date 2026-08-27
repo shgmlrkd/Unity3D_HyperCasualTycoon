@@ -7,7 +7,7 @@ public class Carrier : MonoBehaviour
 {
     [Header("Stacking Settings")]
     [SerializeField] private Transform carryPoint;
-    [SerializeField] private int maxCapacity = 0;
+    private int maxCapacity = 0;
     [SerializeField] private float itemSpacing = 0.05f;
     private CircleGauge circleGauge;
 

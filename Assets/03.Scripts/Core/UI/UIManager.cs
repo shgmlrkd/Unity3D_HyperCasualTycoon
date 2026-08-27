@@ -6,6 +6,9 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] private string titleSceneName = "TitleScene";
     [SerializeField] private string inGameSceneName = "InGameScene";
 
+    private bool isNewGame = false;
+    public bool IsNewGame => isNewGame;
+
     public void OnClickNewGame()
     {
         Debug.Log("[UIManager] New Game 버튼 클릭 - 매니저 데이터 리셋 후 이동");
@@ -23,6 +26,7 @@ public class UIManager : MonoSingleton<UIManager>
 
         if (SceneManagerEx.Instance != null)
         {
+            SetNewGame(true);
             SceneManagerEx.Instance.LoadScene(inGameSceneName);
         }
     }
@@ -68,6 +72,11 @@ public class UIManager : MonoSingleton<UIManager>
 #else
         Application.Quit();
 #endif
+    }
+
+    public void SetNewGame(bool isNewGame)
+    {
+        this.isNewGame = isNewGame;
     }
 
     public void OnClickTestSFX()

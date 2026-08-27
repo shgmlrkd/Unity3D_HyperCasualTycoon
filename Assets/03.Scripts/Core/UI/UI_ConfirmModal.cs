@@ -30,7 +30,7 @@ public class UI_ConfirmModal : MonoBehaviour
         }
     }
 
-    public void ShowConfirm(string message, Action onYes, Action onNo = null, string yesText = "Yes", string noText = "No")
+    public void ShowConfirm(string message, Action onYes, Action onNo = null, string yesText = "네", string noText = "아니요")
     {
         gameObject.SetActive(true);
         transform.SetAsLastSibling();
@@ -45,7 +45,7 @@ public class UI_ConfirmModal : MonoBehaviour
         onNoCallback = onNo;
     }
 
-    public void ShowAlert(string message, Action onConfirm = null, string confirmText = "OK")
+    public void ShowAlert(string message, Action onConfirm = null, string confirmText = "확인")
     {
         gameObject.SetActive(true);
         transform.SetAsLastSibling();

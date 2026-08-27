@@ -15,20 +15,20 @@ MonoBehaviour:
   contents:
   - typeId: 3
     foodType: 2
-    typeText: Cake Assistant
+    typeText: "\uCF00\uC774\uADF8 \uB2F4\uB2F9 \uC9C1\uC6D0"
     image: {fileID: 21300000, guid: ad91465546d8e4c0981eb95b460b5df7, type: 3}
-    info: Upgrade Holding Capacity
-    upgradeMaxCount: 50
+    info: "\uD604\uC7AC \uBCF4\uC720 \uAC00\uB2A5 \uC218\uB7C9"
+    upgradeMaxCount: 10
     textColor: {r: 0, g: 0, b: 0, a: 1}
     backgroundColor: {r: 1, g: 1, b: 1, a: 1}
     position: {x: 6.5, y: -0.01000017, z: -8}
     employeePrefab: {fileID: 883006131414419459, guid: 3fef6d8979b6b7840ab5b52fd2078279, type: 3}
   - typeId: 4
     foodType: 3
-    typeText: Icecream Assistant
+    typeText: "\uC544\uC774\uC2A4\uD06C\uB9BC \uB2F4\uB2F9 \uC9C1\uC6D0"
     image: {fileID: 21300000, guid: ccc9f2bec4bb243d1983d33aaaa83285, type: 3}
-    info: Upgrade Holding Capacity
-    upgradeMaxCount: 50
+    info: "\uD604\uC7AC \uBCF4\uC720 \uAC00\uB2A5 \uC218\uB7C9"
+    upgradeMaxCount: 10
     textColor: {r: 0, g: 0, b: 0, a: 1}
     backgroundColor: {r: 1, g: 1, b: 1, a: 1}
     position: {x: 4.5, y: -0.01000017, z: -8}
