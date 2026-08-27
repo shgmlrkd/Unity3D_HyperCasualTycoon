@@ -203,7 +203,61 @@ public class StateManager : MonoSingleton<StateManager>
         }
         return -1;
     }
+
+    public void ApplyLoadedLevels(SaveData saveData)
+    {
+        if (saveData == null) return;
+
+        SetUpgradeLevelData(RestaurantType.PizzaHamburger, TypeId.Player, saveData.playerUpgradeLevel);
+        SetUpgradeLevelData(RestaurantType.PizzaHamburger, TypeId.Employee01, saveData.employee01UpgradeLevel);
+        SetUpgradeLevelData(RestaurantType.PizzaHamburger, TypeId.Employee02, saveData.employee02UpgradeLevel);
+
+        SetUpgradeLevelData(RestaurantType.CakeIcecream, TypeId.Employee03, saveData.employee03UpgradeLevel);
+        SetUpgradeLevelData(RestaurantType.CakeIcecream, TypeId.Employee04, saveData.employee04UpgradeLevel);
+
+        Debug.Log("[StateManager] 불러온 업그레이드 레벨 적용 완료!");
+    }
+
+    private void SetUpgradeLevelData(RestaurantType restaurantType, TypeId typeId, int level)
+    {
+        if (dicData.ContainsKey(restaurantType) && dicData[restaurantType].ContainsKey(typeId))
+        {
+            StateData state = dicData[restaurantType][typeId];
+            //int oldLevel = state.UpgradCount;
+
+            state.UpgradCount = level;
+
+            //if (typeId != TypeId.Player && oldLevel == 0 && level > 0)
+            //{
+            //    MakeEmployee(restaurantType, typeId);
+            //}
+
+            OnUpgradeChanged?.Invoke(typeId, state.UpgradCount);
+        }
+    }
+
+    // 직원 NPC 생성 함수 따로 분리
+    public void SpawnLoadedEmployees()
+    {
+        foreach (KeyValuePair<RestaurantType, Dictionary<TypeId, StateData>> restaurantPair in dicData)
+        {
+            RestaurantType resType = restaurantPair.Key;
+
+            foreach (KeyValuePair<TypeId, StateData> typePair in restaurantPair.Value)
+            {
+                TypeId typeId = typePair.Key;
+                StateData state = typePair.Value;
+
+                if (typeId != TypeId.Player && state.UpgradCount > 0)
+                {
+                    MakeEmployee(resType, typeId);
+                }
+            }
+        }
+    }
 }
+
+
 
 //State class
 public class StateData
