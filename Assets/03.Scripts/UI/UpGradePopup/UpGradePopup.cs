@@ -1,4 +1,4 @@
-﻿using DG.Tweening;
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -85,6 +85,7 @@ public class UpGradePopup : MonoBehaviour
     //Close Popup
     public void onClickClosePopup()
     {
+        SoundManager.Instance.PlaySFX();
         var seq = DOTween.Sequence();
 
         transform.localScale = Vector3.one * 0.2f;

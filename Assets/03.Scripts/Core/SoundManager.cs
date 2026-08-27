@@ -34,17 +34,17 @@ public class SoundManager : MonoSingleton<SoundManager>
         bgmSource.Play();
     }
 
-    public void PlaySFX(AudioClip clip)
+    public void PlaySFX()
     {
-        if (clip == null || sfxSource == null) return;
+        if (sfxSource.clip == null || sfxSource == null) return;
 
-        sfxSource.PlayOneShot(clip);
+        sfxSource.PlayOneShot(sfxSource.clip);
     }
 
     public void PlaySFXTest()
     {
         if (sfxSource == null || sfxSource.clip == null) return;
-        PlaySFX(sfxSource.clip);
+        PlaySFX();
     }
 
     public void SetBGMVolume(float volume)

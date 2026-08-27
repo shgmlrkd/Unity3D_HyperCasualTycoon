@@ -61,12 +61,14 @@ public class UI_ConfirmModal : MonoBehaviour
 
     private void OnClickYes()
     {
+        SoundManager.Instance.PlaySFX();
         gameObject.SetActive(false);
         onYesCallback?.Invoke();
     }
 
     private void OnClickNo()
     {
+        SoundManager.Instance.PlaySFX();
         gameObject.SetActive(false);
         onNoCallback?.Invoke();
     }

@@ -1,10 +1,15 @@
-﻿using DG.Tweening;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.UI;
 
 public class UI_PauseMenu : MonoBehaviour
 {
+    private const float SAVE_COMPLETE_WIDTH = 1000.0f;
+    private const float SAVE_FAILED_WIDTH = 1450.0f;
+    private const float SAVE_WIDTH = 1200.0f;
+    private const float GO_TO_TITLE_WIDTH = 1600.0f;
+
     [Header("Panels")]
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject optionPanel;
@@ -129,8 +134,24 @@ public class UI_PauseMenu : MonoBehaviour
 
     }
 
+    private void SetConfirmModalWidth(float width)
+    {
+        if (confirmModal == null)
+            return;
+
+        RectTransform rectTransform = confirmModal.GetComponent<RectTransform>();
+
+        if (rectTransform == null)
+            return;
+
+        Vector2 size = rectTransform.sizeDelta;
+        size.x = width;
+        rectTransform.sizeDelta = size;
+    }
+
     public void OnClickResume()
     {
+        SoundManager.Instance.PlaySFX();
         GameManager.Instance?.ResumeGame();
     }
 
@@ -138,8 +159,12 @@ public class UI_PauseMenu : MonoBehaviour
     {
         if (SaveManager.Instance == null) return;
 
+        SoundManager.Instance.PlaySFX();
+
         if (SaveManager.Instance.HasSaveFile())
         {
+            SetConfirmModalWidth(SAVE_WIDTH);
+
             confirmModal?.ShowConfirm(
                 "You already have a save file.\nDo you want to overwrite?",
                 onYes: ExecuteSave
@@ -157,16 +182,22 @@ public class UI_PauseMenu : MonoBehaviour
 
         if (success)
         {
+            SetConfirmModalWidth(SAVE_COMPLETE_WIDTH);
             confirmModal?.ShowAlert("Game Save Complete.");
         }
         else
         {
+            SetConfirmModalWidth(SAVE_FAILED_WIDTH);
             confirmModal?.ShowAlert("Game Save Failed. Try Again Later.");
         }
     }
 
     public void OnClickToTitle()
     {
+        SoundManager.Instance.PlaySFX();
+
+        SetConfirmModalWidth(GO_TO_TITLE_WIDTH);
+
         if (SaveManager.Instance != null && SaveManager.Instance.IsDirty)
         {
             confirmModal?.ShowConfirm(
@@ -195,6 +226,7 @@ public class UI_PauseMenu : MonoBehaviour
     {
         if (optionPanel != null)
         {
+            SoundManager.Instance.PlaySFX();
             optionPanel.SetActive(true);
             contentPanel.SetActive(false);
         }
@@ -204,6 +236,7 @@ public class UI_PauseMenu : MonoBehaviour
     {
         if (optionPanel != null)
         {
+            SoundManager.Instance.PlaySFX();
             optionPanel.SetActive(false);
             contentPanel.SetActive(true);
         }
