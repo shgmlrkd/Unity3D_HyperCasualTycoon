@@ -1,11 +1,6 @@
-
-
 using System;
 using System.Collections.Generic;
-
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.Rendering.DebugUI;
 
 public class StateManager : MonoSingleton<StateManager>
 {
@@ -119,20 +114,6 @@ public class StateManager : MonoSingleton<StateManager>
     //   addLevel : level count
     public void AddUpgradeLevel(RestaurantType restaurantType, TypeId typeId, int addLevel)
     {
-        /*//max 레벨 보다 작으면
-        if (dicData[restaurantType][typeId].UpgradeMaxCount <= dicData[restaurantType][typeId].UpgradCount) return;
-
-        if (typeId != TypeId.Player // Employee 
-                && dicData[restaurantType][typeId].UpgradCount == 0  //레벨 0
-                && 0 < addLevel //0시상 upgrade
-                )
-            MakeEmployee(restaurantType, typeId);
-
-
-            //restaurantType - TypeId 레벨 업그레이드
-            dicData[restaurantType][typeId].UpgradCount += addLevel;*/
-
-
         StateData state = dicData[restaurantType][typeId];
 
         // 최대 레벨이면 종료
@@ -223,16 +204,8 @@ public class StateManager : MonoSingleton<StateManager>
         if (dicData.ContainsKey(restaurantType) && dicData[restaurantType].ContainsKey(typeId))
         {
             StateData state = dicData[restaurantType][typeId];
-            //int oldLevel = state.UpgradCount;
 
             state.UpgradCount = level;
-
-            //if (typeId != TypeId.Player && oldLevel == 0 && level > 0)
-            //{
-            //    MakeEmployee(restaurantType, typeId);
-            //}
-
-            OnUpgradeChanged?.Invoke(typeId, state.UpgradCount);
         }
     }
 
@@ -251,6 +224,7 @@ public class StateManager : MonoSingleton<StateManager>
                 if (typeId != TypeId.Player && state.UpgradCount > 0)
                 {
                     MakeEmployee(resType, typeId);
+                    OnUpgradeChanged?.Invoke(typeId, state.UpgradCount);
                 }
             }
         }

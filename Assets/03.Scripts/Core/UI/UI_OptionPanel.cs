@@ -30,10 +30,6 @@ public class UI_OptionPanel : MonoBehaviour
             });
         }
 
-        OnMasterVolumeChanged(option.masterVol);
-        OnBGMVolumeChanged(option.bgmVol);
-        OnSFXVolumeChanged(option.sfxVol);
-
         if (masterSlider != null)
         {
             masterSlider.onValueChanged.RemoveAllListeners();
@@ -85,6 +81,7 @@ public class UI_OptionPanel : MonoBehaviour
 
     public void OnClickClose()
     {
+        SoundManager.Instance.PlaySFX();
         gameObject.SetActive(false);
     }
 }
