@@ -70,7 +70,7 @@ public class Content : MonoBehaviour
     //버튼 이벤트
     private void onClickUpgrade()
     {
-        SoundManager.Instance.PlaySFX();
+        SoundManager.Instance.PlaySFX(SoundType.ButtonClick);
 
         //Money Manager
         //CurrencyManager.Instance.TrySpendGold(UpgradePay);

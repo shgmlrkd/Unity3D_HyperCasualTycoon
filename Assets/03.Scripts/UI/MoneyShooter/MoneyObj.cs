@@ -1,12 +1,15 @@
-﻿using UnityEngine;
+using DG.Tweening;
+using System;
+using UnityEngine;
 
 public class MoneyObj : MonoBehaviour
 {
-    //무브 스피드
-    [SerializeField] float moveSpeed = 3.0f;
+    private float moveDuration = 0.25f;
+    private float jumpPower = 0.8f;
 
     //도착 위치
     private Transform endPoint;
+    private Tween moveTween;
 
     //202600814
     //js.shin
@@ -15,25 +18,32 @@ public class MoneyObj : MonoBehaviour
     //endPoint : 도착 위치
     public void SetEndPoint(Transform endPoint)
     {
-        this.endPoint = endPoint;       
+        this.endPoint = endPoint;
+
+        // 돈 내는 연출
+        StartMove();
     }
 
-    void Update()
+    // 점프해서 이동 후 파괴
+    private void StartMove()
     {
-        //도착 위치 x
-        if (endPoint == null) return;
-        
-        //이동
-        gameObject.transform.position = Vector3.MoveTowards(
-                   gameObject.transform.position,
-                   endPoint.position,
-                   moveSpeed * Time.deltaTime
-               );
-        //도착
-        if ((gameObject != null
-            && Vector3.Distance(gameObject.transform.position, endPoint.position) < 0.01f))
-        {
-            Destroy(gameObject);
-        }
+        moveTween?.Kill();
+
+        moveTween = transform.DOJump(endPoint.position, jumpPower, 1, moveDuration)
+                             .SetEase(Ease.OutQuad)
+                             .OnComplete(OnMoveComplete);
+    }
+
+    private void OnMoveComplete()
+    {
+        SoundManager.Instance.PlaySFX(SoundType.Money);
+
+        moveTween = null;
+        Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        moveTween?.Kill();
     }
 }

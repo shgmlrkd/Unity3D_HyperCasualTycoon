@@ -165,11 +165,25 @@ public class Table : MonoBehaviour
 
             int count = orderItem.requiredAmount;
 
+            bool hasServedFood = false;
+
             sequence.AppendCallback(() =>
             {
                 for (int i = 0; i < count; i++)
                 {
-                    AppendSingleFoodServe(sequence, chairSide, customerNPC, carrier, orderItem, items);
+                    if (AppendSingleFoodServe(sequence, chairSide, customerNPC, carrier, orderItem, items))
+                    {
+                        hasServedFood = true;
+                    }
+                }
+            });
+
+            // 해당 음식 종류를 하나라도 서빙했다면 사운드 1회
+            sequence.AppendCallback(() =>
+            {
+                if (hasServedFood)
+                {
+                    SoundManager.Instance.PlaySFX(SoundType.Food);
                 }
             });
 
@@ -177,22 +191,24 @@ public class Table : MonoBehaviour
         }
     }
 
-    private void AppendSingleFoodServe(Sequence sequence, ChairSide chairSide, CustomerNPC customerNPC, Carrier carrier, OrderItem orderItem, List<CarrierItem> items)
+    private bool AppendSingleFoodServe(Sequence sequence, ChairSide chairSide, CustomerNPC customerNPC, Carrier carrier, OrderItem orderItem, List<CarrierItem> items)
     {
         if (orderItem.IsFulfilled)
-            return;
+            return false;
 
         CarrierItem item = carrier.GetOrderItem(orderItem.food.foodID);
 
         if (item == null)
-            return;
+            return false;
 
         bool isServed = OrderManager.Instance.ServeFoodToTable(customerNPC.CustomerID, orderItem.food);
 
         if (!isServed)
-            return;
+            return false;
 
         PlaceFood(chairSide, item, items);
+
+        return true;
     }
 
     // 주문 상태가 Completed가 아니고 주문 데이터가 존재하면 true
@@ -218,7 +234,7 @@ public class Table : MonoBehaviour
 
         item.transform.DOKill();
 
-        item.transform.DOMove(position, 0.5f);
+        item.transform.DOMove(position, 0.2f);
 
         // 테이블 위 음식으로 등록
         items.Add(item);

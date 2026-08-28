@@ -2528,9 +2528,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7236224060282959975, guid: 4878efd1e0be27d4f9aebe037eafe5ab, type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 403485805566930798}
+    - target: {fileID: 7236224060282959975, guid: 4878efd1e0be27d4f9aebe037eafe5ab, type: 3}
       propertyPath: produceItemData
       value: 
       objectReference: {fileID: 11400000, guid: 895f4a116bc94384696c8a8d6a595360, type: 2}
+    - target: {fileID: 7634807560975088712, guid: 4878efd1e0be27d4f9aebe037eafe5ab, type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 4422017565616652022}
     - target: {fileID: 7634807560975088712, guid: 4878efd1e0be27d4f9aebe037eafe5ab, type: 3}
       propertyPath: produceItemData
       value: 
@@ -3725,9 +3733,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7236224060282959975, guid: 4878efd1e0be27d4f9aebe037eafe5ab, type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 3059281773083743036}
+    - target: {fileID: 7236224060282959975, guid: 4878efd1e0be27d4f9aebe037eafe5ab, type: 3}
       propertyPath: produceItemData
       value: 
       objectReference: {fileID: 11400000, guid: 5c4c412c6f0727045995495cd6409835, type: 2}
+    - target: {fileID: 7634807560975088712, guid: 4878efd1e0be27d4f9aebe037eafe5ab, type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 3971523441978914585}
     - target: {fileID: 7634807560975088712, guid: 4878efd1e0be27d4f9aebe037eafe5ab, type: 3}
       propertyPath: produceItemData
       value: 
@@ -3748,6 +3764,16 @@ PrefabInstance:
 --- !u!4 &1262640122566585178 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6448161422506546843, guid: 4878efd1e0be27d4f9aebe037eafe5ab, type: 3}
+  m_PrefabInstance: {fileID: 5258432115541671361}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3059281773083743036 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7101460513710026493, guid: 4878efd1e0be27d4f9aebe037eafe5ab, type: 3}
+  m_PrefabInstance: {fileID: 5258432115541671361}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3971523441978914585 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9215521117322070744, guid: 4878efd1e0be27d4f9aebe037eafe5ab, type: 3}
   m_PrefabInstance: {fileID: 5258432115541671361}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5334635396386966173

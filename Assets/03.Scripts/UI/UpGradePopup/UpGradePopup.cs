@@ -85,7 +85,7 @@ public class UpGradePopup : MonoBehaviour
     //Close Popup
     public void onClickClosePopup()
     {
-        SoundManager.Instance.PlaySFX();
+        SoundManager.Instance.PlaySFX(SoundType.ButtonClick);
         var seq = DOTween.Sequence();
 
         transform.localScale = Vector3.one * 0.2f;
