@@ -63,6 +63,12 @@ public class SaveManager : MonoSingleton<SaveManager>
     {
         CurrentData = new SaveData();
         IsDirty = false;
+        
+        if (StateManager.Instance != null)
+        {
+            StateManager.Instance.ResetToDefaultLevels();
+        }
+        
         Debug.Log("[SaveManager] New Game 준비 완료 (IsDirty = false)");
     }
 
