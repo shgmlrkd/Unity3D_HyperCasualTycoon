@@ -14,7 +14,7 @@ public class InsertBuild : MonoBehaviour
     //코루틴 - 지불 지연 시간
     [SerializeField] private float payWaitTime = 0.05f;
 
-    private const float WAIT_TIME = 1.0f;
+    private const float WAIT_TIME = 0.5f;
 
     //빌딩 가격
     //private int buildMoney = 0;
@@ -22,6 +22,9 @@ public class InsertBuild : MonoBehaviour
     private Coroutine payMoneyCoroutine;
     //Complit
     private bool isComplit = false;
+    
+    public int BuildMoney => buildMoney;
+
     //Complit set
     public void SetIsComplit(bool isComplit)
     {
@@ -67,8 +70,8 @@ public class InsertBuild : MonoBehaviour
 
     private void OnTriggerStay(Collider collision)
     {
-        //보유 금액이 지불 금액 보다 적으면 리턴
-        if (CurrencyManager.Instance.CurrentMoney < payMoney) return;
+        // 완료했으면 중단
+        if (isComplit) return;
 
         if (!collision.TryGetComponent(out PlayerMovement player)) return;
 
@@ -83,6 +86,9 @@ public class InsertBuild : MonoBehaviour
 
             return;
         }
+
+        //보유 금액이 지불 금액 보다 적으면 리턴
+        if (CurrencyManager.Instance.CurrentMoney < payMoney) return;
 
         // 이미 지불 중이면 다시 시작하지 않음
         if (payMoneyCoroutine != null) return;
@@ -105,24 +111,33 @@ public class InsertBuild : MonoBehaviour
             // 실제 지불할 금액 계산
             int currentPayMoney = Mathf.Min(payMoney, buildMoney);
 
+            // 돈을 지불 할 수 있는지 체크
+            if (!CurrencyManager.Instance.TrySpendMoney(currentPayMoney))
+            {
+                payMoneyCoroutine = null;
+                yield break;
+            }
+
             // 지불 모션
             moneyShooter.ShootMoneny(transform);
 
             // 건설에 필요한 금액에서 실제 지불 금액만 차감
             buildMoney -= currentPayMoney;
 
-            // 보유 금액 차감
-            CurrencyManager.Instance.TrySpendMoney(currentPayMoney);
-
             // 건설 금액 갱신
             SetBuildMoney(buildMoney);
+
+            // 마지막 지불이라면 즉시 완료
+            if (buildMoney <= 0)
+            {
+                SetIsComplit(true);
+                payMoneyCoroutine = null;
+                yield break;
+            }
+
             yield return new WaitForSeconds(payWaitTime);
 
         }
-
-        // 지불 완료
-        SetIsComplit(true);
-        payMoneyCoroutine = null;
     }
     private void OnTriggerExit(Collider collision)
     {
