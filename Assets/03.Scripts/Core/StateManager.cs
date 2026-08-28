@@ -229,6 +229,22 @@ public class StateManager : MonoSingleton<StateManager>
             }
         }
     }
+
+    public void ResetToDefaultLevels()
+    {
+        foreach (KeyValuePair<RestaurantType, Dictionary<TypeId, StateData>> restaurantPair in dicData)
+        {
+            foreach (KeyValuePair<TypeId, StateData> typePair in restaurantPair.Value)
+            {
+                TypeId typeId = typePair.Key;
+                StateData state = typePair.Value;
+
+                state.UpgradCount = (typeId == TypeId.Player) ? 1 : 0;
+            }
+        }
+
+        Debug.Log("[StateManager] 모든 레벨 데이터가 초기값으로 리셋되었습니다.");
+    }
 }
 
 
