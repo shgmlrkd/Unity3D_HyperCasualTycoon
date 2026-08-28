@@ -5,6 +5,7 @@ public class SoundManager : MonoSingleton<SoundManager>
     [Header("오디오 소스 설정")]
     [SerializeField] private AudioSource bgmSource;
     [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioClip[] clips;
 
     protected override void Awake()
     {
@@ -34,9 +35,11 @@ public class SoundManager : MonoSingleton<SoundManager>
         bgmSource.Play();
     }
 
-    public void PlaySFX()
+    public void PlaySFX(SoundType soundType)
     {
         if (sfxSource.clip == null || sfxSource == null) return;
+
+        sfxSource.clip = clips[(int)soundType];
 
         sfxSource.PlayOneShot(sfxSource.clip);
     }
@@ -44,7 +47,7 @@ public class SoundManager : MonoSingleton<SoundManager>
     public void PlaySFXTest()
     {
         if (sfxSource == null || sfxSource.clip == null) return;
-        PlaySFX();
+        PlaySFX(SoundType.ButtonClick);
     }
 
     public void SetBGMVolume(float volume)

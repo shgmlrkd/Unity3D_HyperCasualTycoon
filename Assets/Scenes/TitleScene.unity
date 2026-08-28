@@ -1259,6 +1259,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
   bgmSource: {fileID: 1846215242}
   sfxSource: {fileID: 1336924905}
+  clips:
+  - {fileID: 8300000, guid: b60d5f607e4cd1d4d9580619900526c1, type: 3}
+  - {fileID: 8300000, guid: 742d5ab5b37a64b4f950e036be2a493b, type: 3}
+  - {fileID: 8300000, guid: 9971962cba0dfc244baed5e4e840dfc7, type: 3}
 --- !u!1 &1454071951
 GameObject:
   m_ObjectHideFlags: 0

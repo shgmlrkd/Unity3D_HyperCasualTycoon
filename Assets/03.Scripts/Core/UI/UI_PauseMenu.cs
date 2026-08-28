@@ -151,7 +151,7 @@ public class UI_PauseMenu : MonoBehaviour
 
     public void OnClickResume()
     {
-        SoundManager.Instance.PlaySFX();
+        SoundManager.Instance.PlaySFX(SoundType.ButtonClick);
         GameManager.Instance?.ResumeGame();
     }
 
@@ -159,7 +159,7 @@ public class UI_PauseMenu : MonoBehaviour
     {
         if (SaveManager.Instance == null) return;
 
-        SoundManager.Instance.PlaySFX();
+        SoundManager.Instance.PlaySFX(SoundType.ButtonClick);
 
         if (SaveManager.Instance.HasSaveFile())
         {
@@ -194,7 +194,7 @@ public class UI_PauseMenu : MonoBehaviour
 
     public void OnClickToTitle()
     {
-        SoundManager.Instance.PlaySFX();
+        SoundManager.Instance.PlaySFX(SoundType.ButtonClick);
 
         SetConfirmModalWidth(GO_TO_TITLE_WIDTH);
 
@@ -226,7 +226,7 @@ public class UI_PauseMenu : MonoBehaviour
     {
         if (optionPanel != null)
         {
-            SoundManager.Instance.PlaySFX();
+            SoundManager.Instance.PlaySFX(SoundType.ButtonClick);
             optionPanel.SetActive(true);
             contentPanel.SetActive(false);
         }
@@ -236,7 +236,7 @@ public class UI_PauseMenu : MonoBehaviour
     {
         if (optionPanel != null)
         {
-            SoundManager.Instance.PlaySFX();
+            SoundManager.Instance.PlaySFX(SoundType.ButtonClick);
             optionPanel.SetActive(false);
             contentPanel.SetActive(true);
         }

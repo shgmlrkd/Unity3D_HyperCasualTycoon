@@ -39,5 +39,7 @@ public class MoneyManager : LocalSingleton<MoneyManager>
             money.Spawn(spawnPosition);
             money.Drop(targetPosition);
         }
+
+        SoundManager.Instance.PlaySFX(SoundType.Money);
     }
 }

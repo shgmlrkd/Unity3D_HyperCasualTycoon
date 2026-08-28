@@ -128,6 +128,8 @@ public class Money : MonoBehaviour
 
                 CurrencyManager.Instance.AddMoney(money);
 
+                SoundManager.Instance.PlaySFX(SoundType.Money);
+
                 ReleaseMoney();
             });
     }

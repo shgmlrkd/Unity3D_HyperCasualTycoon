@@ -51,8 +51,11 @@ public class Carrier : MonoBehaviour
         newItem.transform.SetParent(targetParent);
 
         // 머리 위/손 로컬 위치 및 회전 설정
-        newItem.transform.localPosition = new Vector3(0.0f, currentYOffset, 0.0f);
+        Vector3 endPos = new Vector3(0.0f, currentYOffset, 0.0f);
+        newItem.transform.DOLocalJump(endPos, 1.0f, 1, 0.15f);
         newItem.transform.localRotation = Quaternion.identity;
+
+        SoundManager.Instance.PlaySFX(SoundType.Food);
 
         itemList.Add(newItem);
         circleGauge.StartGauge();

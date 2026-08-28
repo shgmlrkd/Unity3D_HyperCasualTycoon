@@ -3,8 +3,8 @@ using UnityEngine;
 public class CurrencyManager : MonoSingleton<CurrencyManager>
 {
     [Header("재화 설정")]
-    [SerializeField] private int initialGold = 120;
-    [SerializeField] private int initialMoney = 121;
+    private int initialGold = 120;
+    private int initialMoney = 2060;
     //[SerializeField] private int initialGems = 0;
 
     public int CurrentGold { get; private set; }

@@ -114,3 +114,10 @@ public enum TypeId
     Employee04,
     Length
 }
+
+public enum SoundType
+{
+    ButtonClick,
+    Food,
+    Money
+}

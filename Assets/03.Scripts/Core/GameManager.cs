@@ -40,7 +40,7 @@ public class GameManager : MonoSingleton<GameManager>
         if (CurrentState == GameState.Play)
         {
             Time.timeScale = 0f;
-            SoundManager.Instance.PlaySFX();
+            SoundManager.Instance.PlaySFX(SoundType.ButtonClick);
             ChangeState(GameState.Pause);
         }
     }
@@ -50,7 +50,7 @@ public class GameManager : MonoSingleton<GameManager>
         if (CurrentState == GameState.Pause)
         {
             Time.timeScale = 1f;
-            SoundManager.Instance.PlaySFX();
+            SoundManager.Instance.PlaySFX(SoundType.ButtonClick);
             ChangeState(GameState.Play);
         }
     }

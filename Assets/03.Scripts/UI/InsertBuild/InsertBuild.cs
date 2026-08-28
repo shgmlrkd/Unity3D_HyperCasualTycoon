@@ -2,7 +2,7 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 using System.Collections;
-using UnityEngine.Rendering;
+
 public class InsertBuild : MonoBehaviour
 {
     //빌딩 건설시 지불금액 표시
@@ -12,11 +12,14 @@ public class InsertBuild : MonoBehaviour
     //지불금액
     [SerializeField] private int payMoney = 10;
     //코루틴 - 지불 지연 시간
-    [SerializeField] private float waitTime = 0.05f;
+    [SerializeField] private float payWaitTime = 0.05f;
+
+    private const float WAIT_TIME = 1.0f;
+
     //빌딩 가격
     //private int buildMoney = 0;
     //코루틴 start-end
-    private bool isStart = true;
+    private Coroutine payMoneyCoroutine;
     //Complit
     private bool isComplit = false;
     //Complit set
@@ -64,17 +67,27 @@ public class InsertBuild : MonoBehaviour
 
     private void OnTriggerStay(Collider collision)
     {
-        //코루틴 스타드
-        if (!isStart) return;
-
-
-        if (!collision.CompareTag("Player")) return;
         //보유 금액이 지불 금액 보다 적으면 리턴
         if (CurrencyManager.Instance.CurrentMoney < payMoney) return;
 
-        //지불 코루틴
-        StartCoroutine(PayMoney(collision));
-        
+        if (!collision.TryGetComponent(out PlayerMovement player)) return;
+
+        // 플레이어가 움직이면 지불 중인 코루틴 중단
+        if (player.IsMoving)
+        {
+            if (payMoneyCoroutine != null)
+            {
+                StopCoroutine(payMoneyCoroutine);
+                payMoneyCoroutine = null;
+            }
+
+            return;
+        }
+
+        // 이미 지불 중이면 다시 시작하지 않음
+        if (payMoneyCoroutine != null) return;
+
+        payMoneyCoroutine = StartCoroutine(PayMoney(collision));
     }
 
     //202600813
@@ -82,44 +95,34 @@ public class InsertBuild : MonoBehaviour
     //PayMoney : Set Build Money
     private IEnumerator PayMoney(Collider collision)
     {
+        // 지불 시작 전 유예시간
+        yield return new WaitForSeconds(WAIT_TIME);
 
-        isStart = false;
+        MoneyShooter moneyShooter = collision.GetComponentInChildren<MoneyShooter>();
 
-        // 실제 지불할 금액 계산
-        int currentPayMoney = Mathf.Min(payMoney, buildMoney);
-
-        //지불 모션
-        MoneyShooter moneyShooter =
-                collision.GetComponentInChildren<MoneyShooter>();
-        //지불 모션 실행, endPoint set
-        moneyShooter.ShootMoneny(gameObject.transform);
-
-        // 건설에 필요한 금액에서 실제 지불 금액만 차감
-        buildMoney -= currentPayMoney;
-
-        //지불금액 마이너스
-        //buildMoney -= payMoney;
-        //보유 금액 마이너스
-        //CurrencyManager.Instance.TrySpendMoney(payMoney);
-
-        CurrencyManager.Instance.TrySpendMoney(currentPayMoney);
-
-        yield return new WaitForSeconds(waitTime);
-        
-        //Set Build Money
-        SetBuildMoney(buildMoney);
-
-        //지불완료
-        if (buildMoney <= 0)
+        while (buildMoney > 0)
         {
-            //Complit - 지불 완료
-            SetIsComplit(true);
-            
+            // 실제 지불할 금액 계산
+            int currentPayMoney = Mathf.Min(payMoney, buildMoney);
+
+            // 지불 모션
+            moneyShooter.ShootMoneny(transform);
+
+            // 건설에 필요한 금액에서 실제 지불 금액만 차감
+            buildMoney -= currentPayMoney;
+
+            // 보유 금액 차감
+            CurrencyManager.Instance.TrySpendMoney(currentPayMoney);
+
+            // 건설 금액 갱신
+            SetBuildMoney(buildMoney);
+            yield return new WaitForSeconds(payWaitTime);
+
         }
-        else
-        {
-            isStart = true;
-        }
+
+        // 지불 완료
+        SetIsComplit(true);
+        payMoneyCoroutine = null;
     }
     private void OnTriggerExit(Collider collision)
     {

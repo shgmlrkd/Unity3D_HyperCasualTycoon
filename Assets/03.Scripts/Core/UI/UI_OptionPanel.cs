@@ -81,7 +81,7 @@ public class UI_OptionPanel : MonoBehaviour
 
     public void OnClickClose()
     {
-        SoundManager.Instance.PlaySFX();
+        SoundManager.Instance.PlaySFX(SoundType.ButtonClick);
         gameObject.SetActive(false);
     }
 }
