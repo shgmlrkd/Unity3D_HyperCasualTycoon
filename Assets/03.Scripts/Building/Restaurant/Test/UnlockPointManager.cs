@@ -9,6 +9,7 @@ public class UnlockPointManager : LocalSingleton<UnlockPointManager>
 
     public UnlockPoint[] UnlockPoints => unlockPoints;
     public int CurrentUnlockPointIndex => currentUnlockPointIndex;
+    public int CurrentUnlockPointIndexCost => unlockPoints[currentUnlockPointIndex].BuildCost;
 
     private void Awake()
     {
@@ -81,8 +82,21 @@ public class UnlockPointManager : LocalSingleton<UnlockPointManager>
             unlockPoints[i].gameObject.SetActive(i == currentUnlockIndex);
         }
 
+        SetUnlockBuildMoney();
+
         SubscribeCurrentUnlockPoint();
 
         Debug.Log($"[UnlockPointManager] 언락 인덱스 적용 : {CurrentUnlockPointIndex}");
+    }
+
+    private void SetUnlockBuildMoney()
+    {
+        if (SaveManager.Instance == null) return;
+
+        if (SaveManager.Instance.CurrentData == null) return;
+
+        int buildMoney = SaveManager.Instance.CurrentData.CurrentUnlockIndexCost;
+
+        unlockPoints[currentUnlockPointIndex].PayMoney.SetBuildMoney(buildMoney);
     }
 }

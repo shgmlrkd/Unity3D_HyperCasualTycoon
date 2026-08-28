@@ -123,7 +123,7 @@ public class Content : MonoBehaviour
         }
         else
         {
-            UpgradePay = StateManager.Instance.GetPopupUpgradeLevel(restaurantType, contentData.TypeId) * 10;
+            UpgradePay = StateManager.Instance.GetPopupUpgradeLevel(restaurantType, contentData.TypeId) * 20;
         }
         PayCount.SetText(
             SetPayCount(UpgradePay)

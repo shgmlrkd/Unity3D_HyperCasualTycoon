@@ -8,6 +8,8 @@ public class SaveData
     public int money = 121;
     public int gold = 120;
     public int CurrentUnlockIndex = 0;
+    // 해금할 때 남은 비용(?)
+    public int CurrentUnlockIndexCost = 2000;
 
     public int playerUpgradeLevel = 1;      // 기본값 1로 하면 되나? 몇으로 해야되지?
     public int employee01UpgradeLevel = 0;
@@ -17,9 +19,9 @@ public class SaveData
 
     // 구 기획의 데이터. 일단 지우지는 않고 남겨둠.
     public int currentDay = 1;
-        public int reputation;
-        public int visitorCount;
-        public int festivalStage;
+    public int reputation;
+    public int visitorCount;
+    public int festivalStage;
 }
 
 [System.Serializable]
@@ -63,12 +65,12 @@ public class SaveManager : MonoSingleton<SaveManager>
     {
         CurrentData = new SaveData();
         IsDirty = false;
-        
+
         if (StateManager.Instance != null)
         {
             StateManager.Instance.ResetToDefaultLevels();
         }
-        
+
         Debug.Log("[SaveManager] New Game 준비 완료 (IsDirty = false)");
     }
 
@@ -88,6 +90,7 @@ public class SaveManager : MonoSingleton<SaveManager>
         if (UnlockPointManager.Instance != null)
         {
             CurrentData.CurrentUnlockIndex = UnlockPointManager.Instance.CurrentUnlockPointIndex;
+            CurrentData.CurrentUnlockIndexCost = UnlockPointManager.Instance.CurrentUnlockPointIndexCost;
         }
 
         if (StateManager.Instance != null)
