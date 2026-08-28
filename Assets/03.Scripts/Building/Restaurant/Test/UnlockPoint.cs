@@ -7,6 +7,9 @@ public class UnlockPoint : MonoBehaviour
 
     private InsertBuild payMoney;
 
+    public InsertBuild PayMoney => payMoney;
+    public int BuildCost => payMoney.BuildMoney;
+
     private void Awake()
     {
         payMoney = GetComponentInChildren<InsertBuild>();
