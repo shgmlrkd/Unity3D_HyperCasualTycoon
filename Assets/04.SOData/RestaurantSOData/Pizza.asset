@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf41f392946c6540bf42d0aaa8d8725, type: 3}
+  m_Name: Pizza
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
+  itemId: 1
+  itemName: Pizza
+  itemHeight: 0.01
+  itemPrefab: {fileID: -290903836724709718, guid: cc3a5ef921ded7949b26e1dcd908ee19, type: 3}
