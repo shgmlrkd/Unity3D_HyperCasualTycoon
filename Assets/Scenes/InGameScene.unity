@@ -3672,6 +3672,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
+    - target: {fileID: 7859117556778352101, guid: 6bb8deac4d38ffa48af3abb099a12f02, type: 3}
+      propertyPath: dropCount
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

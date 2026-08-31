@@ -75,7 +75,17 @@ public class PlayerServe : MonoBehaviour
 
     public void SetTargetTable(Table table)
     {
+        if (targetTable == table)
+        {
+            return;
+        }
+
         targetTable = table;
+        serveRequested = true;
+    }
+
+    public void RequestServe()
+    {
         serveRequested = true;
     }
 
