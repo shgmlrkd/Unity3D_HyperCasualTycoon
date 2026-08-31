@@ -3672,6 +3672,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
+    - target: {fileID: 7859117556778352101, guid: 6bb8deac4d38ffa48af3abb099a12f02, type: 3}
+      propertyPath: dropCount
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3685,65 +3689,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 120949235881890535, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-      propertyPath: payMoney
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 327271832211428720, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-      propertyPath: payMoney
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1594561651217867695, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-      propertyPath: payMoney
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597807792483635348, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-      propertyPath: payMoney
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2077093483026218865, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-      propertyPath: payMoney
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2331629624317196352, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-      propertyPath: payMoney
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 2789477268189966050, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-      propertyPath: payMoney
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 3121681174263744775, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
       propertyPath: m_Name
       value: RestaurantManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252576023503838749, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-      propertyPath: payMoney
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4110166993070979592, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-      propertyPath: payMoney
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4414729943416896057, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-      propertyPath: payMoney
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5091403048552414100, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-      propertyPath: payMoney
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5430727432178188169, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-      propertyPath: payMoney
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7714292470200606333, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-      propertyPath: payMoney
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 7794151084726326341, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-      propertyPath: payMoney
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7950900313752555377, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3784,14 +3732,6 @@ PrefabInstance:
     - target: {fileID: 7950900313752555377, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8146038649191230402, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-      propertyPath: payMoney
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8587975486730840041, guid: 72ee3a72dc0dc384ba8f4c5bf50b4815, type: 3}
-      propertyPath: payMoney
-      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

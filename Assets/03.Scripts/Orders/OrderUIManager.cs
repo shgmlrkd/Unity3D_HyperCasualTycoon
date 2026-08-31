@@ -14,6 +14,9 @@ public class OrderUIManager : LocalSingleton<OrderUIManager>
     [SerializeField]
     private float spacing = 1.0f;
 
+    private float orderUIOffsetY = 1.9f;
+    private float orderUIOffsetZ = -0.3f;
+
     private Dictionary<int, List<Order>> orderUIs = new Dictionary<int, List<Order>>();
 
     private void Awake()
@@ -52,12 +55,14 @@ public class OrderUIManager : LocalSingleton<OrderUIManager>
         foreach(OrderItem item in data.orderItems)
         {
             Order order = PoolManager.Instance.Pop<Order>(PoolType.Order);
+
+            order.transform.DOKill();
             order.SetOrderInfo(item.food.foodIcon, item.requiredAmount);
 
             Vector3 position = transform.position;
-            float orderUIPositionY = order.transform.position.y;
 
-            position.y = orderUIPositionY + (spacing * index);
+            position.y += orderUIOffsetY + (spacing * index);
+            position += transform.forward * orderUIOffsetZ;
 
             order.transform.position = position;
 

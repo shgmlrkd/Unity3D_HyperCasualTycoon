@@ -12,6 +12,8 @@ public class Table : MonoBehaviour
     // 일치하는게 있다면 그릇 위치에 놓아야하고
     // 손님 NPC에게 서빙이 되었다는 신호를 보내야함
 
+    private const float SERVING_INTERVAL = 0.3f;
+
     [SerializeField]
     private int restaurantId;
 
@@ -31,10 +33,8 @@ public class Table : MonoBehaviour
     private Dictionary<ChairSide, List<CarrierItem>> servedItems = new Dictionary<ChairSide, List<CarrierItem>>();
     private Sequence serveSequence;
     private bool isServing;
-    
-    public IEnumerable<CustomerNPC> Customers => customers.Values;
 
-    public int RestaurantId => restaurantId;
+    public IEnumerable<CustomerNPC> Customers => customers.Values;
 
     private void RegisterCustomer(CustomerNPC customerNPC)
     {
@@ -117,6 +117,8 @@ public class Table : MonoBehaviour
         serveSequence?.Kill();
         serveSequence = DOTween.Sequence();
 
+        serveSequence.AppendInterval(SERVING_INTERVAL);
+
         foreach (KeyValuePair<ChairSide, CustomerNPC> customer in customers)
         {
             CustomerNPC customerNPC = customer.Value;
@@ -187,7 +189,7 @@ public class Table : MonoBehaviour
                 }
             });
 
-            sequence.AppendInterval(0.5f);
+            sequence.AppendInterval(SERVING_INTERVAL);
         }
     }
 
@@ -365,7 +367,13 @@ public class Table : MonoBehaviour
 
         if (playerServe.IsMoving)
         {
-            CancelServing();
+            if (isServing)
+            {
+                CancelServing();
+                playerServe.RequestServe();
+            }
+
+            return;
         }
 
         // 플레이어가 목표로한 테이블이 있는지 검사
