@@ -3571,9 +3571,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1312325731}
     m_Modifications:
+    - target: {fileID: 1249245349450019380, guid: 854d4a935cc2217408843735f959e1d5, type: 3}
+      propertyPath: m_Center.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1249245349450019380, guid: 854d4a935cc2217408843735f959e1d5, type: 3}
+      propertyPath: m_Extents.x
+      value: 0.46
+      objectReference: {fileID: 0}
     - target: {fileID: 3947412652251582631, guid: 854d4a935cc2217408843735f959e1d5, type: 3}
       propertyPath: m_Name
       value: Restaurant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225717718404256210, guid: 854d4a935cc2217408843735f959e1d5, type: 3}
+      propertyPath: m_Extents.x
+      value: 0.46
       objectReference: {fileID: 0}
     - target: {fileID: 4442641744893696671, guid: 854d4a935cc2217408843735f959e1d5, type: 3}
       propertyPath: m_LocalPosition.x

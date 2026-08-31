@@ -2,6 +2,7 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 public class InsertBuild : MonoBehaviour
 {
@@ -46,6 +47,16 @@ public class InsertBuild : MonoBehaviour
     private void Awake()
     {
         SetBuildMoney(buildMoney);
+    }
+
+    private void OnEnable()
+    {
+        transform.DOKill();
+
+        transform.localScale = Vector3.zero;
+
+        transform.DOScale(Vector3.one, 0.2f)
+                 .SetEase(Ease.OutQuad);
     }
 
     //202600813
