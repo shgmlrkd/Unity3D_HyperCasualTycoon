@@ -1607,7 +1607,7 @@ Transform:
   m_GameObject: {fileID: 7401210062911645030}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -11}
+  m_LocalPosition: {x: 0.05, y: 0, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1998,7 +1998,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: payMoney
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: buildMoney
@@ -2149,7 +2149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: payMoney
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: buildMoney
@@ -2252,7 +2252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2715560340441765122, guid: d40e06158d9fc944c9c5b82a65dc5ee6, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.2
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 2715560340441765122, guid: d40e06158d9fc944c9c5b82a65dc5ee6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2358,7 +2358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: payMoney
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: buildMoney
@@ -2759,7 +2759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: payMoney
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: buildMoney
@@ -2906,7 +2906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: payMoney
-      value: 8
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: buildMoney
@@ -3115,7 +3115,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: payMoney
-      value: 10
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: buildMoney
@@ -3196,7 +3196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: payMoney
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: buildMoney
@@ -3277,7 +3277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: payMoney
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: buildMoney
@@ -3486,7 +3486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: payMoney
-      value: 9
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: buildMoney
@@ -3629,7 +3629,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: payMoney
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: buildMoney
@@ -3827,6 +3827,10 @@ PrefabInstance:
     - target: {fileID: 3270398765677697939, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: m_Name
       value: UnlockPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
+      propertyPath: payMoney
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4031,7 +4035,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: payMoney
-      value: 8
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: buildMoney
@@ -4112,7 +4116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: payMoney
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: buildMoney
@@ -4255,7 +4259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: payMoney
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: buildMoney
@@ -4362,7 +4366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2715560340441765122, guid: d40e06158d9fc944c9c5b82a65dc5ee6, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.2
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 2715560340441765122, guid: d40e06158d9fc944c9c5b82a65dc5ee6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4593,6 +4597,10 @@ PrefabInstance:
     - target: {fileID: 3270398765677697939, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: m_Name
       value: UnlockPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
+      propertyPath: payMoney
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5083,7 +5091,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: payMoney
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4252775036571328863, guid: 6b036220ddd963f41b49e2e1d7a51c9c, type: 3}
       propertyPath: buildMoney
