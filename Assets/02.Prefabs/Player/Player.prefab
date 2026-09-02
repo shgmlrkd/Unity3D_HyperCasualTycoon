@@ -140,13 +140,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.3
+  m_Height: 1.9
+  m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.95, z: 0}
 --- !u!114 &6728109189097079686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,12 +420,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 4151318502483408747}
     m_Modifications:
     - target: {fileID: 1876037148194587715, guid: ca3d3bba70da5c94089869cb8e8746e6, type: 3}
+      propertyPath: m_Height
+      value: 1.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876037148194587715, guid: ca3d3bba70da5c94089869cb8e8746e6, type: 3}
       propertyPath: m_Radius
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876037148194587715, guid: ca3d3bba70da5c94089869cb8e8746e6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4238963136624438177, guid: ca3d3bba70da5c94089869cb8e8746e6, type: 3}
       propertyPath: m_Name
       value: Man_Pedestrian_Rival_Young_Rig
+      objectReference: {fileID: 0}
+    - target: {fileID: 4238963136624438179, guid: ca3d3bba70da5c94089869cb8e8746e6, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4238963136624736131, guid: ca3d3bba70da5c94089869cb8e8746e6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -467,7 +479,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1876037148194587715, guid: ca3d3bba70da5c94089869cb8e8746e6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
