@@ -4426,11 +4426,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 428806118133101123, guid: 6bb8deac4d38ffa48af3abb099a12f02, type: 3}
       propertyPath: customerPoolSize
-      value: 1
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 428806118133101123, guid: 6bb8deac4d38ffa48af3abb099a12f02, type: 3}
       propertyPath: maxCustomerCount
-      value: 1
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 2991766416458910880, guid: 6bb8deac4d38ffa48af3abb099a12f02, type: 3}
       propertyPath: m_LocalPosition.x

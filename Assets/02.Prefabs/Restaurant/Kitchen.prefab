@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5129009574411417407}
-  - component: {fileID: 6780067692050768784}
+  - component: {fileID: 7917446220674215995}
   - component: {fileID: 7634807560975088712}
   m_Layer: 0
   m_Name: PizzsPoint
@@ -34,8 +34,8 @@ Transform:
   - {fileID: 6927674042695275973}
   m_Father: {fileID: 6448161422506546843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6780067692050768784
-BoxCollider:
+--- !u!135 &7917446220674215995
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -53,7 +53,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7634807560975088712
 MonoBehaviour:
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bf725b86887d4941b63beb20af315d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KitchenZone
-  produceItemData: {fileID: 11400000, guid: 251e09cdd419ef54693c5fb66745382d, type: 2}
+  produceItemData: {fileID: 0}
   interactInterval: 1
   spawnPoint: {fileID: 5129009574411417407}
 --- !u!1 &3481481380231177925
@@ -115,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4478552907933298452}
-  - component: {fileID: 1274781668463088940}
+  - component: {fileID: 3637527811839024353}
   - component: {fileID: 7236224060282959975}
   m_Layer: 0
   m_Name: HambugerPoint
@@ -140,8 +140,8 @@ Transform:
   - {fileID: 138431886044237050}
   m_Father: {fileID: 6448161422506546843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1274781668463088940
-BoxCollider:
+--- !u!135 &3637527811839024353
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -159,7 +159,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7236224060282959975
 MonoBehaviour:
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bf725b86887d4941b63beb20af315d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KitchenZone
-  produceItemData: {fileID: 11400000, guid: faf98d18253474d489c6e391e9e76580, type: 2}
+  produceItemData: {fileID: 0}
   interactInterval: 1
   spawnPoint: {fileID: 4478552907933298452}
 --- !u!1001 &389166224167847829
