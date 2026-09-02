@@ -116,10 +116,10 @@ public class Content : MonoBehaviour
             SetUpgradCount(contentData.UpgradeMaxCount,
                            StateManager.Instance.GetPopupUpgradeLevel(restaurantType, contentData.TypeId))
             );
-        //NPC 초기값 level = 0, pay  = 500
+        //NPC 초기값 level = 0, pay  = 300
         if(StateManager.Instance.GetPopupUpgradeLevel(restaurantType, contentData.TypeId) == 0)
         {
-            UpgradePay = 500;
+            UpgradePay = 300;
         }
         else
         {

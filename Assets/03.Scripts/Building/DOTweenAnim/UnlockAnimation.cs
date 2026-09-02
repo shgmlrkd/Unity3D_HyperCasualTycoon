@@ -12,9 +12,16 @@ public static class UnlockAnimation
         if (isActive)
         {
             transform.localScale = Vector3.zero;
-            return transform.DOScale(Vector3.one, UNLOCK_ANIMATION_DURATION).SetEase(Ease.OutBounce);
+
+            float duration = UNLOCK_ANIMATION_DURATION * 0.5f;
+
+            return DOTween.Sequence().Append(transform.DOScaleY(1.0f, duration))
+                                     .Append(transform.DOScaleX(1.0f, duration))
+                                     .Join(transform.DOScaleZ(1.0f, duration))
+                                     .SetEase(Ease.OutBounce);
         }
 
-        return transform.DOScale(Vector3.zero, UNLOCK_ANIMATION_DURATION).SetEase(Ease.OutBounce);
+        return transform.DOScale(Vector3.zero, UNLOCK_ANIMATION_DURATION)
+                        .SetEase(Ease.OutBounce);
     }
 }

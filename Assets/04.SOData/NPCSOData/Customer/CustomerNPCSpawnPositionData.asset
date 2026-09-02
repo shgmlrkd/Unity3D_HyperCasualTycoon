@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CustomerNPCSpawnPositionData
   m_EditorClassIdentifier: Assembly-CSharp::SpawnPositionData
   positions:
-  - {x: 0, y: 0, z: 40}
-  - {x: 0, y: 0, z: -40}
-  - {x: 40, y: 0, z: 0}
-  - {x: -40, y: 0, z: 0}
+  - {x: -26, y: 6.55, z: 29}
+  - {x: 50, y: 6.55, z: 0}
+  - {x: -20, y: 6.55, z: 61}
+  - {x: 48, y: 6.55, z: 51}
