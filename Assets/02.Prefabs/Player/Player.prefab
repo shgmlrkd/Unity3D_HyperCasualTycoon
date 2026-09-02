@@ -140,7 +140,7 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.8
+  m_Height: 2
   m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -190,7 +190,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCarrier
   carryPoint: {fileID: 4766100657278264040}
-  maxCapacity: 5
   itemSpacing: 0.05
 --- !u!54 &3148197438825427366
 Rigidbody:
@@ -305,12 +304,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMagnet
   magnetRadius: 3
-  jumpPower: 1.5
-  jumpDuration: 0.5
   moneyLayer:
     serializedVersion: 2
     m_Bits: 512
   scanInterval: 0.05
+  maxMoneyCount: 100
 --- !u!1001 &2154552097028240810
 PrefabInstance:
   m_ObjectHideFlags: 0

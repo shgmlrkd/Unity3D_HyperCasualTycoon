@@ -26,17 +26,14 @@ public class UnlockObjectManager : MonoBehaviour
 
         for (int i = 0; i < currentUnlockIndex; i++)
         {
-            while(true)
+            // 인덱스 범위 유지
+            while (index < unlockableObjects.Length)
             {
-                if (unlockPoints[i] == unlockableObjects[index].UnlockPoint)
-                {
-                    unlockableObjects[index].UnlockObject();
-                    index++;
-                }
-                else
-                {
+                if (unlockPoints[i] != unlockableObjects[index].UnlockPoint)
                     break;
-                }
+
+                unlockableObjects[index].UnlockObject();
+                index++;
             }
         }
     }
