@@ -37,6 +37,11 @@ public class PlayerServe : MonoBehaviour
         {
             StateManager.Instance.OnUpgradeChanged -= UpgradeChanged;
         }
+
+        if (targetTable != null)
+        {
+            targetTable.OnCustomerOrderReady -= CustomerRegistered;
+        }
     }
 
     private void UpgradeChanged(TypeId id, int upgradeLevel)
@@ -75,12 +80,26 @@ public class PlayerServe : MonoBehaviour
 
     public void SetTargetTable(Table table)
     {
-        if (targetTable == table)
+        if (targetTable == table) return;
+
+        if (targetTable != null)
         {
-            return;
+            targetTable.OnCustomerOrderReady -= CustomerRegistered;
         }
 
         targetTable = table;
+        targetTable.OnCustomerOrderReady += CustomerRegistered;
+
+        serveRequested = true;
+    }
+
+    private void CustomerRegistered()
+    {
+        if (targetTable == null)
+            return;
+
+        targetTable.CancelServing();
+
         serveRequested = true;
     }
 
@@ -95,6 +114,8 @@ public class PlayerServe : MonoBehaviour
             return;
 
         targetTable.CancelServing();
+
+        targetTable.OnCustomerOrderReady -= CustomerRegistered;
 
         targetTable = null;
         serveRequested = false;

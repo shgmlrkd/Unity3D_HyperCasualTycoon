@@ -35,6 +35,7 @@ public class CustomerNPC : MonoBehaviour, IPoolInitialize
 
     public event Action<CustomerNPC> OnEatFinished;
     public event Action<CustomerNPC> OnExitCompleted;
+    public event Action OnOrderReady;
     public float FoodWaitTime => foodWaitTime;
     public int CustomerID => customerID;
     public int RestaurantID => restaurantID;
@@ -101,9 +102,12 @@ public class CustomerNPC : MonoBehaviour, IPoolInitialize
         customerID = id;
     }
 
+    // 주문을 했을 때 이벤트도 같이 발생
     public void SetMyOrder(OrderData orderData)
     {
         myOrder = orderData;
+
+        OnOrderReady?.Invoke();
     }
 
     public void ResetFoodWaitTime()

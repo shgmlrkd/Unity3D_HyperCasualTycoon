@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7328031214400613377}
   - component: {fileID: 1974149106564875083}
   - component: {fileID: 5772555824289722454}
-  - component: {fileID: 3424364931769674083}
+  - component: {fileID: 8581303303037925846}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -91,9 +91,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InsertCircle
   foodImg: {fileID: 0}
   type: 1
-  popuType: 0
---- !u!136 &3424364931769674083
-CapsuleCollider:
+  restaurantType: 0
+--- !u!135 &8581303303037925846
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -110,10 +110,8 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6469501848410420682
 GameObject:
