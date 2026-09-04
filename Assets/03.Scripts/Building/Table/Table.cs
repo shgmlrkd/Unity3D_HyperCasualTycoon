@@ -1,5 +1,6 @@
 using DG.Tweening;
 using Restaurant.Orders;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ public class Table : MonoBehaviour
     // 일치하는게 있다면 그릇 위치에 놓아야하고
     // 손님 NPC에게 서빙이 되었다는 신호를 보내야함
 
-    private const float SERVING_INTERVAL = 0.3f;
+    private const float SERVING_INTERVAL = 0.35f;
 
     [SerializeField]
     private int restaurantId;
@@ -36,6 +37,8 @@ public class Table : MonoBehaviour
 
     public IEnumerable<CustomerNPC> Customers => customers.Values;
 
+    public event Action OnCustomerOrderReady;
+
     private void RegisterCustomer(CustomerNPC customerNPC)
     {
         ChairSide chairSide = customerNPC.CurrentChair.SeatSide;
@@ -57,10 +60,16 @@ public class Table : MonoBehaviour
 
         customerNPC.SetRestaurantID(restaurantId);
 
-        //Debug.Log($"손님 NPC가 있는 식당 : {(RestaurantType)restaurantId}");
-
+        // 주문 생성 이벤트 구독
+        customerNPC.OnOrderReady += CustomerOrderReady;
         // 식사 종료 시 테이블 위 음식 제거
         customerNPC.OnEatFinished += RemoveServedFood;
+    }
+
+    // 서빙 도중 손님이 왔을 경우 그 손님의 주문이 완료 됬을 때 발생할 이벤트
+    private void CustomerOrderReady()
+    {
+        OnCustomerOrderReady?.Invoke();
     }
 
     private void UnregisterCustomer(CustomerNPC customerNPC)
@@ -74,6 +83,7 @@ public class Table : MonoBehaviour
             return;
 
         // 이벤트 구독 해제
+        customerNPC.OnOrderReady -= CustomerOrderReady;
         customerNPC.OnEatFinished -= RemoveServedFood;
 
         // 손님 등록 해제
@@ -146,6 +156,8 @@ public class Table : MonoBehaviour
     public void CancelServing()
     {
         serveSequence?.Kill();
+        serveSequence = null;
+        isServing = false;
     }
 
     private void AppendCustomerServeSequence(Sequence sequence, ChairSide chairSide, CustomerNPC customerNPC, Carrier carrier)
@@ -390,11 +402,6 @@ public class Table : MonoBehaviour
         if (other.TryGetComponent(out PlayerServe playerServe))
         {
             playerServe.ClearTargetTable(this);
-
-            // 실행 중인 서빙 Sequence 종료
-            serveSequence?.Kill();
-            serveSequence = null;
-            isServing = false;
         }
 
         if (!other.TryGetComponent(out CustomerNPC customerNPC))
